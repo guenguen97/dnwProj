@@ -5,6 +5,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+src/main/resources/templates/map.html
+src/main/resources/templates/reverse-geocoding.html
+
 ### STS ###
 .apt_generated
 .classpath
