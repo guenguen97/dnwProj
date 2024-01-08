@@ -5,10 +5,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -43,9 +40,15 @@ public class CsvService {
         // 입력 스트림 오브젝트 생성
         BufferedReader br = null;
 
+
         try {
+            FileInputStream fileInputStream = new FileInputStream("C:\\work\\food_data.csv");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            br = new BufferedReader(inputStreamReader);
+
             // 대상 CSV 파일의 경로 설정
-            br = Files.newBufferedReader(Paths.get("C:\\work\\food_data.csv"), StandardCharsets.UTF_8);
+
+//            br = Files.newBufferedReader(Paths.get("C:\\work\\food_data.csv"), StandardCharsets.UTF_8);
             // CSV파일에서 읽어들인 1행분의 데이터
             String line ;
 

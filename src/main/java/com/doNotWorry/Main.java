@@ -21,6 +21,8 @@ public class Main {
         try {
             List<List<String>> csvData1=  csvService.csvData();
             model.addAttribute(csvData1.toString(),"fData");
+
+            System.out.println("테스트 시작 ");
             System.out.println(csvData1.get(0).get(0));
 
         } catch (IOException e) {
