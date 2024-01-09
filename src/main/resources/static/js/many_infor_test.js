@@ -11,16 +11,17 @@ var HOME_PATH = window.HOME_PATH || '.';
 
 var MARKER_SPRITE_X_OFFSET = 29,
 MARKER_SPRITE_Y_OFFSET = 50,
-MARKER_SPRITE_POSITION = {"B0": [MARKER_SPRITE_X_OFFSET, 0]};
+MARKER_SPRITE_POSITION = {};
 
 for(var i = 1; i <=firstChildText; i++){
   var classSelector = '.' + (i + 1); // Generating class selector based on the value of i
  var element = $('.'+i);
  if (element) {
-         var secondChild = element.children('span'); // Second child
-         var thirdChild = element.children('span'); // Third child
+         var secondChild = element.children('span').eq(1); // Second child
+         var thirdChild = element.children('span').eq(2); // Third child
 
          if (secondChild && thirdChild) {
+                console.log(latText);
              var latText = secondChild.text();
              var harText = thirdChild.text();
              }
@@ -37,7 +38,7 @@ MARKER_SPRITE_POSITION[i] =[
 
 var map = new naver.maps.Map('map', {
 center: new naver.maps.LatLng(37.3595704, 127.105399),
-zoom: 10
+zoom: 13
 });
 
 var bounds = map.getBounds(),
@@ -57,6 +58,7 @@ for (var key in MARKER_SPRITE_POSITION) {
                 MARKER_SPRITE_POSITION[key][0],
                 MARKER_SPRITE_POSITION[key][1]);
 
+//                console.log(MARKER_SPRITE_POSITION[key][0]);
                 var marker = new naver.maps.Marker({
                 map: map,
                 position: position,

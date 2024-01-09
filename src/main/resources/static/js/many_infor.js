@@ -38,7 +38,7 @@ MARKER_SPRITE_POSITION = {
 
 var map = new naver.maps.Map('map', {
 center: new naver.maps.LatLng(37.3595704, 127.105399),
-zoom: 10
+zoom: 13
 });
 
 var bounds = map.getBounds(),
