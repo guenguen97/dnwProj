@@ -13,20 +13,20 @@ var MARKER_SPRITE_X_OFFSET = 29,
 MARKER_SPRITE_Y_OFFSET = 50,
 MARKER_SPRITE_POSITION = {"B0": [MARKER_SPRITE_X_OFFSET, 0]};
 
-for(var i = 0; i < firstChildText; i++){
+for(var i = 1; i <=firstChildText; i++){
   var classSelector = '.' + (i + 1); // Generating class selector based on the value of i
- var element = document.getElementsByClassName(i+1);
+ var element = $('.'+i);
  if (element) {
-         var secondChild = element.children[1]; // Second child
-         var thirdChild = element.children[2]; // Third child
+         var secondChild = element.children('span'); // Second child
+         var thirdChild = element.children('span'); // Third child
 
          if (secondChild && thirdChild) {
-             var latText = secondChild.textContent;
-             var harText = thirdChild.textContent;
+             var latText = secondChild.text();
+             var harText = thirdChild.text();
              }
    }
 
-MARKER_SPRITE_POSITION[i+1] =[
+MARKER_SPRITE_POSITION[i] =[
                                          parseFloat(latText), // Assuming content holds x coordinate
                                          parseFloat(harText) // Assuming content holds y coordinate
                                      ];
