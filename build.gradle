@@ -33,6 +33,10 @@ dependencies {
 
 	implementation 'com.opencsv:opencsv:5.5.2' // Use the latest version
 
+
+//	현재 위치 위도 경도 받는 거
+
+
 }
 
 tasks.named('test') {

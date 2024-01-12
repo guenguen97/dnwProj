@@ -16,9 +16,10 @@ public class Main {
 
 
 
+
     @GetMapping("/")
 
-    public String main(Model model){
+    public String main(Model model) throws IOException {
         try {
             List<List<String>> csvData1=  csvService.csvData();
 
@@ -31,8 +32,12 @@ public class Main {
             e.printStackTrace();
             // Handle the exception according to your application's requirements
         }
+
+
         return "map";
     }
+
+
 
 
 
