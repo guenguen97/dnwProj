@@ -16,33 +16,33 @@ import java.util.List;
 
 @Service
 public class CsvService {
-    public void readCsvFile() throws IOException {
-        // Load the CSV file as a resource
-        ClassPathResource resource = new ClassPathResource("C:\\work\\food_data.csv");
+//    public void readCsvFile() throws IOException {
+//        // Load the CSV file as a resource
+//        ClassPathResource resource = new ClassPathResource("C:\\work\\food_data.csv");
+//
+//        // Read the CSV file using OpenCSV
+//        try (CSVReader reader = new CSVReader(new InputStreamReader(resource.getInputStream()))) {
+//            String[] nextLine;
+//            while ((nextLine = reader.readNext()) != null) {
+//                // Process each row of the CSV file
+//                for (String column : nextLine) {
+//                    System.out.print(column + " ");
+//                }
+//                System.out.println();
+//            }
+//        } catch (CsvValidationException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
-        // Read the CSV file using OpenCSV
-        try (CSVReader reader = new CSVReader(new InputStreamReader(resource.getInputStream()))) {
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // Process each row of the CSV file
-                for (String column : nextLine) {
-                    System.out.print(column + " ");
-                }
-                System.out.println();
-            }
-        } catch (CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<List<String>> csvData() throws IOException {
+    public List<List<String>> csvData(String dir) throws IOException {
         List<List<String>> ret = new ArrayList<>();
         // 입력 스트림 오브젝트 생성
         BufferedReader br = null;
 
 
         try {
-            FileInputStream fileInputStream = new FileInputStream("C:\\work\\food_data.csv");
+            FileInputStream fileInputStream = new FileInputStream(dir);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
             br = new BufferedReader(inputStreamReader);
 

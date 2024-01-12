@@ -1,4 +1,6 @@
-var d="dddd";
+
+
+function update() {
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
 
@@ -21,7 +23,7 @@ for(var i = 1; i <=firstChildText; i++){
          var thirdChild = element.children('span').eq(2); // Third child
 
          if (secondChild && thirdChild) {
-                console.log(latText);
+
              var latText = secondChild.text();
              var harText = thirdChild.text();
              }
@@ -130,4 +132,6 @@ infoWindow.open(map, marker);
 
 for (var i=0, ii=markers.length; i<ii; i++) {
 naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+}
+
 }
