@@ -19,7 +19,7 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
-  update();
+  update(crd.latitude,crd.longitude);
 
 
 

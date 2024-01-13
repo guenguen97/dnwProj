@@ -1,6 +1,7 @@
 
 
-function update() {
+function update(myLat,myHar) {
+ console.log(myLat+" and "+myHar);
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
 
@@ -14,25 +15,60 @@ var HOME_PATH = window.HOME_PATH || '.';
 var MARKER_SPRITE_X_OFFSET = 29,
 MARKER_SPRITE_Y_OFFSET = 50,
 MARKER_SPRITE_POSITION = {};
-
+    const dataArray = [];
 for(var i = 1; i <=firstChildText; i++){
   var classSelector = '.' + (i + 1); // Generating class selector based on the value of i
  var element = $('.'+i);
- if (element) {
-         var secondChild = element.children('span').eq(1); // Second child
-         var thirdChild = element.children('span').eq(2); // Third child
+     if (element) {
+             var secondChild = element.children('span').eq(1); // Second child
+             var thirdChild = element.children('span').eq(2); // Third child
 
-         if (secondChild && thirdChild) {
+                         if (secondChild && thirdChild) {
 
-             var latText = secondChild.text();
-             var harText = thirdChild.text();
-             }
-   }
+                             var latText = secondChild.text();
+                             var harText = thirdChild.text();
 
-MARKER_SPRITE_POSITION[i] =[
-                                         parseFloat(latText), // Assuming content holds x coordinate
-                                         parseFloat(harText) // Assuming content holds y coordinate
-                                     ];
+                              dataArray.push({ latText, harText });
+                             }
+        }
+
+            const batchSize = 100;
+            const totalBatches = Math.ceil(dataArray.length / batchSize);
+
+            function processBatch(startIndex) {
+              const endIndex = Math.min(startIndex + batchSize, dataArray.length);
+
+              for (let i = startIndex; i < endIndex; i++) {
+
+
+
+                const latInRange = latText < myLat + 0.018018 && latText > myLat - 0.018018;
+                const harInRange = harText < myHar + 1.5972 && harText > myHar - 1.5972;
+
+                if (latInRange && harInRange) {
+                  // 일치하는 항목에 대한 로직 수행
+                    MARKER_SPRITE_POSITION[i] =[
+                                                                         parseFloat(latText), // Assuming content holds x coordinate
+                                                                         parseFloat(harText) // Assuming content holds y coordinate
+                                                                     ];
+                }
+              }
+
+              if (startIndex + batchSize < dataArray.length) {
+                // 짧은 지연 후 다음 일괄 처리를 예약합니다.
+                setTimeout(() => processBatch(startIndex + batchSize), 0);
+              }
+            }
+
+            // 첫 번째 일괄 처리를 시작합니다.
+            processBatch(0);
+
+//            if((latText<myLat+0.000018 && latText>myLat - 0.000018)&&(harText < myHar+0.0972 && harText>myHar - 0.0972)){
+//            MARKER_SPRITE_POSITION[i] =[
+//                                         parseFloat(latText), // Assuming content holds x coordinate
+//                                         parseFloat(harText) // Assuming content holds y coordinate
+//                                     ];
+//             }
 }
 
 
@@ -59,7 +95,7 @@ for (var key in MARKER_SPRITE_POSITION) {
 //                위도 경도 눌 부분
                 MARKER_SPRITE_POSITION[key][0],
                 MARKER_SPRITE_POSITION[key][1]);
-
+                console.log(MARKER_SPRITE_POSITION[key][0]);
 //                console.log(MARKER_SPRITE_POSITION[key][0]);
                 var marker = new naver.maps.Marker({
                 map: map,
