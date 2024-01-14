@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +20,6 @@ public class Main {
 
 
     @GetMapping("/")
-
     public String main(Model model) throws IOException {
         try {
             List<List<String>> csvData1=  csvService.csvData("C:\\work\\food_data.csv");
@@ -40,6 +41,43 @@ public class Main {
     }
 
 
+    @GetMapping("getNearFood")
+    @ResponseBody
+    public List<List<String>> getNearFood( @RequestParam(name = "lat") float lat,
+                               @RequestParam(name = "har") float har) throws IOException {
+
+        System.out.println(lat+" and"+har+"정보 받기 성공");
+
+        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
+        List<List<String>> mainData = null;
+        System.out.println("????????????????????");
+
+        for(int i=1; i<=csvData2.size()/2;i++){
+            float lat2 = 0;
+            float har2=0;
+            if(csvData2.get(i).get(8) != null && csvData2.get(i).get(9) != null ){
+             lat2 = Float.parseFloat(csvData2.get(i).get(8));
+             har2 = Float.parseFloat(csvData2.get(i).get(9));
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+
+            }
+
+            if(lat2 !=0 && har2 !=0){
+                if((lat2< lat+0.018018 && lat2 >lat-0.018018)&&(har2<har+1.5972 && har2>har-1.5972) ){
+                    csvData2.get(i).get(2);
+                    mainData.add(csvData2.get(i));
+                }
+            }
+
+
+        }
+        for (int i = 0; i <mainData.size() ; i++) {
+            System.out.println(mainData.get(i).get(3));
+        }
+
+        return mainData;
+
+    }
 
 
 

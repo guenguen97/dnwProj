@@ -1,9 +1,10 @@
 
 
-function update(myLat,myHar) {
- console.log(myLat+" and "+myHar);
+function update(data) {
+// console.log(myLat+" and "+myHar);
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
+  console.log("데이타의 길이는"+data.length);
 
     // Get the last li tag among the child tags of ul
     var lastLiTag = ulElement.lastElementChild;
@@ -16,60 +17,55 @@ var MARKER_SPRITE_X_OFFSET = 29,
 MARKER_SPRITE_Y_OFFSET = 50,
 MARKER_SPRITE_POSITION = {};
     const dataArray = [];
-for(var i = 1; i <=firstChildText; i++){
-  var classSelector = '.' + (i + 1); // Generating class selector based on the value of i
- var element = $('.'+i);
-     if (element) {
-             var secondChild = element.children('span').eq(1); // Second child
-             var thirdChild = element.children('span').eq(2); // Third child
-
-                         if (secondChild && thirdChild) {
-
-                             var latText = secondChild.text();
-                             var harText = thirdChild.text();
-
-                              dataArray.push({ latText, harText });
-                             }
-        }
-
-            const batchSize = 100;
-            const totalBatches = Math.ceil(dataArray.length / batchSize);
-
-            function processBatch(startIndex) {
-              const endIndex = Math.min(startIndex + batchSize, dataArray.length);
-
-              for (let i = startIndex; i < endIndex; i++) {
+//for(var i = 1; i <=firstChildText; i++){
+//  var classSelector = '.' + (i + 1); // Generating class selector based on the value of i
+// var element = $('.'+i);
+//     if (element) {
+//             var secondChild = element.children('span').eq(1); // Second child
+//             var thirdChild = element.children('span').eq(2); // Third child
+//
+//                         if (secondChild && thirdChild) {
+//
+//                             var latText = secondChild.text();
+//                             var harText = thirdChild.text();
+//
+//                              dataArray.push({ latText, harText });
+//                             }
+//        }
+//        }
 
 
-
-                const latInRange = latText < myLat + 0.018018 && latText > myLat - 0.018018;
-                const harInRange = harText < myHar + 1.5972 && harText > myHar - 1.5972;
-
-                if (latInRange && harInRange) {
-                  // 일치하는 항목에 대한 로직 수행
-                    MARKER_SPRITE_POSITION[i] =[
-                                                                         parseFloat(latText), // Assuming content holds x coordinate
-                                                                         parseFloat(harText) // Assuming content holds y coordinate
-                                                                     ];
+//            function processBatch(startIndex) {
+//              const endIndex = Math.min(startIndex + batchSize, dataArray.length);
+//
+//              for (let i = startIndex; i < endIndex; i++) {
+//
+//
+////
+////                const latInRange = latText < myLat + 0.018018 && latText > myLat - 0.018018;
+////                const harInRange = harText < myHar + 1.5972 && harText > myHar - 1.5972;
+////
+////                if (latInRange && harInRange) {
+////                  // 일치하는 항목에 대한 로직 수행
+////                    MARKER_SPRITE_POSITION[i] =[
+////                                                                         parseFloat(latText), // Assuming content holds x coordinate
+////                                                                         parseFloat(harText) // Assuming content holds y coordinate
+////                                                                     ];
+////                }
+//              }
+                for(var i=1 ; i<data.length;i++ ){
+               MARKER_SPRITE_POSITION[i] =[
+                                                                                      parseFloat(data[i][8]), // Assuming content holds x coordinate
+                                                                                      parseFloat(data[i][9]) // Assuming content holds y coordinate
+                                                                                  ];
                 }
-              }
-
-              if (startIndex + batchSize < dataArray.length) {
-                // 짧은 지연 후 다음 일괄 처리를 예약합니다.
-                setTimeout(() => processBatch(startIndex + batchSize), 0);
-              }
-            }
-
-            // 첫 번째 일괄 처리를 시작합니다.
-            processBatch(0);
-
 //            if((latText<myLat+0.000018 && latText>myLat - 0.000018)&&(harText < myHar+0.0972 && harText>myHar - 0.0972)){
 //            MARKER_SPRITE_POSITION[i] =[
 //                                         parseFloat(latText), // Assuming content holds x coordinate
 //                                         parseFloat(harText) // Assuming content holds y coordinate
 //                                     ];
 //             }
-}
+
 
 
 
