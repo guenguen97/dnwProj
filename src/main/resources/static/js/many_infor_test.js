@@ -10,6 +10,7 @@ var HOME_PATH = window.HOME_PATH || '.';
     var lastLiTag = ulElement.lastElementChild;
 
     // Get the first child tag (div in this case) of the last li tag
+
 //    var firstChildText = lastLiTag.firstElementChild.firstElementChild.textContent;
 
 
@@ -65,6 +66,7 @@ MARKER_SPRITE_POSITION = {};
 //                                         parseFloat(harText) // Assuming content holds y coordinate
 //                                     ];
 //             }
+
 
 
 

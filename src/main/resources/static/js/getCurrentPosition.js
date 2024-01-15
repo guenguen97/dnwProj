@@ -38,6 +38,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 function onSuccessGeolocation(position) {
 
 
+
     getNewNotifications(lat1, har1);
      console.log(lat1+"현재 위도");
      function getNewNotifications(lat1, har1) {
@@ -58,6 +59,7 @@ function onSuccessGeolocation(position) {
                  }
                });
              }
+
 
     var location = new naver.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
@@ -102,7 +104,6 @@ $(window).on("load", function() {
         infowindow.open(map, center);
     }
 });
-
 
  document.addEventListener('DOMContentLoaded', function () {
         var btnMylct = document.querySelector('.btn_mylct');
