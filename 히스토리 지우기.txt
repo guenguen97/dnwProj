@@ -13,3 +13,78 @@ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch src/m
 git add .
 git commit -m "[Delete] GoogleService-Info.plist from history"
 git push origin --force --all
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</head>
+<body>
+<div id="map" style="width:100%;height:400px;">
+    <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; left: 0px; top: 300px;">
+        <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
+            <a href="#" class="btn_mylct" style="pointer-events: auto;">
+                <span class="spr_trff spr_ico_mylct">현재 위치</span>
+            </a>
+
+        </div>
+    </div>
+</div>
+<div class="a">
+    <div>dsad</div>
+    <span>gfgg</span>
+</div>
+
+<!--<div th:text="${fData.length}"></div>-->
+<ul id="myList">
+<!--    <li th:each="innerList,num : ${fData}">-->
+<!--        &lt;!&ndash; Accessing the second element of each inner list &ndash;&gt;-->
+<!--        <div th:class="${num.index}" th:if="${num.index>0}" >-->
+<!--            <span id="foodIndex" th:if="${num.index>0}" th:text="${num.index}"></span>-->
+
+<!--            <span  id="lat" th:if="${num.index>0}" th:text="${innerList[11]}"></span>-->
+<!--            <span    id="har" th:if="${num.index>0}"th:text="${innerList[12]}"></span>-->
+
+
+<!--        </div>-->
+
+<!--    </li>-->
+<!--    <li th:each="innerList,num : ${fData2}">-->
+<!--        &lt;!&ndash; Accessing the second element of each inner list &ndash;&gt;-->
+<!--        <div th:class="${num.index}" th:if="${num.index>0}" >-->
+<!--            <span th:if="${num.index>0}" th:text="${num.index}"></span>-->
+
+<!--            <span   th:if="${num.index>0}" th:text="${innerList[8]}"></span>-->
+<!--            <span     th:if="${num.index>0}"th:text="${innerList[9]}"></span>-->
+
+
+<!--        </div>-->
+
+<!--    </li>-->
+</ul>
+
+
+
+
+
+
+</body>
+<script src="/js/secret_key.js" ></script>
+
+<script src="/js/many_infor_test.js" async></script>
+<!--<script src="/js/getCurrentPosition.js" async></script>-->
+
+
+<!--<script src="/js/map_option.js"></script>-->
+
+</html>
