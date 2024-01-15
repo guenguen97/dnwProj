@@ -10,7 +10,7 @@ var HOME_PATH = window.HOME_PATH || '.';
     var lastLiTag = ulElement.lastElementChild;
 
     // Get the first child tag (div in this case) of the last li tag
-    var firstChildText = lastLiTag.firstElementChild.firstElementChild.textContent;
+//    var firstChildText = lastLiTag.firstElementChild.firstElementChild.textContent;
 
 
 var MARKER_SPRITE_X_OFFSET = 29,

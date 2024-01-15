@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -49,21 +50,22 @@ public class Main {
         System.out.println(lat+" and"+har+"정보 받기 성공");
 
         List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
-        List<List<String>> mainData = null;
+        List<List<String>> mainData = new ArrayList<>();;
         System.out.println("????????????????????");
 
         for(int i=1; i<=csvData2.size()/2;i++){
             float lat2 = 0;
             float har2=0;
-            if(csvData2.get(i).get(8) != null && csvData2.get(i).get(9) != null ){
+            if(csvData2.get(i).get(8) != "" && csvData2.get(i).get(9) != "" &&
+                     isFloat(csvData2.get(i).get(8)) && isFloat(csvData2.get(i).get(9))){
              lat2 = Float.parseFloat(csvData2.get(i).get(8));
              har2 = Float.parseFloat(csvData2.get(i).get(9));
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
 
             }
-
             if(lat2 !=0 && har2 !=0){
-                if((lat2< lat+0.018018 && lat2 >lat-0.018018)&&(har2<har+1.5972 && har2>har-1.5972) ){
+                if((lat2< lat+0.0045045 && lat2 >lat-0.0045045)&&(har2<har+0.0245045 && har2>har-0.0245045) ){
+                    System.out.println("메인 데이타에 데이타 추가중 ");
                     csvData2.get(i).get(2);
                     mainData.add(csvData2.get(i));
                 }
@@ -71,17 +73,26 @@ public class Main {
 
 
         }
-        for (int i = 0; i <mainData.size() ; i++) {
-            System.out.println(mainData.get(i).get(3));
-        }
+
 
         return mainData;
+
+
+
 
     }
 
 
 
-
+    public static boolean isFloat(String value) {
+        try {
+            // Try parsing the String as a float
+            Float.parseFloat(value);
+            return true; // Parsing successful, it's a float
+        } catch (NumberFormatException e) {
+            return false; // Parsing failed, not a float
+        }
+    }
 
 
 }
