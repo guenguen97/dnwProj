@@ -59,7 +59,7 @@ public class CsvService {
                 // 배열에서 리스트로 변환
                 tmpList = Arrays.asList(array);
                 // 리스트 내용 출력
-                System.out.println(tmpList);
+//                System.out.println(tmpList);
                 // 반환용 리스트에 1행의 데이터를 저장
                 ret.add(tmpList);
             }

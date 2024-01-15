@@ -1,0 +1,15 @@
+git rm -r --cached .
+
+git add .
+git commit -m "rm cache"
+git push origin main
+
+
+
+
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch src/main/resources/templates/map.html' --prune-empty --tag-name-filter cat -- --all
+
+
+git add .
+git commit -m "[Delete] GoogleService-Info.plist from history"
+git push origin --force --all

@@ -10,7 +10,8 @@ var HOME_PATH = window.HOME_PATH || '.';
     var lastLiTag = ulElement.lastElementChild;
 
     // Get the first child tag (div in this case) of the last li tag
-    var firstChildText = lastLiTag.firstElementChild.firstElementChild.textContent;
+
+//    var firstChildText = lastLiTag.firstElementChild.firstElementChild.textContent;
 
 
 var MARKER_SPRITE_X_OFFSET = 29,
@@ -70,16 +71,17 @@ MARKER_SPRITE_POSITION = {};
 
 
 
-var map = new naver.maps.Map('map', {
-center: new naver.maps.LatLng(37.3595704, 127.105399),
-zoom: 13
-});
 
-var bounds = map.getBounds(),
-southWest = bounds.getSW(),
-northEast = bounds.getNE(),
-lngSpan = northEast.lng() - southWest.lng(),
-latSpan = northEast.lat() - southWest.lat();
+//var map = new naver.maps.Map('map', {
+//center: new naver.maps.LatLng(37.3595704, 127.105399),
+//zoom: 13
+//});
+//
+//var bounds = map.getBounds(),
+//southWest = bounds.getSW(),
+//northEast = bounds.getNE(),
+//lngSpan = northEast.lng() - southWest.lng(),
+//latSpan = northEast.lat() - southWest.lat();
 
 var markers = [],
 infoWindows = [];

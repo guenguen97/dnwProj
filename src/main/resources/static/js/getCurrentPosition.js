@@ -36,10 +36,8 @@ function error(err) {
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 function onSuccessGeolocation(position) {
-    var location = new naver.maps.LatLng(position.coords.latitude,
-                                         position.coords.longitude);
 
-     navigator.geolocation.getCurrentPosition(success, error, options);
+
 
     getNewNotifications(lat1, har1);
      console.log(lat1+"현재 위도");
@@ -63,9 +61,13 @@ function onSuccessGeolocation(position) {
              }
 
 
+    var location = new naver.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+
+     navigator.geolocation.getCurrentPosition(success, error, options);
 
     map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-    map.setZoom(12); // 지도의 줌 레벨을 변경합니다.
+    map.setZoom(15); // 지도의 줌 레벨을 변경합니다.
 
     infowindow.setContent('<div style="padding:20px;">' + 'geolocation.getCurrentPosition() 위치' + '</div>');
 
@@ -102,3 +104,29 @@ $(window).on("load", function() {
         infowindow.open(map, center);
     }
 });
+
+ document.addEventListener('DOMContentLoaded', function () {
+        var btnMylct = document.querySelector('.btn_mylct');
+
+        if (btnMylct) {
+            btnMylct.addEventListener('click', function () {
+                // Call your specific JavaScript function here
+                goCurrentPosition();
+            });
+        }
+    });
+
+
+
+// 현재 위치로 이동하는 함수
+function goCurrentPosition(){
+
+       navigator.geolocation.getCurrentPosition(success, error, options);
+        var location = new naver.maps.LatLng(lat1,
+                                             har1);
+
+        map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+        map.setZoom(15);
+
+
+}
