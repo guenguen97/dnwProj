@@ -74,6 +74,27 @@ public class Main {
 
         }
 
+        for(int i=csvData2.size()/2+1; i<=csvData2.size()-3;i++){
+            float lat2 = 0;
+            float har2=0;
+            if(csvData2.get(i).get(8) != "" && csvData2.get(i).get(9) != "" &&
+                    isFloat(csvData2.get(i).get(8)) && isFloat(csvData2.get(i).get(9))){
+                lat2 = Float.parseFloat(csvData2.get(i).get(8));
+                har2 = Float.parseFloat(csvData2.get(i).get(9));
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+
+            }
+            if(lat2 !=0 && har2 !=0){
+                if((lat2< lat+0.0045045 && lat2 >lat-0.0045045)&&(har2<har+0.0245045 && har2>har-0.0245045) ){
+                    System.out.println("메인 데이타에 데이타 추가중 ");
+                    csvData2.get(i).get(2);
+                    mainData.add(csvData2.get(i));
+                }
+            }
+
+
+        }
+
 
         return mainData;
 

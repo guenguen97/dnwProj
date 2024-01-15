@@ -5,7 +5,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-src/main/resources/templates/map.html
+
+src/main/resources/static/js/secret_key.js
+src/main/resources/application-secret.yml
+
 src/main/resources/templates/reverse-geocoding.html
 
 ### STS ###
