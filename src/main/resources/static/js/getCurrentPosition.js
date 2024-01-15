@@ -59,7 +59,7 @@ function onSuccessGeolocation(position) {
                });
              }
 
-var location = new naver.maps.LatLng(position.coords.latitude,
+    var location = new naver.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
 
      navigator.geolocation.getCurrentPosition(success, error, options);
@@ -102,3 +102,30 @@ $(window).on("load", function() {
         infowindow.open(map, center);
     }
 });
+
+
+ document.addEventListener('DOMContentLoaded', function () {
+        var btnMylct = document.querySelector('.btn_mylct');
+
+        if (btnMylct) {
+            btnMylct.addEventListener('click', function () {
+                // Call your specific JavaScript function here
+                goCurrentPosition();
+            });
+        }
+    });
+
+
+
+// 현재 위치로 이동하는 함수
+function goCurrentPosition(){
+
+       navigator.geolocation.getCurrentPosition(success, error, options);
+        var location = new naver.maps.LatLng(lat1,
+                                             har1);
+
+        map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+        map.setZoom(15);
+
+
+}
