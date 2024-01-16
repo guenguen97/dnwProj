@@ -55,12 +55,47 @@
 <!--    </li>-->
 </ul>
 
+<!--미리 현재 위치 위도 경도를 구해놔야지 그 정보를 서버에 보낼수 있어서 여기 적음-->
+<script>
+    var lat1="";
+    var har1="";
 
+    var options = {
+              enableHighAccuracy: false,
+              timeout: 5000,
+              maximumAge: 0,
+            };
+
+    function success(pos) {
+  var crd = pos.coords;
+  lat1=crd.latitude;
+  har1=crd.longitude;
+
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+//  update(crd.latitude,crd.longitude);
+
+
+
+
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+</script>
 
 
 
 
 </body>
+
+
 <script src="/js/secret_key.js" ></script>
 
 <script src="/js/many_infor_test.js" async></script>

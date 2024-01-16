@@ -1,37 +1,14 @@
-var options = {
-  enableHighAccuracy: false,
-  timeout: 5000,
-  maximumAge: 0,
-};
-var lat1="";
-var har1="";
+
 var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(37.5666805, 126.9784147),
     zoom: 10,
     mapTypeId: naver.maps.MapTypeId.NORMAL
 });
+firstMyLocation();
 
 var infowindow = new naver.maps.InfoWindow();
 
-function success(pos) {
-  var crd = pos.coords;
-  lat1=crd.latitude;
-  har1=crd.longitude;
-  console.log(lat1+"현재 위도");
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-//  update(crd.latitude,crd.longitude);
 
-
-
-
-}
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
@@ -40,7 +17,7 @@ function onSuccessGeolocation(position) {
 
 
     getNewNotifications(lat1, har1);
-     console.log(lat1+"현재 위도");
+     console.log(lat1+"현재 위도"+har1);
      function getNewNotifications(lat1, har1) {
                $.ajax({
                  url: '/getNearFood',
@@ -91,12 +68,6 @@ $(window).on("load", function() {
          * http://localhost 에서는 사용이 가능하며, 테스트 목적으로, Chrome 의 바로가기를 만들어서 아래와 같이 설정하면 접속은 가능합니다.
          * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
          */
-
-
-
-
-
-
         navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
     } else {
         var center = map.getCenter();
@@ -105,12 +76,32 @@ $(window).on("load", function() {
     }
 });
 
+function firstMyLocation() {
+    if (navigator.geolocation) {
+        /**
+         * navigator.geolocation 은 Chrome 50 버젼 이후로 HTTP 환경에서 사용이 Deprecate 되어 HTTPS 환경에서만 사용 가능 합니다.
+         * http://localhost 에서는 사용이 가능하며, 테스트 목적으로, Chrome 의 바로가기를 만들어서 아래와 같이 설정하면 접속은 가능합니다.
+         * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
+         */
+        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+    } else {
+        var center = map.getCenter();
+        infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
+        infowindow.open(map, center);
+    }
+}
+
+
  document.addEventListener('DOMContentLoaded', function () {
         var btnMylct = document.querySelector('.btn_mylct');
+                console.log("현재 위치로 가기 실행됨")
 
         if (btnMylct) {
             btnMylct.addEventListener('click', function () {
                 // Call your specific JavaScript function here
+                console.log("현재 위치로 가기 실행됨")
+            navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+
                 goCurrentPosition();
             });
         }

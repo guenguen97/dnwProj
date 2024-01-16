@@ -38,11 +38,17 @@
 })();
 
 
-     (function() {
-                            var script = document.createElement('script');
-                            script.type = 'text/javascript';
-                            script.src = '/js/getCurrentPosition.js';
-                            script.async = true;
-                            document.head.appendChild(script);
-                        })();
+    (function() {
+        // Function to create and append the script
+        function loadScript() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '/js/getCurrentPosition.js';
+            script.async = true;
+            document.head.appendChild(script);
+        }
+
+        // Call loadScript after a 1-second delay
+        setTimeout(loadScript, 1000);
+    })();
 var g = "asdasd";
