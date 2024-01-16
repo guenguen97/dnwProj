@@ -7,15 +7,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class NaverMapController {
+public class Apis {
 
     @Value("${naver.map.api.key}") // Get the API key from application.properties
     private String naverMapApiKey;
 
+    @Value("${openai.api-key}")
+    private String openaiApiKey;
     @GetMapping("/get_naver_map_key")
     public ApiResponse getNaverMapKey() {
         return new ApiResponse(naverMapApiKey);
     }
+
+    public String getOpenaiApiKey() {
+        return openaiApiKey;
+    }
+
+
 
     // Additional controllers and methods
 }

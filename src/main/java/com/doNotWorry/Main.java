@@ -17,8 +17,13 @@ import java.util.List;
 public class Main {
     private final CsvService csvService;
 
+    @Autowired
+    private Apis apis;
 
-
+    @GetMapping
+    public String chatPage() {
+        return "chat";
+    }
 
     @GetMapping("/")
     public String main(Model model) throws IOException {
@@ -36,6 +41,7 @@ public class Main {
             e.printStackTrace();
             // Handle the exception according to your application's requirements
         }
+        model.addAttribute("openaiApiKey", apis.getOpenaiApiKey());
 
 
         return "map";
