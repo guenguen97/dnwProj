@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/chat")
 public class ChatController {
 
-    @Value("${openai.api-key}")
+    @Value("${chatgpt}")
     private String openaiApiKey;
 
     @GetMapping
@@ -21,6 +21,7 @@ public class ChatController {
 
     @PostMapping("/ask")
     public String askQuestion(@RequestParam(value = "question") String question, Model model) {
+        System.out.println("질문 받기 성공 !!!!!!!!!!!!!!!!");
         try {
             String apiUrl = "https://api.openai.com/v1/chat/completions";
 

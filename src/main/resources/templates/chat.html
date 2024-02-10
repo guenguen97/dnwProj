@@ -10,13 +10,21 @@
 
 <form action="/chat/ask" method="post">
     <label for="question">Ask a question:</label>
-    <input type="text" id="question" name="question" required>
+    <input type="text" id="question2" name="question" required>
     <button type="submit">Ask</button>
 </form>
 
 <div th:if="${answer}">
     <p th:text="${answer}"></p>
 </div>
+
+
+<form action="/api/v1/chat-gpt" method="post">
+    <label for="question">Ask a question:</label>
+    <input type="text" id="question" name="question" required>
+    <button type="submit">Ask</button>
+</form>
+
 
 </body>
 </html>
