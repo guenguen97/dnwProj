@@ -18,11 +18,16 @@
 <div id="map" style="width:100%;height:400px;">
     <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; left: 0px; top: 300px;">
         <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
-            <a href="#" class="btn_mylct" style="pointer-events: auto;">
-                <span class="spr_trff spr_ico_mylct">현재 위치</span>
+            <a href="#" class="btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPosition();" style="pointer-events: auto;">
+                현재 위치
             </a>
 
+
         </div>
+        <div>
+        <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
+            지도상 위치
+        </a></div>
     </div>
 </div>
 <div class="a">
@@ -91,9 +96,9 @@ function error(err) {
     navigator.geolocation.getCurrentPosition(success, error, options);
 
 
+
+
 </script>
-
-
 
 
 </body>
@@ -106,5 +111,11 @@ function error(err) {
 
 
 <!--<script src="/js/map_option.js"></script>-->
+
+
+<script>
+
+</script>
+
 
 </html>

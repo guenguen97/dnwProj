@@ -37,7 +37,7 @@
         .catch(error => console.error('Error fetching API key:', error));
 })();
 
-
+//현재 위치랑 현재 위치 주변 음식점 데이터 요청해주고 받는 함수가 있는거
     (function() {
         // Function to create and append the script
         function loadScript() {
@@ -48,6 +48,7 @@
             document.head.appendChild(script);
         }
 
+        //먼저 맵 정보랑 현재 위치가 업데이트 된 후에 실행이 되어야해서
         // Call loadScript after a 1-second delay
         setTimeout(loadScript, 1000);
     })();

@@ -38,7 +38,6 @@ dependencies {
 	implementation 'com.opencsv:opencsv:5.5.2' // Use the latest version
 
 //	챗지피티
-	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
 
 
 

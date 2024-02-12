@@ -6,6 +6,7 @@ var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
   console.log("데이타의 길이는"+data.length);
 
+
     // Get the last li tag among the child tags of ul
     var lastLiTag = ulElement.lastElementChild;
 
@@ -54,10 +55,13 @@ MARKER_SPRITE_POSITION = {};
 ////                                                                     ];
 ////                }
 //              }
+
+// 위도랑 경도 랑 음식점 이름 넣어줄 for 문
                 for(var i=1 ; i<data.length;i++ ){
                MARKER_SPRITE_POSITION[i] =[
-                                                                                      parseFloat(data[i][8]), // Assuming content holds x coordinate
-                                                                                      parseFloat(data[i][9]) // Assuming content holds y coordinate
+                        parseFloat(data[i][8]), // Assuming content holds x coordinate
+                        parseFloat(data[i][9]),
+                        data[i][1]// Assuming content holds y coordinate
                                                                                   ];
                 }
 //            if((latText<myLat+0.000018 && latText>myLat - 0.000018)&&(harText < myHar+0.0972 && harText>myHar - 0.0972)){
@@ -87,7 +91,7 @@ var markers = [],
 infoWindows = [];
 
 for (var key in MARKER_SPRITE_POSITION) {
-
+                console.log(  MARKER_SPRITE_POSITION[key][2]);
                 var position = new naver.maps.LatLng(
 
 //                위도 경도 눌 부분
@@ -109,7 +113,7 @@ for (var key in MARKER_SPRITE_POSITION) {
                 });
 
                 var infoWindow = new naver.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key.substr(0, 1) +'"</b>.</div>'
+                content: '<div style="width:150px;text-align:center;padding:10px;"><b>"'+  MARKER_SPRITE_POSITION[key][2] +'"</b>.</div>'
                 });
 
                 markers.push(marker);
