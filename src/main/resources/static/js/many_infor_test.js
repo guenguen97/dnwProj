@@ -1,9 +1,10 @@
-var markers = [];
+
 
 function update(data) {
 // console.log(myLat+" and "+myHar);
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
+  var markers = [];
   console.log("데이타의 길이는"+data.length);
 
   for (var i = 0; i < markers.length; i++) {
@@ -68,12 +69,12 @@ for (var key in MARKER_SPRITE_POSITION) {
 
 //보이는 영역 만 표시할떄 쓰는건데 당장 필요없음
                 markers.push(marker);
-//                infoWindows.push(infoWindow);
+                infoWindows.push(infoWindow);
     };
 
-//    naver.maps.Event.addListener(map, 'idle', function() {
-//    updateMarkers(map, markers);
-//    });
+    naver.maps.Event.addListener(map, 'idle', function() {
+    updateMarkers(map, markers);
+    });
 
     function updateMarkers(map, markers) {
 
