@@ -1,15 +1,15 @@
-
+var markers = [];
 
 function update(data) {
 // console.log(myLat+" and "+myHar);
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');
-  var markers = [];
+
   console.log("데이타의 길이는"+data.length);
 
   for (var i = 0; i < markers.length; i++) {
      console.log("기존 마커 삭제");
-      var marker ;
+        var marker ;
         marker = markers[i]
         position = marker.getPosition();
 
@@ -17,6 +17,8 @@ var HOME_PATH = window.HOME_PATH || '.';
             hideMarker(map, marker);
 
         }
+
+         markers = [];
 
 
     // Get the last li tag among the child tags of ul
