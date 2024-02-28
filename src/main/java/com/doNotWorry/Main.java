@@ -34,7 +34,7 @@ public class Main {
 //        model.addAttribute("openaiApiKey", apis.getOpenaiApiKey());
 
 
-        return "/map";
+        return "map";
     }
 
 
