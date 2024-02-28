@@ -27,21 +27,14 @@ public class Main {
 
     @GetMapping("/")
     public String main(Model model) throws IOException {
-        try {
-            List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
-
-            model.addAttribute("fData2", csvData2);
 
             System.out.println("테스트 시작 ");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception according to your application's requirements
-        }
-        model.addAttribute("openaiApiKey", apis.getOpenaiApiKey());
+
+//        model.addAttribute("openaiApiKey", apis.getOpenaiApiKey());
 
 
-        return "map";
+        return "/map";
     }
 
 
@@ -53,7 +46,7 @@ public class Main {
         System.out.println(lat+" and"+har+"정보 받기 성공");
 
 //        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
-        List<List<String>> csvData2=  csvService.csvData("./src/data/dajeon_food.csv");
+        List<List<String>> csvData2=  csvService.csvData("templates/data/dajeon_food.csv");
 
         List<List<String>> mainData = new ArrayList<>();;
         System.out.println("????????????????????");

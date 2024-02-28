@@ -12,16 +12,16 @@ public class Apis {
     @Value("${naver.map.api.key}") // Get the API key from application.properties
     private String naverMapApiKey;
 
-    @Value("${chatgpt.api-key}")
-    private String openaiApiKey;
+//    @Value("${chatgpt.api-key}")
+//    private String openaiApiKey;
     @GetMapping("/get_naver_map_key")
     public ApiResponse getNaverMapKey() {
         return new ApiResponse(naverMapApiKey);
     }
 
-    public String getOpenaiApiKey() {
-        return openaiApiKey;
-    }
+//    public String getOpenaiApiKey() {
+//        return openaiApiKey;
+//    }
 
 
 

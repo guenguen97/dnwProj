@@ -39,11 +39,15 @@ public class CsvService {
         List<List<String>> ret = new ArrayList<>();
         // 입력 스트림 오브젝트 생성
         BufferedReader br = null;
+        ClassPathResource resource = new ClassPathResource(dir);
 
 
         try {
-            FileInputStream fileInputStream = new FileInputStream(dir);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            InputStream inputStream = resource.getInputStream();
+            InputStream fileInputStream =getClass().getResourceAsStream(dir);
+//            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+
             br = new BufferedReader(inputStreamReader);
 
             // 대상 CSV 파일의 경로 설정
