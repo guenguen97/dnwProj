@@ -17,7 +17,7 @@ var HOME_PATH = window.HOME_PATH || '.';
             hideMarker(map, marker);
 
         }
-
+        //초기화 해준 마커 다시 선언
          markers = [];
 
 

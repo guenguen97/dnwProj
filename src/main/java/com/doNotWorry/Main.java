@@ -28,14 +28,11 @@ public class Main {
     @GetMapping("/")
     public String main(Model model) throws IOException {
         try {
-            List<List<String>> csvData1=  csvService.csvData("C:\\work\\food_data.csv");
             List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
 
-            model.addAttribute("fData",csvData1);
             model.addAttribute("fData2", csvData2);
 
             System.out.println("테스트 시작 ");
-            System.out.println(csvData1.get(0).get(0));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,7 +52,8 @@ public class Main {
 
         System.out.println(lat+" and"+har+"정보 받기 성공");
 
-        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
+//        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
+        List<List<String>> csvData2=  csvService.csvData("./src/data/dajeon_food.csv");
 
         List<List<String>> mainData = new ArrayList<>();;
         System.out.println("????????????????????");
