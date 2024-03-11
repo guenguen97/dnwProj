@@ -70,7 +70,8 @@ public class Main {
 
             }
             if(lat2 !=0 && har2 !=0){
-                if((lat2< lat+0.0025045 && lat2 >lat-0.0025045)&&(har2<har+0.0145045 && har2>har-0.0145045) ){
+                //특정 위치에서 범위 설정하는거
+                if((lat2< lat+0.0009045 && lat2 >lat-0.0009045)&&(har2<har+0.0025045 && har2>har-0.0025045) ){
                     System.out.println("메인 데이타에 데이타 추가중 ");
                     csvData2.get(i).get(2);
                     mainData.add(csvData2.get(i));
