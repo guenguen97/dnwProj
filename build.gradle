@@ -4,6 +4,10 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.4'
 }
 
+tasks.withType(JavaCompile) {
+	options.compilerArgs << '-parameters'
+}
+
 group = 'com.doNotWorry'
 version = '0.0.1-SNAPSHOT'
 
@@ -32,6 +36,9 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.26'
 
 	implementation 'com.opencsv:opencsv:5.5.2' // Use the latest version
+
+//	챗지피티
+
 
 
 //	현재 위치 위도 경도 받는 거

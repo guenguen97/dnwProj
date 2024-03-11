@@ -7,7 +7,10 @@
     <title>간단한 지도 표시하기</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
+    <script th:inline="javascript">
+        var openaiApiKey = /*[[${openaiApiKey}]]*/ 'defaultApiKey';
+        // Now you can use 'openaiApiKey' in your JavaScript code
+    </script>
 
 
 </head>
@@ -15,16 +18,21 @@
 <div id="map" style="width:100%;height:400px;">
     <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; left: 0px; top: 300px;">
         <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
-            <a href="#" class="btn_mylct" style="pointer-events: auto;">
-                <span class="spr_trff spr_ico_mylct">현재 위치</span>
+            <a href="#" class="btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPosition();" style="pointer-events: auto;">
+                현재 위치
             </a>
 
+
         </div>
+        <br>
+        <div>
+        <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
+            지도상 음식점 업데이트
+        </a></div>
     </div>
 </div>
 <div class="a">
-    <div>dsad</div>
-    <span>gfgg</span>
+
 </div>
 
 <!--<div th:text="${fData.length}"></div>-->
@@ -55,12 +63,47 @@
 <!--    </li>-->
 </ul>
 
+<!--미리 현재 위치 위도 경도를 구해놔야지 그 정보를 서버에 보낼수 있어서 여기 적음-->
+<script>
+    var lat1="";
+    var har1="";
+
+    var options = {
+              enableHighAccuracy: false,
+              timeout: 5000,
+              maximumAge: 0,
+            };
+
+    function success(pos) {
+  var crd = pos.coords;
+  lat1=crd.latitude;
+  har1=crd.longitude;
+
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+//  update(crd.latitude,crd.longitude);
 
 
 
+
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+
+
+</script>
 
 
 </body>
+
+
 <script src="/js/secret_key.js" ></script>
 
 <script src="/js/many_infor_test.js" async></script>
@@ -68,5 +111,11 @@
 
 
 <!--<script src="/js/map_option.js"></script>-->
+
+
+<script>
+
+</script>
+
 
 </html>
