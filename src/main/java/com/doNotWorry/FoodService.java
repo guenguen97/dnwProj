@@ -44,9 +44,11 @@ public class FoodService {
             foodRepository.save(foodDatas);
         }
 
+    }
 
 
-
+    public List<FoodDatas> getAllDatas(){
+        return foodRepository.findAll();
 
     }
 

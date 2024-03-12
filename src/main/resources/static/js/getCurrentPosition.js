@@ -21,8 +21,12 @@ var infowindow = new naver.maps.InfoWindow();
                  success: function(data) {
                    // Process the data received from the server and add it to the page
     //               update(data);
+
+
                    //many_infor_test 에 있는 함수 주변 마커 뜨게하기
                     update(data);
+
+
                  }
                });
              }
