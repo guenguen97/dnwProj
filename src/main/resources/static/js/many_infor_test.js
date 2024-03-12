@@ -34,16 +34,20 @@ MARKER_SPRITE_POSITION = {};
 
 // 위도랑 경도 랑 음식점 이름 넣어줄 for 문
                 for(var i=1 ; i<data.length;i++ ){
+
+
+                       console.log(data[i].latitude);
+                                   console.log(data[i].name);
                MARKER_SPRITE_POSITION[i] =[
 //                        parseFloat(data[i][8]), // Assuming content holds x coordinate
 //                        parseFloat(data[i][9]),
 //                        data[i][1]// Assuming content holds y coordinate
 
-                        console.log(data[i].latitude+"DB 위도");
-//
-                        console.log(data[i].name+"DB 음식점이름");
-                         parseFloat(data[i].latitude), // Assuming content holds x coordinate
-                          parseFloat(data[i].longitude),
+
+
+
+                        data[i].latitude, // Assuming content holds x coordinate
+                         data[i].longitude,
                           data[i].name// Assuming content holds y coordinate
 
 

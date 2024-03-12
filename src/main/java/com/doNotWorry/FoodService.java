@@ -26,14 +26,14 @@ public class FoodService {
 
             foodDatas.setStorePhNum(datas.get(i).get(4));
 
-            float lat=0;
-            float lon=0;
+            double lat=0;
+            double lon=0;
 
             //빈값이거나 숫자형태 아닌거는 취소
             if(datas.get(i).get(8) != "" && datas.get(i).get(9) != "" &&
                     isFloat(datas.get(i).get(8)) && isFloat(datas.get(i).get(9))){
-                lat = Float.parseFloat(datas.get(i).get(8));
-                lon = Float.parseFloat(datas.get(i).get(9));
+                lat = Double.parseDouble(datas.get(i).get(8));
+                lon = Double.parseDouble(datas.get(i).get(9));
 
             }
             //위도 저장

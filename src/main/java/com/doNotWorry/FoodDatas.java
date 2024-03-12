@@ -25,9 +25,9 @@ public class FoodDatas {
 
     String storePhNum;
 
-    Float latitude;
+    double latitude;
 
-    Float longitude;
+    double longitude;
 
     List<String> menu;
 
