@@ -15,17 +15,17 @@ public class FoodDatas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    String name;
+    private String name;
 
-    String address;
+    private String address;
 
-    String storePhNum;
+    private String storePhNum;
 
-    double latitude;
+    private double latitude;
 
-    double longitude;
+    private double longitude;
 
 
     @OneToMany(mappedBy = "foodDatas" , cascade = CascadeType.REMOVE)

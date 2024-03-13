@@ -14,12 +14,12 @@ public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @ManyToOne
     private FoodDatas foodDatas;
 
-    String foodName;
+    private String foodName;
 
 
 
