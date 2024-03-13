@@ -1,5 +1,7 @@
 package com.doNotWorry;
 
+import com.doNotWorry.foodDatas.FoodDatas;
+import com.doNotWorry.foodDatas.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,8 +43,8 @@ public class Main {
 
     @GetMapping("getNearFood")
     @ResponseBody
-    public List<FoodDatas> getNearFood( @RequestParam(name = "lat") float lat,
-                               @RequestParam(name = "har") float har) throws IOException {
+    public List<FoodDatas> getNearFood(@RequestParam(name = "lat") float lat,
+                                       @RequestParam(name = "har") float har) throws IOException {
 
         System.out.println(lat+" and"+har+"정보 받기 성공");
 

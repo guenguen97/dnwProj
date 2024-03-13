@@ -1,4 +1,4 @@
-package com.doNotWorry;
+package com.doNotWorry.foodDatas;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,11 @@ public class FoodService {
             //위도 저장
             foodDatas.setLatitude(lat);
             //경도 저장
-            foodDatas.setLongitude( lon);
+            foodDatas.setLongitude(lon);
+
+
+
+
 
             foodRepository.save(foodDatas);
         }

@@ -1,10 +1,8 @@
-package com.doNotWorry;
+package com.doNotWorry.foodDatas;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.doNotWorry.menu.Menu;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +27,10 @@ public class FoodDatas {
 
     double longitude;
 
-    List<String> menu;
+
+    @OneToMany(mappedBy = "foodDatas" , cascade = CascadeType.REMOVE)
+    private List<Menu> menu;
+
 
 
 
