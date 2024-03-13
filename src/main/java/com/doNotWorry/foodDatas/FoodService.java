@@ -78,7 +78,7 @@ public class FoodService {
 
                 //마지막에 숯불고기짬뽕]"  이것처럼 "이걸로 끝나면 끝나는거니
                 //while문에  그 조건 넣음
-                while(datas.get(i).get(11+j).charAt(datas.get(i).get(11+i).length()-1) != '\"'){
+                while(datas.get(i).get(11+j).charAt(datas.get(i).get(11+j).length()-1) != '\"'){
 
                     menuService.create(datas.get(i).get(11+i),foodDatas);
                     j++;
