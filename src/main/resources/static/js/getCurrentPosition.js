@@ -300,6 +300,12 @@ for (var key in MARKER_SPRITE_POSITION) {
         infoWindow.close();
         } else {
         infoWindow.open(map, marker);
+        var params = {
+            id: 2
+        };
+        callApi("/menu",'get',params);
+                console.log("정보창 열림8 ")
+
         }
         }
     }

@@ -41,6 +41,12 @@ public class Main {
         return "map";
     }
 
+    @GetMapping("/test")
+    public String dd(){
+
+        return "main";
+    }
+
 
     @GetMapping("getNearFood")
     @ResponseBody
