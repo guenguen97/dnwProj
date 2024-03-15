@@ -1,6 +1,11 @@
 var markers = [];
 
+
 function update(data) {
+
+
+
+
 // console.log(myLat+" and "+myHar);
 var HOME_PATH = window.HOME_PATH || '.';
   var ulElement = document.getElementById('myList');

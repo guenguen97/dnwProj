@@ -59,16 +59,6 @@ public class FoodService {
             // 그래서 2개의 경우를 if 문을 통해서 따로 저장하는방식을 달리
             //해야 겠다.
 
-            System.out.println("메뉴 String 형태"+datas.get(1).get(11).charAt(0));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(11).charAt(1));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(11).charAt(2));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(11).charAt(3));
-
-            System.out.println("메뉴 String 형태"+datas.get(1).get(12).charAt(0));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(12).charAt(1));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(12).charAt(2));
-            System.out.println("메뉴 String 형태"+datas.get(1).get(12).charAt(3));
-
 
             // "[갈비짬뽕,고기짬뽕,숯불고기짬뽕]"  이런 형태의 시작점 찾기
             // " 로 시작하고  중간에 ' 가 없는 형태 찾는거임
