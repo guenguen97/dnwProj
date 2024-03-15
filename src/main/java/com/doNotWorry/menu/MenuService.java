@@ -35,8 +35,19 @@ public class MenuService {
 
     // 한 단어 형태 String 만   받는 곳
     public void create2(String menu ,FoodDatas foodDatas ){
+        String result= "ㅇㅇ";
+
+        if (menu.contains("[") ||menu.contains("]")  ) {
+            result = menu.replaceAll("\"", "").trim();
+            result = result.replaceAll("]", "").trim();
+            result = result.replaceAll("\\[", "").trim();
+        } else {
+            result = menu;
+        }
+
+
         Menu menu1 = new Menu();
-        menu1.setFoodName(menu);
+        menu1.setFoodName(result);
         menu1.setFoodDatas(foodDatas);
 
         menuRepository.save(menu1);

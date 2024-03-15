@@ -75,13 +75,23 @@ public class FoodService {
 
                     //마지막에 숯불고기짬뽕]"  이것처럼 "이걸로 끝나면 끝나는거니
                     //while문에  그 조건 넣음
-                    while (datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) != '\"') {
+                    Boolean keep=true;
+                    while (keep) {
                         System.out.println("배열형태 아닌 메뉴들에 이어진 메뉴 들 찾기 ");
 
                         String b= datas.get(i).get(11 + j);
                         System.out.println(b);
                         menuService.create2(datas.get(i).get(11 + j), foodDatas);
+
+                        if( datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) == '\"'){
+                            keep =false;
+                        }
+
+
                         j++;
+
+
+                        //마지막 이 이제  울면]" 이렇게 끝나면 그 메뉴 집합은 끝난거지 while 문이 끝나게하기
 
 
                     }
