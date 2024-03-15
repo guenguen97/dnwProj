@@ -117,34 +117,41 @@ for (var key in MARKER_SPRITE_POSITION) {
         }
     }
 
-    function showMarker(map, marker) {
-
-    if (marker.setMap()) return;
-    marker.setMap(map);
-    }
-
-    function hideMarker(map, marker) {
-
-        if (!marker.setMap()) return;
-        marker.setMap(null);
-    }
-
-    // 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
-    function getClickHandler(seq) {
-        return function(e) {
-        var marker = markers[seq],
-        infoWindow = infoWindows[seq];
-
-        if (infoWindow.getMap()) {
-        infoWindow.close();
-        } else {
-        infoWindow.open(map, marker);
-        }
-        }
-    }
-
-    for (var i=0, ii=markers.length; i<ii; i++) {
-    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-    }
+//    function showMarker(map, marker) {
+//
+//       console.log("정보창 열림2 ")
+//
+//    if (marker.setMap()) return;
+//    marker.setMap(map);
+//    }
+//
+//    function hideMarker(map, marker) {
+//
+//        if (!marker.setMap()) return;
+//        marker.setMap(null);
+//    }
+//
+//    // 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+//    function getClickHandler(seq) {
+//        return function(e) {
+//          console.log("정보창 열림4 ")
+//        var marker = markers[seq],
+//        infoWindow = infoWindows[seq];
+//
+//        if (infoWindow.getMap()) {
+//        infoWindow.close();
+//        } else {
+////        infoWindow.open(map, marker);
+////        callApi("/menu",'get',(id,2);
+//        console.log("정보창 열림 ")
+//
+//        }
+//        }
+//    }
+//
+//    for (var i=0, ii=markers.length; i<ii; i++) {
+//    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+//      console.log("정보창 열림3")
+//    }
 
 }

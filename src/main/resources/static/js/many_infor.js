@@ -121,6 +121,8 @@ if (infoWindow.getMap()) {
 infoWindow.close();
 } else {
 infoWindow.open(map, marker);
+        console.log("정보창 열림6 ")
+
 }
 }
 }

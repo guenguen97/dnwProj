@@ -19,10 +19,10 @@ public class FoodService {
     private MenuService menuService;
 
 
-    public void saveDateToDB(List<List<String>> datas){
+    public void saveDateToDB(List<List<String>> datas) {
         //지금은 너무 많아서 저장하는데 오래걸림 일단 양을 줄이자
-        for (int i = 1; i < datas.size()/20; i++) {
-            FoodDatas foodDatas =new FoodDatas();
+        for (int i = 1; i < datas.size(); i++) {
+            FoodDatas foodDatas = new FoodDatas();
 
             //가게 이름 저장
             foodDatas.setName(datas.get(i).get(1));
@@ -31,12 +31,12 @@ public class FoodService {
 
             foodDatas.setStorePhNum(datas.get(i).get(4));
 
-            double lat=0;
-            double lon=0;
+            double lat = 0;
+            double lon = 0;
 
             //빈값이거나 숫자형태 아닌거는 취소
-            if(datas.get(i).get(8) != "" && datas.get(i).get(9) != "" &&
-                    isFloat(datas.get(i).get(8)) && isFloat(datas.get(i).get(9))){
+            if (datas.get(i).get(8) != "" && datas.get(i).get(9) != "" &&
+                    isFloat(datas.get(i).get(8)) && isFloat(datas.get(i).get(9))) {
                 lat = Double.parseDouble(datas.get(i).get(8));
                 lon = Double.parseDouble(datas.get(i).get(9));
 
@@ -60,30 +60,56 @@ public class FoodService {
             //해야 겠다.
 
 
+            String foodName=datas.get(i).get(11);
+
             // "[갈비짬뽕,고기짬뽕,숯불고기짬뽕]"  이런 형태의 시작점 찾기
             // " 로 시작하고  중간에 ' 가 없는 형태 찾는거임
-            if( datas.get(i).get(11).charAt(3) != '\'' &&
-                    datas.get(i).get(11).charAt(0) == '\"'){
-                int j=0;//이어진 메뉴 계속 찾으려고 변수 투입
+            // 메뉴가 혹시나 2글자 인거 올수도 있으니
+            if (datas.get(i).get(11).length() > 3) {
+//                System.out.println("3글자 이상 메뉴인경우");
 
-                //마지막에 숯불고기짬뽕]"  이것처럼 "이걸로 끝나면 끝나는거니
-                //while문에  그 조건 넣음
-                while(datas.get(i).get(11+j).charAt(datas.get(i).get(11+j).length()-1) != '\"'){
+                if (datas.get(i).get(11).charAt(3) != '\'' &&
+                        datas.get(i).get(11).charAt(0) == '\"') {
+                    //이어진 Stirng 메뉴 찾기 위해
+//                    System.out.println("배열형태 아닌 메뉴 찾기");
 
-                    menuService.create(datas.get(i).get(11+i),foodDatas);
-                    j++;
+                    int j = 0;//이어진 메뉴 계속 찾으려고 변수 투입
+
+                    //마지막에 숯불고기짬뽕]"  이것처럼 "이걸로 끝나면 끝나는거니
+                    //while문에  그 조건 넣음
+                    Boolean keep=true;
+                    while (keep) {
+//                        System.out.println("배열형태 아닌 메뉴들에 이어진 메뉴 들 찾기 ");
+
+                        String b= datas.get(i).get(11 + j);
+//                        System.out.println(b);
+                        menuService.create2(datas.get(i).get(11 + j), foodDatas);
+
+                        if( datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) == '\"'){
+                            keep =false;
+                        }
+
+
+                        j++;
+
+
+                        //마지막 이 이제  울면]" 이렇게 끝나면 그 메뉴 집합은 끝난거지 while 문이 끝나게하기
+
+
+                    }
+                } else {
+
+//                    System.out.println("배열형태인 메뉴 찾음 ");
+                    menuService.create(datas.get(i).get(11), foodDatas);
 
 
                 }
-            }else {
-                menuService.create(datas.get(i).get(11),foodDatas);
 
+            } else {
+                menuService.create(datas.get(i).get(11), foodDatas);
             }
 
-
-
         }
-
     }
 
     public List<FoodDatas> getAllDatas(){
