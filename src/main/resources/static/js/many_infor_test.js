@@ -134,6 +134,9 @@ for (var key in MARKER_SPRITE_POSITION) {
         infoWindow.close();
         } else {
         infoWindow.open(map, marker);
+//        callApi("/menu",'get',(id,2);
+        console.log("정보창 열림 ")
+
         }
         }
     }

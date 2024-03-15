@@ -21,7 +21,7 @@ public class FoodService {
 
     public void saveDateToDB(List<List<String>> datas) {
         //지금은 너무 많아서 저장하는데 오래걸림 일단 양을 줄이자
-        for (int i = 1; i < datas.size() / 20; i++) {
+        for (int i = 1; i < datas.size(); i++) {
             FoodDatas foodDatas = new FoodDatas();
 
             //가게 이름 저장
@@ -64,12 +64,12 @@ public class FoodService {
             // " 로 시작하고  중간에 ' 가 없는 형태 찾는거임
             // 메뉴가 혹시나 2글자 인거 올수도 있으니
             if (datas.get(i).get(11).length() > 3) {
-                System.out.println("3글자 이상 메뉴인경우");
+//                System.out.println("3글자 이상 메뉴인경우");
 
                 if (datas.get(i).get(11).charAt(3) != '\'' &&
                         datas.get(i).get(11).charAt(0) == '\"') {
                     //이어진 Stirng 메뉴 찾기 위해
-                    System.out.println("배열형태 아닌 메뉴 찾기");
+//                    System.out.println("배열형태 아닌 메뉴 찾기");
 
                     int j = 0;//이어진 메뉴 계속 찾으려고 변수 투입
 
@@ -77,10 +77,10 @@ public class FoodService {
                     //while문에  그 조건 넣음
                     Boolean keep=true;
                     while (keep) {
-                        System.out.println("배열형태 아닌 메뉴들에 이어진 메뉴 들 찾기 ");
+//                        System.out.println("배열형태 아닌 메뉴들에 이어진 메뉴 들 찾기 ");
 
                         String b= datas.get(i).get(11 + j);
-                        System.out.println(b);
+//                        System.out.println(b);
                         menuService.create2(datas.get(i).get(11 + j), foodDatas);
 
                         if( datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) == '\"'){
@@ -97,7 +97,7 @@ public class FoodService {
                     }
                 } else {
 
-                    System.out.println("배열형태인 메뉴 찾음 ");
+//                    System.out.println("배열형태인 메뉴 찾음 ");
                     menuService.create(datas.get(i).get(11), foodDatas);
 
 
