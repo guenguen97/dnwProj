@@ -55,7 +55,7 @@ public class Main {
         List<List<String>> mainData = new ArrayList<>();
 
         //DB 에서 갖고온 데이타 버전
-        List<FoodDatas> mainData2 = new ArrayList<>();
+        List<FoodDatasDTO> mainData2 = new ArrayList<>();
 
 
         System.out.println("????????????????????");
@@ -95,17 +95,21 @@ public class Main {
 
         List<FoodDatas> datas=foodService.getAllDatas();
 
-        FoodDatasDTO dto= new FoodDatasDTO((FoodDatas) datas);
-        datasDTOS.add(dto);
-
         for (int i = 0; i < datas.size(); i++) {
-            if(datas.get(i).getLatitude() !=0 && datas.get(i).getLongitude() !=0){
+            FoodDatasDTO dto= new FoodDatasDTO( datas.get(i));
+            datasDTOS.add(dto);
+        }
+
+
+
+        for (int i = 0; i < datasDTOS.size(); i++) {
+            if(datasDTOS.get(i).getLatitude() !=0 && datasDTOS.get(i).getLongitude() !=0){
                 //특정 위치에서 범위 설정하는거
-                if((datas.get(i).getLatitude()< lat+0.0009045 && datas.get(i).getLatitude() >lat-0.0009045)&&
-                        (datas.get(i).getLongitude()<har+0.0025045 && datas.get(i).getLongitude()>har-0.0025045) ){
+                if((datasDTOS.get(i).getLatitude()< lat+0.0009045 && datasDTOS.get(i).getLatitude() >lat-0.0009045)&&
+                        (datasDTOS.get(i).getLongitude()<har+0.0025045 && datasDTOS.get(i).getLongitude()>har-0.0025045) ){
                     System.out.println("메인 데이타에 데이타 추가중 ");
 
-                    mainData2.add(datas.get(i));
+                    mainData2.add(datasDTOS.get(i));
                 }
             }
         }
@@ -114,7 +118,7 @@ public class Main {
 
 
 //        return mainData;
-            return datasDTOS;
+            return mainData2;
 
 
 
