@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="my-3 border-bottom">
+    <div>
+        <h4>회원가입</h4>
+    </div>
+</div>
+<form th:action="@{/user/signUp}"  method="post">
+    <div class="mb-3">
+        <label for="userId" class="form-label">사용자ID</label>
+        <input type="text" name="userId" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="password1" class="form-label">비밀번호</label>
+        <input type="password" name="userPw" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">이름</label>
+        <input type="text" name="userName" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">이메일</label>
+        <input type="email" name="email" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">회원가입</button>
+</form>
+
+</body>
+</html>

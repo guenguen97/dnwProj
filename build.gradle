@@ -35,6 +35,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'mysql:mysql-connector-java:8.0.26'
 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+//	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
+
+	//회원가입시 유효성 검사 해주는거
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 	implementation 'com.opencsv:opencsv:5.5.2' // Use the latest version
 
 //	챗지피티
