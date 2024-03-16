@@ -75,8 +75,7 @@ public class MenuService {
     }
 
 
-
-
-
-
+    public List<String> findMenuListById(Integer id) {
+       return menuRepository.findFoodNameByID(id);
+    }
 }

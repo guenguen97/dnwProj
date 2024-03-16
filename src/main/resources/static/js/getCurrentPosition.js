@@ -233,6 +233,7 @@ for (var key in MARKER_SPRITE_POSITION) {
                 MARKER_SPRITE_POSITION[key][1]);
 //                console.log(MARKER_SPRITE_POSITION[key][0]);
                 var marker = new naver.maps.Marker({
+
                 map: map,
                 position: position,
                 title: key,
@@ -243,7 +244,9 @@ for (var key in MARKER_SPRITE_POSITION) {
                 origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
                 },
                 zIndex: 100,
-                id :  MARKER_SPRITE_POSITION[key][3]
+                id :  MARKER_SPRITE_POSITION[key][3],
+                storeName :  MARKER_SPRITE_POSITION[key][2]
+
                 });
 
                 var infoWindow = new naver.maps.InfoWindow({
@@ -303,10 +306,32 @@ for (var key in MARKER_SPRITE_POSITION) {
         if (infoWindow.getMap()) {
         infoWindow.close();
         } else {
-        infoWindow.open(map, marker);
+                infoWindow.open(map, marker);
+                 function displayComments(list) {
 
-        callApi("/menu/"+marker.id,'get',"");
-                console.log("정보창 열림8 ")
+
+                                         const commentsContainer = document.getElementById('menuContainer');
+                                         commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
+                                        commentsContainer.innerHTML += `
+                                            <div class="storeName">
+                                                ${marker.storeName}
+                                            </div>
+
+                                        `
+                                             list.forEach(item => {
+                                                   commentsContainer.innerHTML += `
+                                                       <div class="comment">
+                                                           <div> ${item}</div>
+                                                       </div>
+                                                   `;
+                                               });
+
+                  }
+
+                displayComments(callApi("/menu/"+marker.id,'get',""));
+
+
+                        console.log("정보창 열림8 ")
 
         }
         }

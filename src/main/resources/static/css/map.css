@@ -1,0 +1,13 @@
+#menuContainer {
+    background-color:white;
+
+    padding:30px;
+
+    border :1px solid gray;
+
+
+}
+
+.storeName {
+    margin-bottom : 20px;
+}

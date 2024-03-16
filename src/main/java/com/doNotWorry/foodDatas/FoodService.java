@@ -88,20 +88,14 @@ public class FoodService {
                         if( datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) == '\"'){
                             keep =false;
                         }
-
-
                         j++;
 
-
                         //마지막 이 이제  울면]" 이렇게 끝나면 그 메뉴 집합은 끝난거지 while 문이 끝나게하기
-
-
                     }
                 } else {
 
 //                    System.out.println("배열형태인 메뉴 찾음 ");
                     menuService.create(datas.get(i).get(11), foodDatas);
-
 
                 }
 
