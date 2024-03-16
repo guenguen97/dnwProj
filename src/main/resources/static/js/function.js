@@ -53,8 +53,8 @@ function isValid(target, fieldName, focusTarget) {
 
 
     function callApi(uri, method, params) {
-        var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
+//        var token = $("meta[name='_csrf']").attr("content");
+//		var header = $("meta[name='_csrf_header']").attr("content");
         let json = {};
          JSON.stringify(params);
          $.ajax({
@@ -68,7 +68,7 @@ function isValid(target, fieldName, focusTarget) {
             data : (params) ? JSON.stringify(params) : {},
             beforeSend : function(xhr)
                         {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-            				xhr.setRequestHeader(header, token);
+//            				xhr.setRequestHeader(header, token);
                         },
             async : false,
             success : function (response) {
