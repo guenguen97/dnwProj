@@ -10,6 +10,13 @@
     <link rel="stylesheet" th:href="@{/css/common.css}" />
     <link rel="stylesheet" th:href="@{/css/content.css}" />
     <link rel="stylesheet" th:href="@{/css/button.css}" />
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" />
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.7/dist/full.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         #login_box .signup_btn {background:#42d870; border:0; border-bottom:solid 3px #4ed177; border-radius:50px; width:100%; height:52px; line-height:52px; font-size:16px; color:#fff; text-align:center; margin:20px 0 15px;}
     </style>
@@ -44,12 +51,12 @@
                         </li>
                     </ul>
                     <button type="submit"  sec:authorize="isAnonymous()" class="login_btn">로그인</button>
-                    <a th:href="@{/user/logout}"><button class="signup_btn" type="button" sec:authorize="isAuthenticated()"   >
-                        로그아웃</button></a>
+<!--                    <a th:href="@{/user/logout}"><button class="signup_btn" type="button" sec:authorize="isAuthenticated()"   >-->
+<!--                        로그아웃</button></a>-->
                     <button type="button"  sec:authorize="isAnonymous()" onclick="openSignupPopup();" class="signup_btn">회원가입</button>
-                    <a href="/"> <button type="button" sec:authorize="isAuthenticated()" class="signup_btn">
-                       메인 페이지
-                    </button></a>
+<!--                    <a href="/"> <button type="button" sec:authorize="isAuthenticated()" class="signup_btn">-->
+<!--                       메인 페이지-->
+<!--                    </button></a>-->
 
                 </form>
             </div>
@@ -77,11 +84,11 @@
                 </tr>
                 <tr>
                     <th scope="row">비밀번호<span class="es">필수 입력</span></th>
-                    <td><input type="password" name="userPw" placeholder="비밀번호" maxlength="30" /></td>
+                    <td><input type="password" name="password1" placeholder="비밀번호" maxlength="30" /></td>
                 </tr>
                 <tr>
                     <th scope="row">비밀번호 재입력<span class="es">필수 입력</span></th>
-                    <td><input type="password" name="userPw" placeholder="비밀번호 재입력" maxlength="30" /></td>
+                    <td><input type="password" name="password2" placeholder="비밀번호 재입력" maxlength="30" /></td>
                 </tr>
                 <tr>
                     <th scope="row">이름<span class="es">필수 입력</span></th>
@@ -161,7 +168,7 @@
             throw new Error();
         }
 
-        if (form.userPw.value !== form.userPw.value) {
+        if (form.password1.value !== form.password2.value) {
             alert('비밀번호가 일치하지 않습니다.');
             form.passwordCheck.focus();
             throw new Error();

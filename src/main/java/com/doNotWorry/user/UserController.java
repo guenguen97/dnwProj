@@ -31,7 +31,7 @@ public class UserController {
 
     //회원 가입 용
     @PostMapping("/signUp" )
-    public String signUp(@Valid UserCreateForm userCreateForm){
+    public String signUp( @Valid @RequestBody UserCreateForm userCreateForm){
         System.out.println("정보 받기 성공!!!!!!!!!!");
 
         userService.create(userCreateForm);
