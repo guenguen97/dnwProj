@@ -2,11 +2,17 @@ package com.doNotWorry.user;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -31,8 +37,22 @@ public class UserController {
 
     //회원 가입 용
     @PostMapping("/signUp" )
-    public String signUp( @Valid @RequestBody UserCreateForm userCreateForm){
+    @ResponseBody
+    public String signUp(@Valid @RequestBody UserCreateForm userCreateForm, BindingResult bindingResult){
         System.out.println("정보 받기 성공!!!!!!!!!!");
+
+        if (bindingResult.hasErrors()) {
+
+            Map<String, String> errorMap = new HashMap<>();
+
+            // 각 필드별 에러 메시지를 Map에 추가
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+
+            // JSON 형태로 변환하여 클라이언트에게 반환
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
+        }
 
         userService.create(userCreateForm);
 
