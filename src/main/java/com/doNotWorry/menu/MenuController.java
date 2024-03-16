@@ -11,7 +11,7 @@ public class MenuController {
 
 
 
-    @GetMapping("/menu")
+    @GetMapping("/menu/{id}")
     @ResponseBody
     public String getMenu(@PathVariable(name = "id") final Long id){
         System.out.println("메뉴 불러오기 api 실행");

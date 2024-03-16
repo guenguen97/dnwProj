@@ -168,7 +168,7 @@ function getFoodNearMap(){
 naver.maps.onJSContentLoaded = initGeocoder;
 
 
-
+var markers = [];
 
 function update(data) {
 // console.log(myLat+" and "+myHar);
@@ -215,8 +215,8 @@ MARKER_SPRITE_POSITION = {};
 
                         data[i].latitude, // Assuming content holds x coordinate
                          data[i].longitude,
-                          data[i].name// Assuming content holds y coordinate
-
+                          data[i].name,// Assuming content holds y coordinate
+                        data[i].id //음식점 고유 db id
 
 
                    ];
@@ -242,7 +242,8 @@ for (var key in MARKER_SPRITE_POSITION) {
                 anchor: new naver.maps.Point(12, 37),
                 origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
                 },
-                zIndex: 100
+                zIndex: 100,
+                id :  MARKER_SPRITE_POSITION[key][3]
                 });
 
                 var infoWindow = new naver.maps.InfoWindow({
@@ -296,15 +297,15 @@ for (var key in MARKER_SPRITE_POSITION) {
         return function(e) {
         var marker = markers[seq],
         infoWindow = infoWindows[seq];
+        console.log(marker);
+        console.log(infoWindow);
 
         if (infoWindow.getMap()) {
         infoWindow.close();
         } else {
         infoWindow.open(map, marker);
-        var params = {
-            id: 2
-        };
-        callApi("/menu",'get',params);
+
+        callApi("/menu/"+marker.id,'get',"");
                 console.log("정보창 열림8 ")
 
         }
