@@ -313,8 +313,13 @@ for (var key in MARKER_SPRITE_POSITION) {
                                          const commentsContainer = document.getElementById('menuContainer');
                                          commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
                                         commentsContainer.innerHTML += `
-                                            <div class="storeName">
-                                                ${marker.storeName}
+                                            <div class="top-container" style="display:flex;">
+                                                <div class="storeName" style="margin-right:40px;">
+                                                    ${marker.storeName}
+                                                </div>
+                                                <div class="likeButton" onclick="likeOrNot(${marker.id});">
+                                                    저장
+                                                </div>
                                             </div>
 
                                         `
@@ -339,6 +344,15 @@ for (var key in MARKER_SPRITE_POSITION) {
 
     for (var i=0, ii=markers.length; i<ii; i++) {
     naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+    }
+
+}
+
+
+function likeOrNot(id){
+    let likeReturn =callApi("/like/store/"+id,'post',null);
+    if(likeReturn.message =="not login"){
+        alert("로그인 이후 저장이 가능합니다");
     }
 
 }

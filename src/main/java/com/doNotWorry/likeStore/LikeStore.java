@@ -1,10 +1,9 @@
 package com.doNotWorry.likeStore;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.doNotWorry.foodDatas.FoodDatas;
+import com.doNotWorry.user.SiteUser;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,9 +19,10 @@ public class LikeStore {
 
     private String name;
 
+    private Integer foodDataId;
 
-    private Integer userId;
-
+    @ManyToOne
+    private SiteUser siteUser;
 
 
 }

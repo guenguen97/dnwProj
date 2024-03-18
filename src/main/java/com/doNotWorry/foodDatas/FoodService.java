@@ -111,4 +111,9 @@ public class FoodService {
 
     }
 
+    public FoodDatas getDataById(Integer id){
+
+        return foodRepository.findById(id).get();
+    }
+
 }

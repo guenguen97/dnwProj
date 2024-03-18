@@ -23,4 +23,13 @@ public class UserService {
         userRepository.save(user);
     }
 
+
+    public SiteUser getUserByLoginID(String loginID){
+        if(userRepository.findByuserName(loginID).get()==null){
+            return null;
+        }
+       else {
+        return  userRepository.findByuserName(loginID).get();
+       }
+    }
 }

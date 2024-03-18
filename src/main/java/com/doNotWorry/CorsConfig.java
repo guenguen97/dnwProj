@@ -21,7 +21,9 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoggerInterceptor())
                 .excludePathPatterns("/css/**", "/images/**", "/js/**",
-                        "/user/login","/user/siteUser-count","/user/signUp");
+                        "/user/login","/user/siteUser-count","/user/signUp","/",
+                        "/api/get_naver_map_key","/getNearFood","/like/store/**",
+                        "/menu/**");
     }
 
 }
