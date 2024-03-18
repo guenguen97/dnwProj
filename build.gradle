@@ -37,6 +37,8 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 
 //	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
 
