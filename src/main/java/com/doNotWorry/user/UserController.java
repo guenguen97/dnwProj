@@ -51,7 +51,8 @@ public class UserController {
             }
 
             // JSON 형태로 변환하여 클라이언트에게 반환
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
+            return "실패";
         }
 
         userService.create(userCreateForm);

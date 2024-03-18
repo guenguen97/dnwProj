@@ -2,6 +2,8 @@ package com.doNotWorry.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface  UserRepository  extends JpaRepository<SiteUser, Integer> {
+import java.util.Optional;
 
+public interface  UserRepository  extends JpaRepository<SiteUser, Integer> {
+    Optional<SiteUser> findByuserName(String username);
 }

@@ -29,7 +29,7 @@
     <div id="login_box">
         <div class="login_con">
             <div class="login_tit">
-                <h2>RM 프로젝트</h2>
+                <h2>DNW</h2>
                 <p>LOG<i>IN</i></p>
             </div>
 
@@ -47,16 +47,16 @@
                         </li>
                         <li >
                             <label for="password" class="skip_info">비밀번호</label>
-                            <input type="password" id="password" name="userPw" title="비밀번호" placeholder="비밀번호" />
+                            <input type="password" id="password" name="password" title="비밀번호" placeholder="비밀번호" />
                         </li>
                     </ul>
                     <button type="submit"  sec:authorize="isAnonymous()" class="login_btn">로그인</button>
-<!--                    <a th:href="@{/user/logout}"><button class="signup_btn" type="button" sec:authorize="isAuthenticated()"   >-->
-<!--                        로그아웃</button></a>-->
+                    <a th:href="@{/user/logout}"><button class="signup_btn" type="button" sec:authorize="isAuthenticated()"   >
+                        로그아웃</button></a>
                     <button type="button"  sec:authorize="isAnonymous()" onclick="openSignupPopup();" class="signup_btn">회원가입</button>
-<!--                    <a href="/"> <button type="button" sec:authorize="isAuthenticated()" class="signup_btn">-->
-<!--                       메인 페이지-->
-<!--                    </button></a>-->
+                    <a href="/"> <button type="button" sec:authorize="isAuthenticated()" class="signup_btn">
+                       메인 페이지
+                    </button></a>
 
                 </form>
             </div>

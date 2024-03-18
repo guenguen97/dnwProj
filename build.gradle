@@ -47,6 +47,9 @@ dependencies {
 
 //	챗지피티
 
+	//스프링 시큐리티의 타임리프(Tymeleaf) 확장 기능,
+	//로그인 상태 확인해주는거
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
 
 //	현재 위치 위도 경도 받는 거
