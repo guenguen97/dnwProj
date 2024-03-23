@@ -45,13 +45,28 @@
         </a></div>
     </div>
 
-    <div id="menuContainer"  style="position: absolute; z-index: 100;left: 20px; top: 20px;">
+    <div id="menuContainer"  style="position: absolute; z-index: 99;left: 20px; top: 20px;">
+
+    </div>
+
+    <div id="likePopup" class="popLayer">
+        <div>어떤 그룹에 저장하시겠습니까?</div>
+
+        <input type="checkbox" id="option1" class="option-checkbox">
+        <label for="option1">Option 1</label><br>
+        <input type="checkbox" id="option2" class="option-checkbox">
+        <label for="option2">Option 2</label><br>
+        <input type="checkbox" id="option3" class="option-checkbox">
+        <label for="option3">Option 3</label><br>
+
+        <div id="info"></div>
+
 
     </div>
 </div>
-<div class="a">
 
-</div>
+
+
 
 
 <ul id="myList">
@@ -95,7 +110,22 @@ function error(err) {
     navigator.geolocation.getCurrentPosition(success, error, options);
 
 
+$(document).ready(function() {
+    $('.option-checkbox').change(function() {
+        // Clear previous information
+        $('#info').empty();
 
+        // Find the checked checkbox and get its label text
+        var selectedOption = $('.option-checkbox:checked').next('label').text();
+
+        // Display information about the selected option
+        if (selectedOption) {
+            $('#info').text(selectedOption + '번을 선택했습니다.');
+        } else {
+            $('#info').text('No option selected.');
+        }
+    });
+});
 
 </script>
 

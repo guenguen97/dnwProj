@@ -21,6 +21,8 @@ public class LikeStore {
 
     private Integer foodDataId;
 
+    private Integer groupNum;
+
     @ManyToOne
     private SiteUser siteUser;
 

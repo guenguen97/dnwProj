@@ -350,10 +350,12 @@ for (var key in MARKER_SPRITE_POSITION) {
 
 
 function likeOrNot(id){
-    let likeReturn =callApi("/like/store/"+id,'post',null);
-    if(likeReturn.message =="not login"){
-        alert("로그인 이후 저장이 가능합니다");
-    }
+    layerPop('likePopup');
+
+//    let likeReturn =callApi("/like/store/"+id,'post',null);
+//    if(likeReturn.message =="not login"){
+//        alert("로그인 이후 저장이 가능합니다");
+//    }
 
 }
 
