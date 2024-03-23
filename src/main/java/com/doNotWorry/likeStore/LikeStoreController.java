@@ -40,7 +40,10 @@ public class LikeStoreController {
 
         FoodDatas foodData= foodService.getDataById(id);
 
-
+        //중복된 저장 현황이 있는지 체크
+        if(likeStoreService.countLikeStore(user,foodData.getId(), groupName) >0){
+            return "{\"message\": \"중복\"}";
+        };
         likeStoreService.saveStore(user,foodData.getId(),foodData.getName(),groupName);
 
 

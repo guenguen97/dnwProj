@@ -140,10 +140,15 @@ function submitLikeStore(){
         var selectedOption = $('.option-checkbox:checked').next('label').text();
          let likeReturn =callApi("/like/store/"+storeID+"/"+selectedOption,'post',null);
 
+         if(likeReturn.message=="중복"){
+            alert("이미 이 그룹에는 저장해놓은 음식점입니다. ")
+         }
+
     }
 
 
 function closeSignupPopup(){
+ $('.option-checkbox').not(this).prop('checked', false);
      layerPopClose();
 }
 

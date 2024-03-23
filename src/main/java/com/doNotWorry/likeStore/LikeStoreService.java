@@ -22,4 +22,8 @@ public class LikeStoreService {
 
 
     }
+
+    public Integer countLikeStore(SiteUser user ,Integer foodDataId, String groupName) {
+       return likeStoreRepository.countLikeStore(foodDataId, groupName ,user );
+    }
 }
