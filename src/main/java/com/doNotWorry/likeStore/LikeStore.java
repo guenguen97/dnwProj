@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Setter
 @Getter
@@ -22,6 +24,8 @@ public class LikeStore {
     private Integer foodDataId;
 
     private String groupName;
+
+    private LocalDateTime createDate;
 
     @ManyToOne
     private SiteUser siteUser;

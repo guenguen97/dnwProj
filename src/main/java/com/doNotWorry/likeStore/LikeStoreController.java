@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.LinkedHashSet;
 
 @Controller
 public class LikeStoreController {
@@ -26,6 +28,7 @@ public class LikeStoreController {
     @Autowired
     private FoodService foodService;
 
+    //음식점 즐겨찾기 기능
     @PostMapping("like/store/{id}/{groupName}")
     @ResponseBody
     public String likeStore(@PathVariable(name = "id") final Integer id,
@@ -46,11 +49,17 @@ public class LikeStoreController {
         };
         likeStoreService.saveStore(user,foodData.getId(),foodData.getName(),groupName);
 
-
-
-
-
         return "{\"message\": \"success\"}";
+
+    }
+
+
+    @GetMapping("/loginUser/groupName")
+    @ResponseBody
+    public LinkedHashSet<String> findLoginUserGroup(Principal principal){
+        SiteUser user =userService.getUserByLoginID(principal.getName());
+        return likeStoreService.findGroupByUser(user);
+
 
     }
 
