@@ -10,12 +10,13 @@ public class LikeStoreService {
 
     @Autowired
     private LikeStoreRepository likeStoreRepository;
-    public void saveStore(SiteUser user, Integer id, String name) {
+    public void saveStore(SiteUser user, Integer id, String name,String groupName) {
          LikeStore likeStore = new LikeStore();
 
          likeStore.setFoodDataId(id);
          likeStore.setName(name);
          likeStore.setSiteUser(user);
+         likeStore.setGroupName(groupName);
          likeStoreRepository.save(likeStore);
 
 

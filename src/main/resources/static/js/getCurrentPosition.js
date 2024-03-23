@@ -347,10 +347,12 @@ for (var key in MARKER_SPRITE_POSITION) {
     }
 
 }
-
+//음식점 db id 기억하기 위해
+let storeID ;
 
 function likeOrNot(id){
     layerPop('likePopup');
+    storeID = id;
 
 //    let likeReturn =callApi("/like/store/"+id,'post',null);
 //    if(likeReturn.message =="not login"){

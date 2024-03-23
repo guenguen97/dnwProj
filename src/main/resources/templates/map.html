@@ -50,16 +50,19 @@
     </div>
 
     <div id="likePopup" class="popLayer">
+        <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
+
         <div>어떤 그룹에 저장하시겠습니까?</div>
 
         <input type="checkbox" id="option1" class="option-checkbox">
-        <label for="option1">Option 1</label><br>
+        <label for="option1">맛집</label><br>
         <input type="checkbox" id="option2" class="option-checkbox">
-        <label for="option2">Option 2</label><br>
+        <label for="option2">가보고 싶은 곳</label><br>
         <input type="checkbox" id="option3" class="option-checkbox">
-        <label for="option3">Option 3</label><br>
+        <label for="option3">기타</label><br>
 
         <div id="info"></div>
+        <div onclick="submitLikeStore();">완료</div>
 
 
     </div>
@@ -114,6 +117,8 @@ $(document).ready(function() {
     $('.option-checkbox').change(function() {
         // Clear previous information
         $('#info').empty();
+                $('.option-checkbox').not(this).prop('checked', false);
+
 
         // Find the checked checkbox and get its label text
         var selectedOption = $('.option-checkbox:checked').next('label').text();
@@ -126,6 +131,21 @@ $(document).ready(function() {
         }
     });
 });
+
+function submitLikeStore(){
+        if ($('.option-checkbox:checked').length === 0) {
+            alert("그룹을 선택한 후에 완료를 해주세요");
+            return;
+        }
+        var selectedOption = $('.option-checkbox:checked').next('label').text();
+         let likeReturn =callApi("/like/store/"+storeID+"/"+selectedOption,'post',null);
+
+    }
+
+
+function closeSignupPopup(){
+     layerPopClose();
+}
 
 </script>
 

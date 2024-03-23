@@ -26,21 +26,22 @@ public class LikeStoreController {
     @Autowired
     private FoodService foodService;
 
-    @PostMapping("like/store/{id}")
+    @PostMapping("like/store/{id}/{groupName}")
     @ResponseBody
     public String likeStore(@PathVariable(name = "id") final Integer id,
-                                            Principal principal){
+                            @PathVariable(name = "groupName") final String groupName,  Principal principal){
         System.out.println("메뉴 저장하기 성공");
         if(principal ==null){
             return "{\"message\": \"not login\"}";
         }
         SiteUser user =userService.getUserByLoginID(principal.getName());
+        System.out.println(groupName+"!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 
         FoodDatas foodData= foodService.getDataById(id);
 
 
-        likeStoreService.saveStore(user,foodData.getId(),foodData.getName());
+        likeStoreService.saveStore(user,foodData.getId(),foodData.getName(),groupName);
 
 
 
