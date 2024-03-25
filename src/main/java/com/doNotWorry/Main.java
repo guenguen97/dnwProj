@@ -42,9 +42,10 @@ public class Main {
     }
 
     @GetMapping("/test")
+    @ResponseBody
     public String dd(){
 
-        return "main";
+        return "{\"message\": \"success\"}";
     }
 
 

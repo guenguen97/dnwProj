@@ -63,6 +63,12 @@ public class LikeStoreController {
 
     }
 
+    @GetMapping("/my/likeStore/detail")
+    public String likeStoreDetail(){
+
+        return "likeStoreDetail";
+    }
+
 
 
 

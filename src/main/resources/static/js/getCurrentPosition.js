@@ -351,13 +351,22 @@ for (var key in MARKER_SPRITE_POSITION) {
 let storeID ;
 
 function likeOrNot(id){
-    layerPop('likePopup');
+
+    let test=callApi("/test",'get',null);
+    console.log(test.message+"!!!!!!!!!!!!!!")
+
+       let islogined =callApi("/user/logined",'get',"");
+       console.log("로그인 유무의 결과는 "+islogined.message);
+
+      if(islogined.message =="not login"){
+            alert("로그인 이후 저장이 가능합니다");
+            return;
+        }
+
+    else{layerPop('likePopup');}
     storeID = id;
 
-//    let likeReturn =callApi("/like/store/"+id,'post',null);
-//    if(likeReturn.message =="not login"){
-//        alert("로그인 이후 저장이 가능합니다");
-//    }
+
 
 }
 

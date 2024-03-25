@@ -26,6 +26,7 @@ public class UserService {
 
     public SiteUser getUserByLoginID(String loginID){
         if(userRepository.findByuserName(loginID).get()==null){
+            System.out.println("유저 정보 없음!!!!!!!");
             return null;
         }
        else {
