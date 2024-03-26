@@ -13,4 +13,9 @@ public interface LikeStoreRepository extends JpaRepository<LikeStore, Integer> {
     public Integer countLikeStore(@Param("foodDataId") Integer foodDataId, @Param("groupName") String groupName, @Param("siteUser") SiteUser user);
 
     List<LikeStore> findBySiteUser(SiteUser user);
+
+
+    @Query("SELECT ls.name FROM LikeStore ls WHERE ls.groupName = :groupName AND  ls.siteUser = :user")
+
+    List<String> findByGroupName(@Param("groupName") String groupName, @Param("user") SiteUser user);
 }

@@ -308,8 +308,6 @@ for (var key in MARKER_SPRITE_POSITION) {
         } else {
                 infoWindow.open(map, marker);
                  function displayComments(list) {
-
-
                                          const commentsContainer = document.getElementById('menuContainer');
                                          commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
                                         commentsContainer.innerHTML += `

@@ -3,11 +3,18 @@
 <div layout:fragment="content" class="container my-3">
 
 
+    <div id="groupName" th:text="${groupName}"></div>
+
+
+    <script>
+        let groupName = $("#groupName").text();
+
+        let groupDetail = getJson("/likeStore/detail/"+groupName , null)
 
 
 
 
-
+    </script>
 
 
 

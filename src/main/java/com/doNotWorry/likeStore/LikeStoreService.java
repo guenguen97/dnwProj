@@ -49,4 +49,8 @@ public class LikeStoreService {
         return list;
 
     }
+
+    public List<String> findStoreByGroupName(String groupName,SiteUser user) {
+        return likeStoreRepository.findByGroupName(groupName, user);
+    }
 }
