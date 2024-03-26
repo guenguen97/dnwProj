@@ -90,6 +90,14 @@ public class LikeStoreController {
     }
 
 
+    @GetMapping("/likeStore/random/{groupName}")
+    @ResponseBody
+    public String likeStoreRandom(@PathVariable("groupName") String groupName){
+
+
+    }
+
+
 
 
 
