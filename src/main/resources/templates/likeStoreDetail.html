@@ -3,15 +3,35 @@
 <div layout:fragment="content" class="container my-3">
 
 
-    <div id="groupName" th:text="${groupName}"></div>
+    <div id="groupName" style="display:none; margin-top:50px;" th:text="${groupName}"></div>
+    <div id="nameContainer"  style=" margin-top:100px;" ></div>
 
 
     <script>
-        let groupName = $("#groupName").text();
+        function displayComments(list) {
+                                        const commentsContainer = document.getElementById('nameContainer');
+                                       commentsContainer.innerHTML += `
+                                           <div class="top-container" style="display:flex;">
 
-        let groupDetail = getJson("/likeStore/detail/"+groupName , null)
 
+                                           </div>
 
+                                       `
+                                            list.forEach(item => {
+                                                  commentsContainer.innerHTML += `
+                                                      <div class="comment">
+                                                          <div> ${item}</div>
+                                                      </div>
+                                                  `;
+                                              });
+
+                 }
+
+       let groupName = $("#groupName").text();
+
+       let groupDetail = getJson("/likeStore/detail/"+groupName , null)
+
+        displayComments(groupDetail);
 
 
     </script>
