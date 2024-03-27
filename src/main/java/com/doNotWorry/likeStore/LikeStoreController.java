@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class LikeStoreController {
@@ -92,7 +94,20 @@ public class LikeStoreController {
 
     @GetMapping("/likeStore/random/{groupName}")
     @ResponseBody
-    public String likeStoreRandom(@PathVariable("groupName") String groupName){
+    public List<String> likeStoreRandom(@PathVariable("groupName") String groupName,
+                                  Principal principal){
+        SiteUser user =userService.getUserByLoginID(principal.getName());
+        List<String> storeList = likeStoreService.findStoreByGroupName(groupName, user);
+        Random random = new Random();
+        int n= storeList.size();
+
+        //0 이상 n 미만의 수  생성
+        int randomNumber = random.nextInt(n);
+        List<String> result = new ArrayList<>();
+        result.add(storeList.get(randomNumber));
+        return result;
+
+
 
 
     }

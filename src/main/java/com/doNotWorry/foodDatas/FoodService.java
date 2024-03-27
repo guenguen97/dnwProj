@@ -21,7 +21,7 @@ public class FoodService {
 
     public void saveDateToDB(List<List<String>> datas) {
         //지금은 너무 많아서 저장하는데 오래걸림 일단 양을 줄이자
-        for (int i = 1; i < datas.size(); i++) {
+        for (int i = 1; i < datas.size()/20; i++) {
             FoodDatas foodDatas = new FoodDatas();
 
             //가게 이름 저장

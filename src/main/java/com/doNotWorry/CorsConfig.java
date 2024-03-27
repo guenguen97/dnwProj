@@ -23,7 +23,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/css/**", "/images/**", "/js/**",
                         "/user/login","/user/siteUser-count","/user/signUp","/",
                         "/api/get_naver_map_key","/getNearFood","/like/store/**",
-                        "/menu/**" ,"/user/**");
+                        "/menu/**" ,"/user/**","/saveDataDB");
     }
 
 }
