@@ -361,10 +361,30 @@ function likeOrNot(id){
             return;
         }
 
-    else{layerPop('likePopup');}
+    else{
+         let countEachGroupStore =getJson("/likeStore/count/groupName/"+id,"")
+         console.log(countEachGroupStore.맛집);
+         countEachGroupStoreFunction(countEachGroupStore);
+
+    layerPop('likePopup');
+    }
     storeID = id;
 
 
 
 }
 
+function countEachGroupStoreFunction(countEachGroupStore){
+      var $layer = $("#likePopup");
+
+                if(countEachGroupStore.맛집==1){
+                      console.log("맛집에 이미 있음")
+                      $layer.find("#option1").next("label").css('border',"1px solid red");
+                }
+                if(countEachGroupStore["가보고 싶은 곳"]==1){
+                          $layer.find("#option2").next("label").css('border',"1px solid red");
+                    }
+                if(countEachGroupStore.기타==1){
+                              $layer.find("#option3").next("label").css('border',"1px solid red");
+                }
+}

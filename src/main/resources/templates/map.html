@@ -52,7 +52,7 @@
     <div id="likePopup" class="popLayer">
         <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
-        <div>어떤 그룹에 저장하시겠습니까?</div>
+        <div>이미 저장된 그룹을 선택하면 즐겨찾기에서 제거됩니다</div>
 
         <input type="checkbox" id="option1" class="option-checkbox">
         <label for="option1">맛집</label><br>
@@ -136,15 +136,31 @@ function submitLikeStore(){
         var selectedOption = $('.option-checkbox:checked').next('label').text();
          let likeReturn =callApi("/like/store/"+storeID+"/"+selectedOption,'post',null);
 
-         if(likeReturn.message=="중복"){
-            alert("이미 이 그룹에는 저장해놓은 음식점입니다. ")
+         if(likeReturn.message=="삭제"){
+            alert("그룹에서 삭제 되었습니다. ")
          }
+
+          if(likeReturn.message=="success"){
+            alert("그룹에 추가 되었습니다. ")
+         }
+
+           $("#option1").next("label").css('border', '');
+        $("#option2").next("label").css('border', '');
+        $("#option3").next("label").css('border', '');
+          //getCurrentPoision.js 에 있는 함수 임
+          let countEachGroupStore =getJson("/likeStore/count/groupName/"+storeID,"")
+
+         countEachGroupStoreFunction(countEachGroupStore);
 
     }
 
 
 function closeSignupPopup(){
  $('.option-checkbox').not(this).prop('checked', false);
+        $("#option1").next("label").css('border', '');
+        $("#option2").next("label").css('border', '');
+        $("#option3").next("label").css('border', '');
+
      layerPopClose();
 }
 

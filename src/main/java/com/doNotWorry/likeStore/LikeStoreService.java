@@ -28,7 +28,12 @@ public class LikeStoreService {
     }
 
     public Integer countLikeStore(SiteUser user ,Integer foodDataId, String groupName) {
-       return likeStoreRepository.countLikeStore(foodDataId, groupName ,user );
+       return likeStoreRepository.findByFoodDataIdAndGroupNameAndSiteUser(foodDataId, groupName ,user ).size();
+    }
+
+    public List<LikeStore> likeStoreByFoodDataIdAndGroupNameAndSiteUser(SiteUser user ,Integer foodDataId, String groupName){
+        return likeStoreRepository.findByFoodDataIdAndGroupNameAndSiteUser(foodDataId, groupName ,user );
+
     }
 
     public LinkedHashSet<String> findGroupByUser(SiteUser user) {
@@ -52,5 +57,13 @@ public class LikeStoreService {
 
     public List<String> findStoreByGroupName(String groupName,SiteUser user) {
         return likeStoreRepository.findByGroupName(groupName, user);
+    }
+
+    public List<LikeStore> findBySiteUserAndFoodDataId(SiteUser user, Integer id) {
+        return likeStoreRepository.findBySiteUserAndFoodDataId(user, id);
+    }
+
+    public void deleteByFoodDataIdAndGroupNameAndSiteUser(SiteUser user, Integer id, String groupName) {
+        likeStoreRepository.deleteByFoodDataIdAndGroupNameAndSiteUser( id , groupName ,user);
     }
 }

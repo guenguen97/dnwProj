@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class LikeStoreController {
@@ -49,7 +46,10 @@ public class LikeStoreController {
 
         //중복된 저장 현황이 있는지 체크
         if(likeStoreService.countLikeStore(user,foodData.getId(), groupName) >0){
-            return "{\"message\": \"중복\"}";
+
+            likeStoreService.likeStoreByFoodDataIdAndGroupNameAndSiteUser(user,foodData.getId(), groupName);
+            likeStoreService.deleteByFoodDataIdAndGroupNameAndSiteUser(user,foodData.getId(), groupName);
+            return "{\"message\": \"삭제\"}";
         };
         likeStoreService.saveStore(user,foodData.getId(),foodData.getName(),groupName);
 
@@ -107,8 +107,25 @@ public class LikeStoreController {
         result.add(storeList.get(randomNumber));
         return result;
 
+    }
 
-
+    @GetMapping("/likeStore/count/groupName/{id}")
+    @ResponseBody
+    public  HashMap<String, Integer> countLikeStore(@PathVariable(name = "id") Integer id,
+                                       Principal principal){
+        SiteUser user =userService.getUserByLoginID(principal.getName());
+        HashMap<String, Integer> countEachGroupStore = new HashMap<>();
+        List<LikeStore> storeList=likeStoreService.findBySiteUserAndFoodDataId(user,id);
+        for (int i = 0; i < storeList.size(); i++) {
+            if(storeList.get(i).getGroupName().equals("맛집")){
+                countEachGroupStore.put("맛집" ,1);
+            }else if(storeList.get(i).getGroupName().equals("가보고 싶은 곳")){
+                countEachGroupStore.put("가보고 싶은 곳",1);
+            }else if(storeList.get(i).getGroupName().equals("기타")){
+                countEachGroupStore.put("기타" , 1);
+            }
+        }
+        return countEachGroupStore;
 
     }
 
