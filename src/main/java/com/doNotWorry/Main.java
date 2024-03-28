@@ -53,11 +53,11 @@ public class Main {
     @ResponseBody
     public List<FoodDatasDTO> getNearFood(@RequestParam(name = "lat") float lat,
                                           @RequestParam(name = "har") float har) throws IOException {
-
+        //현재 위치 또는, 현재 지도의 중심의 위도 경도를 받아서 시작함
         System.out.println(lat+" and"+har+"정보 받기 성공");
 
 
-
+        //JPA 를 이용해서 편리하게 쿼리문없이 바로 위도 경도범위내 음식점 찾기
         List<FoodDatas> foodDatasListByJPA =foodService.getDatasInRange(lat-0.0009045F, lat+0.0009045F, har-0.0025045F, har+0.0025045F);
 
 //        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");

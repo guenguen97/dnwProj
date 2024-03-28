@@ -27,19 +27,21 @@
 <div id="login_wrap">
    
     <div id="login_box">
-        <div class="login_con">
+        <div class="login_con" style="overflow:visible;">
             <div class="login_tit">
                 <h2>DNW</h2>
                 <p>LOG<i>IN</i></p>
             </div>
 
             <div class="login_input">
-                <form id="loginForm" th:action="@{/user/login}" method="post" autocomplete="off">
-                    <div th:if="${param.error}">
-                        <div class="alert alert-danger">
-                            사용자ID 또는 비밀번호를 확인해 주세요.
-                        </div>
+                <div th:if="${param.error}">
+                    <div style="position:absolute; top:-45px; width:310px" class="alert alert-danger">
+                        사용자ID 또는 비밀번호를 확인해 주세요.
                     </div>
+                </div>
+
+                <form id="loginForm" th:action="@{/user/login}" method="post" autocomplete="off">
+
                     <ul  sec:authorize="isAnonymous()" >
                         <li>
                             <label for="loginID" class="skip_info">아이디</label>
@@ -79,7 +81,7 @@
                     <th scope="row">아이디<span class="es">필수 입력</span></th>
                     <td>
                         <input type="text" name="loginID" placeholder="아이디" maxlength="20" style="width: 80%;" />
-                        <button type="button" id="idCheckBtn" class="btns btn_st5" onclick="checkLoginId();" style="width: 20%; float: right;">중복 확인</button>
+                        <button type="button" id="idCheckBtn" class="btns " onclick="checkLoginId();" style="width: 20%; float: right; ">중복 확인</button>
                     </td>
                 </tr>
                 <tr>
@@ -104,7 +106,7 @@
             </table>
         </form>
         <p class="btn_set">
-            <button type="button" class="btns btn_st2" onclick="saveMember();">가입</button>
+            <button type="button" style="border :1px solid #b4b4b4;" class="btns " onclick="saveMember();">가입</button>
             <button type="button" class="btns btn_bdr2" onclick="closeSignupPopup();">취소</button>
         </p>
     </div>
