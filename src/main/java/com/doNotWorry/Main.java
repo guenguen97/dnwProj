@@ -56,6 +56,10 @@ public class Main {
 
         System.out.println(lat+" and"+har+"정보 받기 성공");
 
+
+
+        List<FoodDatas> foodDatasListByJPA =foodService.getDatasInRange(lat-0.0009045F, lat+0.0009045F, har-0.0025045F, har+0.0025045F);
+
 //        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
         List<List<String>> csvData2=  csvService.csvData("templates/data/dajeon_food.csv");
 
@@ -79,24 +83,26 @@ public class Main {
 
         List<FoodDatas> datas=foodService.getAllDatas();
 
-        for (int i = 0; i < datas.size(); i++) {
-            FoodDatasDTO dto= new FoodDatasDTO( datas.get(i));
-            datasDTOS.add(dto);
+        //빈 DTO 에  음식점 데이터 넣는 작업
+        for (int i = 0; i < foodDatasListByJPA.size(); i++) {
+            FoodDatasDTO dto= new FoodDatasDTO( foodDatasListByJPA.get(i));
+//            datasDTOS.add(dto);
+            mainData2.add(dto);
         }
 
 
-
-        for (int i = 0; i < datasDTOS.size(); i++) {
-            if(datasDTOS.get(i).getLatitude() !=0 && datasDTOS.get(i).getLongitude() !=0){
-                //특정 위치에서 범위 설정하는거
-                if((datasDTOS.get(i).getLatitude()< lat+0.0009045 && datasDTOS.get(i).getLatitude() >lat-0.0009045)&&
-                        (datasDTOS.get(i).getLongitude()<har+0.0025045 && datasDTOS.get(i).getLongitude()>har-0.0025045) ){
-                    System.out.println("메인 데이타에 데이타 추가중 ");
-
-                    mainData2.add(datasDTOS.get(i));
-                }
-            }
-        }
+        //DTO 에서 현재 위치 근처 음식점만 따로 찾아서 main데이터에 넘기는 작업
+//        for (int i = 0; i < datasDTOS.size(); i++) {
+//            if(datasDTOS.get(i).getLatitude() !=0 && datasDTOS.get(i).getLongitude() !=0){
+//                //특정 위치에서 범위 설정하는거
+//                if((datasDTOS.get(i).getLatitude()< lat+0.0009045 && datasDTOS.get(i).getLatitude() >lat-0.0009045)&&
+//                        (datasDTOS.get(i).getLongitude()<har+0.0025045 && datasDTOS.get(i).getLongitude()>har-0.0025045) ){
+//                    System.out.println("메인 데이타에 데이타 추가중 ");
+//
+//                    mainData2.add(datasDTOS.get(i));
+//                }
+//            }
+//        }
 
 
 

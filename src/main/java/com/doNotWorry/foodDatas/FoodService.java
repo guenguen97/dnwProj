@@ -19,6 +19,11 @@ public class FoodService {
     private MenuService menuService;
 
 
+    public List<FoodDatas> getDatasInRange(float minLat, float maxLat, float minLong, float maxLong) {
+        return foodRepository.findByLatitudeBetweenAndLongitudeBetween(minLat, maxLat, minLong, maxLong);
+    }
+
+
     public void saveDateToDB(List<List<String>> datas) {
         //지금은 너무 많아서 저장하는데 오래걸림 일단 양을 줄이자
         for (int i = 1; i < datas.size()/20; i++) {

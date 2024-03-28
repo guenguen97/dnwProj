@@ -11,6 +11,10 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@Table(indexes = {
+        @Index(name = "idx_latitude", columnList = "latitude"),
+        @Index(name = "idx_longitude", columnList = "longitude")
+})
 public class FoodDatas {
 
     @Id
