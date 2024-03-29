@@ -57,6 +57,13 @@ public class UserController {
         return "myPage";
     }
 
+    @GetMapping("/myStoreList")
+    public String myStoreList(){
+        return "myStoreList";
+    }
+
+
+
 
     //회원 가입 용
     @PostMapping("/signUp" )
