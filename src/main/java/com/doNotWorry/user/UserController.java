@@ -1,6 +1,6 @@
 package com.doNotWorry.user;
 
-import com.doNotWorry.kakao.KakaoService;
+//import com.doNotWorry.kakao.KakaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ public class UserController {
 
     @Autowired
     private  UserService userService;
-    private final KakaoService kakaoService;
+//    private final KakaoService kakaoService;
 
 
     @GetMapping("/login")
     public String signUp(Model model){
-        model.addAttribute("kakaoUrl", kakaoService.getKakaoLogin());
+//        model.addAttribute("kakaoUrl", kakaoService.getKakaoLogin());
 
         return "login";
     }

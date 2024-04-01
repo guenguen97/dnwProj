@@ -4,6 +4,7 @@ package com.doNotWorry.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -21,6 +22,21 @@ public class UserService {
         user.setUserName(userCreateForm.getUserName());
         user.setCreateDate(LocalDateTime.now());
         userRepository.save(user);
+    }
+
+    @Transactional
+    public SiteUser join(String oauthType, String loginID, String email, String nickname, String profileImgUrl) {
+        SiteUser user=new SiteUser();
+        user.setOauthType(oauthType);
+
+        user.setPassword("");
+        user.setLoginID(loginID);
+        user.setProfileImgUrl(profileImgUrl);
+
+
+        userRepository.save(user);
+
+        return user;
     }
 
 

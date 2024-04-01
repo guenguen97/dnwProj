@@ -25,6 +25,9 @@ public class SiteUser {
     private String password;
 
     private String userName;
+    private String oauthType;
+    private String profileImgUrl;
+
 
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
@@ -32,6 +35,11 @@ public class SiteUser {
     @OneToMany(mappedBy = "siteUser" , cascade = CascadeType.REMOVE)
     private List<LikeStore> likeStore;
 
+
+    public void updateWhenSocialLogin(String userName, String profileImgUrl) {
+        this.userName = userName;
+        this.profileImgUrl = profileImgUrl;
+    }
 
 
 }
