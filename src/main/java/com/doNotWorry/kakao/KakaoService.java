@@ -1,5 +1,6 @@
 package com.doNotWorry.kakao;
 
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+@RequiredArgsConstructor
 @Service
 public class KakaoService {
 
@@ -104,4 +106,6 @@ public class KakaoService {
 //                .email(email)
                 .nickname(nickname).build();
     }
+
+
 }

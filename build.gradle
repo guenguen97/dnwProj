@@ -55,6 +55,7 @@ dependencies {
 
 
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 
 //	현재 위치 위도 경도 받는 거
