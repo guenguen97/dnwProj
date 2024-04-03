@@ -1,6 +1,7 @@
 package com.doNotWorry.user;
 
 //import com.doNotWorry.kakao.KakaoService;
+import com.doNotWorry.rq.Rq;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,25 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserController {
 
+    private  final Rq rq;
+
 
     @Autowired
     private  UserService userService;
 //    private final KakaoService kakaoService;
+
+    @GetMapping("cookies")
+    @ResponseBody
+    public String getCookies(){
+        return rq.getAllCookieValuesAsString();
+    }
+
+
+    @GetMapping("session")
+    @ResponseBody
+    public String getsession(){
+        return rq.getAllSessionValuesAsString();
+    }
 
 
     @GetMapping("/login")
