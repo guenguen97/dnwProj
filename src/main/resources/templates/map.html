@@ -29,54 +29,76 @@
 
 
 
-<div id="map" style="width:100%;height:600px; margin-top:70px;">
-    <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; left: 0px; bottom: 20px;">
-        <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
-            <a href="#" class="btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPosition();" style="pointer-events: auto;">
-                현재 위치
-            </a>
+    <div id="map" style="width:100%;height:600px; margin-top:70px;">
+        <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; left: 0px; bottom: 20px;">
+            <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
+                <a href="#" class="btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPosition();" style="pointer-events: auto;">
+                    현재 위치
+                </a>
 
+
+            </div>
+            <br>
+            <div>
+            <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
+                지도상 음식점 업데이트
+            </a></div>
+        </div>
+
+        <div id="menuContainer"  style="display:none; position: absolute; z-index: 4;left: 20px; top: 50px;">
 
         </div>
-        <br>
-        <div>
-        <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
-            지도상 음식점 업데이트
-        </a></div>
-    </div>
 
-    <div id="menuContainer"  style="display:none; position: absolute; z-index: 4;left: 20px; top: 20px;">
+        <div id="likePopup" class="popLayer">
+            <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
-    </div>
+            <div>이미 저장된 그룹을 선택하면 즐겨찾기에서 제거됩니다</div>
 
-    <div id="likePopup" class="popLayer">
-        <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
+            <input type="checkbox" id="option1" class="option-checkbox">
+            <label for="option1">맛집</label><br>
+            <input type="checkbox" id="option2" class="option-checkbox">
+            <label for="option2">가보고 싶은 곳</label><br>
+            <input type="checkbox" id="option3" class="option-checkbox">
+            <label for="option3">기타</label><br>
 
-        <div>이미 저장된 그룹을 선택하면 즐겨찾기에서 제거됩니다</div>
+            <div id="info"></div>
+            <div onclick="submitLikeStore();">완료</div>
 
-        <input type="checkbox" id="option1" class="option-checkbox">
-        <label for="option1">맛집</label><br>
-        <input type="checkbox" id="option2" class="option-checkbox">
-        <label for="option2">가보고 싶은 곳</label><br>
-        <input type="checkbox" id="option3" class="option-checkbox">
-        <label for="option3">기타</label><br>
-
-        <div id="info"></div>
-        <div onclick="submitLikeStore();">완료</div>
-
+        </div>
 
     </div>
-</div>
 
 
+    <div  id="newsPopup" class="popLayer">
+        <form action="post">
+            <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
+            <label for="newsPopupCheckBox">10초간 보지않기</label>
+            <button type="button" class="btn_close" onclick="closeNesPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
 
+        </form>
 
+        새로운 소식 팝업창
+    </div>
+
+<!--메뉴 리스트-->
 <ul id="myList">
 
 </ul>
 
+    <script>
+        window.onload = function() {
+            if(getJson("/newsCookies","").message=="true") {
 
+                //이게 참이면 쿠키가 있으니 팝업창 안뛰움
+            }
+            else {
+                       layerPop('newsPopup');
+
+            }
+
+        };
+    </script>
 
 
 
@@ -163,6 +185,18 @@ function closeSignupPopup(){
 
      layerPopClose();
 }
+
+
+    function closeNesPopup(){
+                let checkBox=$("#newsPopupCheckBox");
+
+               if(checkBox.prop('checked')){
+                    callApi("/stop/newsPopup","post","");
+               }
+             layerPopClose();
+
+
+    }
 
 </script>
 

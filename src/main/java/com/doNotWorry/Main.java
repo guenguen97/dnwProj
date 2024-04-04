@@ -3,11 +3,16 @@ package com.doNotWorry;
 import com.doNotWorry.foodDatas.FoodDatas;
 import com.doNotWorry.foodDatas.FoodDatasDTO;
 import com.doNotWorry.foodDatas.FoodService;
+import com.nimbusds.oauth2.sdk.http.HTTPResponse;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,19 +29,10 @@ public class Main {
     @Autowired
     private Apis apis;
 
-//    @GetMapping("/chat")
-//    public String chatPage() {
-//        return "chat";
-//    }
-
     @GetMapping("/")
     public String main(Model model) throws IOException {
 
             System.out.println("테스트 시작 ");
-
-
-//        model.addAttribute("openaiApiKey", apis.getOpenaiApiKey());
-
 
         return "map";
     }
@@ -48,6 +44,39 @@ public class Main {
         return "{\"message\": \"success\"}";
     }
 
+    @PostMapping("/stop/newsPopup")
+    @ResponseBody
+    public String stopPopup(HttpServletResponse res){
+        System.out.println("쿠키 생성");
+        Cookie cookie = new Cookie("newsPopup","stop");
+
+        cookie.setDomain("localhost");
+        cookie.setPath("/");
+        // 10초간 팝업 정지
+        cookie.setMaxAge(10);
+        cookie.setSecure(true);
+        res.addCookie(cookie);
+        return "소식 팝업 정지";
+    }
+
+    @GetMapping("/newsCookies")
+    @ResponseBody
+    public String getNewsCookies(HttpServletRequest req){
+        System.out.println("asdasd");
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("newsPopup")){
+                    System.out.println("쿠키 있음");
+                    //팝업 정지를 원하는 쿠키가 존재하면 참 반환
+                    return "{\"message\": \"true\"}";
+                }
+            }
+        }
+        System.out.println("쿠키 없음");
+
+        return "{\"message\": \"false\"}";
+    }
 
     @GetMapping("getNearFood")
     @ResponseBody
