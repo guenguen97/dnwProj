@@ -140,6 +140,26 @@ public class UserController {
         return "changePassword";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PatchMapping("/changePassword")
+    @ResponseBody
+    public String changePassword(@RequestBody Map<String, String> params){
+        SiteUser user= rq.getLoginUser();
+        String currentPassword = params.get("currentPassword");
+        String newPassword1 = params.get("newPassword1");
+        String newPassword2 = params.get("newPassword2");
+
+        if(!userService.isCorrectPassword(user,currentPassword)){
+            return  "{\"message\": \"fail\"}";
+        }else {
+            userService.updatePassword(user,newPassword1);
+        }
+
+
+
+        return "{\"message\": \"success\"}";
+    }
+
 
 
 }

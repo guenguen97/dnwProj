@@ -1,8 +1,10 @@
 package com.doNotWorry.user;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +12,13 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     @Autowired
     UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
     public void create(UserCreateForm userCreateForm) {
         SiteUser user =new SiteUser();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -67,6 +73,16 @@ public class UserService {
         }
 
         user.setUpdateDate(LocalDateTime.now());
+        userRepository.save(user);
+    }
+
+    public boolean isCorrectPassword(SiteUser user, String password) {
+        String actualPassword = user.getPassword();
+        return passwordEncoder.matches(password, actualPassword);
+    }
+
+    public void updatePassword(SiteUser user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
 }
