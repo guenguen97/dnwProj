@@ -49,3 +49,14 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: guenguen9797@gmail.com
+    password: NEED_TO_EMPTY
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
