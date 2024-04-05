@@ -54,4 +54,19 @@ public class UserService {
     public int countSiteUserByLoginID(String loginID) {
        return userRepository.countByLoginID(loginID);
     }
+
+
+    @Transactional
+    public void updateUser(SiteUser user,String nickName, String email) {
+        if (nickName != null && nickName.length() > 0) {
+          user.setNickName(nickName);
+        }
+
+        if (email != null && email.length() > 0) {
+            user.setEmail(email);
+        }
+
+        user.setUpdateDate(LocalDateTime.now());
+        userRepository.save(user);
+    }
 }

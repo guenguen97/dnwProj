@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content" class="container my-3">
+    <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto; width:50%;">
+        <div>
+            <form onsubmit="return false;">
+                <label for="nickName">닉네임</label>
+                <input id=nickName name="nickName" type="text" placeholder="nickName" th:value="${user.nickName}">
+                <label for="email">이메일</label>
+                <input id="email" name="email" type="email" placeholder="email" th:value="${user.email}">
+
+                <button onclick="changeInformation();">수정 완료</button>
+            </form>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+        function changeInformation(){
+            let nickName=$("#nickName").val();
+            let email=$("#email").val();
+            if (email.includes("@")) {
+               let result=callApi("/user/information/"+nickName+"/"+email ,"patch","");
+
+                if(result.message=="success"){
+                    alert("수정되었습니다.");
+                }
+            } else {
+                alert("이메일 형식에 맞게 @를 추가해주세요")
+                return;
+            }
+
+
+        }
+
+
+    </script>
+
+
+
+
+</div>
+
+
+</html>

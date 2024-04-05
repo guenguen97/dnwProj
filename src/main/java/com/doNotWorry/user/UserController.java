@@ -32,25 +32,11 @@ public class UserController {
     private  UserService userService;
 //    private final KakaoService kakaoService;
 
-    @GetMapping("cookies")
-    @ResponseBody
-    public String getCookies(){
-        return rq.getAllCookieValuesAsString();
-    }
-
-
-    @GetMapping("session")
-    @ResponseBody
-    public String getsession(){
-        return rq.getAllSessionValuesAsString();
-    }
-
 
 //    @PreAuthorize("isAnonymous()") //로그아웃 상태만
     @GetMapping("/login")
     public String signUp(Model model){
 //        model.addAttribute("kakaoUrl", kakaoService.getKakaoLogin());
-
         return "login";
     }
 
@@ -67,13 +53,7 @@ public class UserController {
 
             return "{\"message\": \"success\"}";
 
-
         }
-
-
-
-
-
     }
 
     @PreAuthorize("isAuthenticated()") //로그인 상태만 되게
@@ -91,9 +71,6 @@ public class UserController {
     public String myStoreList(){
         return "myStoreList";
     }
-
-
-
 
     //회원 가입 용
     @PostMapping("/signUp" )
@@ -129,37 +106,40 @@ public class UserController {
         return userService.countSiteUserByLoginID(loginID);
     }
 
+    //기본 회원 정보 변경
+
+
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/changeInfor")
-    public String changeInfor(){
-        return "changeInfor";
+    @GetMapping("/changeInformation")
+    public String changeInformation(Model model){
+        SiteUser user=rq.getLoginUser();
+
+        model.addAttribute("user",user);
+
+        return "changeInformation";
     }
 
-
     // 회원 정보 수정
-//    @PatchMapping("/information/{id}")
-//    @ResponseBody
-//    public Long updateMember(@PathVariable(name = "id") final Long id, @RequestBody final SiteUserRequest params) {
-//        System.out.println("회원 정보 수정 시작!!!!!!!!!!!!!!");
-//        System.out.println(params.getUserName());
-//        params.setId(id);
-//        System.out.println(params.getId());
-//        System.out.println(params.getEmail());
-//        return userService.updateUser(params);
-//    }
+    @PreAuthorize("isAuthenticated()")
+    @PatchMapping("/information/{nickName}/{email}")
+    @ResponseBody
+    public String updateUser(@PathVariable(name = "nickName") final String nickName,
+                           @PathVariable(name = "email") final String email ) {
+        System.out.println("회원 정보 수정 시작!!!!!!!!!!!!!!");
+        SiteUser user =rq.getLoginUser();
 
+        userService.updateUser(user,nickName,email);
 
+        return  "{\"message\": \"success\"}";
+    }
 
-    //로그인한 회원 정보 갖고오기
-//    @GetMapping("/information")
-//    @ResponseBody
-//    public SiteUserResponse getLoginUser(Principal principal){
-//        SiteUserResponse user = userService.findUserByLoginID(principal.getName());
-//
-//        return user;
-//
-//    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/changePassword")
+    public String changePassword(){
+        return "changePassword";
+    }
+
 
 
 }
