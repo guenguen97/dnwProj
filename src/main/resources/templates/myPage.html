@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
-    <div id="userInformation" style="margin-top:100px;">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto; width:50%;">
+        <div>유저 프로필</div>
+        <div th:text="${nickName}">별명</div>
+        <div th:text="${email}">이메일</div>
+        <div th:text="${nickName}"></div>
+        <div th:text="${email}"></div>
+        <div th:text="${user.nickName}"></div>
+        <div th:text="${user.email}"></div>
+
+
+        <div>
+            <div>비밀번호 변경</div>
+            <div>개인정보 수정</div>
+        </div>
+
     </div>
 
-    <div>
 
-
-
-    </div>
 
 
 

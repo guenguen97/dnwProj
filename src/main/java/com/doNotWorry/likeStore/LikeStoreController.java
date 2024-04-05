@@ -8,6 +8,7 @@ import com.doNotWorry.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,9 @@ public class LikeStoreController {
     @Autowired
     private FoodService foodService;
 
+
     //음식점 즐겨찾기 기능
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("like/store/{id}/{groupName}")
     @ResponseBody
     public String likeStore(@PathVariable(name = "id") final Integer id,
@@ -57,7 +60,7 @@ public class LikeStoreController {
 
     }
 
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/loginUser/groupName")
     @ResponseBody
     public LinkedHashSet<String> findLoginUserGroup(Principal principal){
@@ -69,6 +72,7 @@ public class LikeStoreController {
 
 
     //즐겨찾기한 음식점 리스트 보여주는 페이지
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/likeStore/detail/groupName={groupName}")
     public String likeStoreDetail(@PathVariable("groupName") String groupName, Model model){
         System.out.println(groupName);
@@ -77,6 +81,7 @@ public class LikeStoreController {
     }
 
     //즐겨찾기한 음식점 리스트 페이지에서 음식점 리스트 갖고와주는api
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/likeStore/detail/{groupName}")
     @ResponseBody
     public List<String> likeStoreDetailJSON(@PathVariable("groupName") String groupName, Model model,
@@ -91,7 +96,7 @@ public class LikeStoreController {
         return storeList;
     }
 
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/likeStore/random/{groupName}")
     @ResponseBody
     public List<String> likeStoreRandom(@PathVariable("groupName") String groupName,
@@ -109,6 +114,7 @@ public class LikeStoreController {
 
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/likeStore/count/groupName/{id}")
     @ResponseBody
     public  HashMap<String, Integer> countLikeStore(@PathVariable(name = "id") Integer id,

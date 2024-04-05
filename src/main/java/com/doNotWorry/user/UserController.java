@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,7 @@ public class UserController {
     }
 
 
+//    @PreAuthorize("isAnonymous()") //로그아웃 상태만
     @GetMapping("/login")
     public String signUp(Model model){
 //        model.addAttribute("kakaoUrl", kakaoService.getKakaoLogin());
@@ -74,11 +76,17 @@ public class UserController {
 
     }
 
+    @PreAuthorize("isAuthenticated()") //로그인 상태만 되게
     @GetMapping("/myPage")
-    public String myPage(){
+    public String myPage(Model model){
+        SiteUser user=rq.getLoginUser();
+
+        model.addAttribute("user",user);
+
         return "myPage";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/myStoreList")
     public String myStoreList(){
         return "myStoreList";
@@ -114,14 +122,15 @@ public class UserController {
 
 
     //아이디 중복 체크용
-//    @GetMapping("/siteUser-count")
-//    @ResponseBody
-//    public int countMemberByLoginId(@RequestParam (name = "loginID") final String loginID) {
-//        System.out.println(loginID+"!!!!!!!!!!!!!!!!!!!!!!!!");
-//        return userService.countSiteUserByLoginID(loginID);
-//    }
+    @GetMapping("/siteUser-count")
+    @ResponseBody
+    public int countMemberByLoginId(@RequestParam (name = "loginID") final String loginID) {
+        System.out.println(loginID+"!!!!!!!!!!!!!!!!!!!!!!!!");
+        return userService.countSiteUserByLoginID(loginID);
+    }
 
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/changeInfor")
     public String changeInfor(){
         return "changeInfor";

@@ -20,13 +20,19 @@ public class SiteUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
     private String loginID;
 
     private String password;
 
-    private String userName;
+    private String nickName;
+
     private String oauthType;
+
     private String profileImgUrl;
+
+    @Column(unique = true)
+    private String email;
 
 
     private LocalDateTime createDate;
@@ -36,8 +42,8 @@ public class SiteUser {
     private List<LikeStore> likeStore;
 
 
-    public void updateWhenSocialLogin(String userName, String profileImgUrl) {
-        this.userName = userName;
+    public void updateWhenSocialLogin(String nickName, String profileImgUrl) {
+        this.nickName = nickName;
         this.profileImgUrl = profileImgUrl;
     }
 

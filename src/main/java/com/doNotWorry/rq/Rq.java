@@ -51,6 +51,32 @@ public class Rq {
 
     }
 
+    private String getLoginedUserLoginID() {
+        if (isLogout()) return null;
+
+        return user.getUsername();
+    }
+
+    public boolean isLogin() {
+        return user != null;
+    }
+
+    public boolean isLogout() {
+        return !isLogin();
+    }
+
+    public SiteUser getLoginUser() {
+        if (isLogout()) {
+            return null;
+        }
+
+        if (loginUser == null) {
+            loginUser = userService.getUserByLoginID(getLoginedUserLoginID());
+        }
+
+        return loginUser;
+    }
+
 
     public String getAllCookieValuesAsString() {
         StringBuilder sb = new StringBuilder();

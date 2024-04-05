@@ -27,7 +27,7 @@ public class UserSecurityService implements UserDetailsService {
         System.out.println("로그인 검사중!!!!!!!!!");
 
 
-        Optional<SiteUser> _siteUser = this.userRepository.findByuserName(userName);
+        Optional<SiteUser> _siteUser = this.userRepository.findByLoginID(userName);
         if (_siteUser==null || userName.equals("") || _siteUser.isEmpty() ) {
             throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
         }

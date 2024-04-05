@@ -17,9 +17,9 @@ public class UserService {
         SiteUser user =new SiteUser();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(userCreateForm.getPassword1()));
-
+        user.setEmail(userCreateForm.getEmail());
         user.setLoginID(userCreateForm.getLoginID());
-        user.setUserName(userCreateForm.getUserName());
+        user.setNickName(userCreateForm.getNickName());
         user.setCreateDate(LocalDateTime.now());
         userRepository.save(user);
     }
@@ -32,6 +32,7 @@ public class UserService {
         user.setPassword("");
         user.setLoginID(loginID);
         user.setProfileImgUrl(profileImgUrl);
+        user.setNickName(nickname);
 
 
         userRepository.save(user);
@@ -41,12 +42,16 @@ public class UserService {
 
 
     public SiteUser getUserByLoginID(String loginID){
-        if(userRepository.findByuserName(loginID).get()==null){
+        if(userRepository.findByLoginID(loginID).get()==null){
             System.out.println("유저 정보 없음!!!!!!!");
             return null;
         }
        else {
-        return  userRepository.findByuserName(loginID).get();
+        return  userRepository.findByLoginID(loginID).get();
        }
+    }
+
+    public int countSiteUserByLoginID(String loginID) {
+       return userRepository.countByLoginID(loginID);
     }
 }
