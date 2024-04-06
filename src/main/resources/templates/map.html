@@ -119,16 +119,19 @@
         function submitSearch(){
             let searchString=$("#searchString");
             let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
-            var markers = [];
-            update(storeList);
+            if(storeList.length==0){
+                return;
+            }else {
+                 let infoWindows=[];
+                update(storeList);
 
-             var location = new naver.maps.LatLng(storeList[0].latitude,
-                                             storeList[0].longitude);
-
-            map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-            map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+                 var location = new naver.maps.LatLng(storeList[0].latitude,
+                                                 storeList[0].longitude);
 
 
+                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+            }
         }
     </script>
 

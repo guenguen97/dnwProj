@@ -13,7 +13,9 @@ import java.util.List;
 @Getter
 @Table(indexes = {
         @Index(name = "idx_latitude", columnList = "latitude"),
-        @Index(name = "idx_longitude", columnList = "longitude")
+        @Index(name = "idx_longitude", columnList = "longitude"),
+        @Index(name = "idx_name", columnList = "name")
+
 })
 public class FoodDatas {
 

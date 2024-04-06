@@ -37,6 +37,7 @@ public class MenuService {
     public void create2(String menu ,FoodDatas foodDatas ){
         String result= "ㅇㅇ";
 
+
         if (menu.contains("[") ||menu.contains("]")  ) {
             result = menu.replaceAll("\"", "").trim();
             result = result.replaceAll("]", "").trim();
@@ -44,6 +45,8 @@ public class MenuService {
         } else {
             result = menu;
         }
+
+
 
 
         Menu menu1 = new Menu();

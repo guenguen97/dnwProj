@@ -52,7 +52,7 @@ function onSuccessGeolocation(position) {
      navigator.geolocation.getCurrentPosition(success, error, options);
 
     map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-    map.setZoom(15); // 지도의 줌 레벨을 변경합니다.
+    map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
 
     infowindow.setContent('<div style="padding:20px;">' + '현재 위치' + '</div>');
 
@@ -213,10 +213,11 @@ function update(data) {
 //                        parseFloat(data[i][9]),
 //                        data[i][1]// Assuming content holds y coordinate
 
-                        data[i].latitude, // Assuming content holds x coordinate
-                         data[i].longitude,
-                          data[i].name,// Assuming content holds y coordinate
-                        data[i].id //음식점 고유 db id
+                        data[i].latitude, // 위도
+                         data[i].longitude, //경도
+                          data[i].name,// 음식점 이름
+                        data[i].id, //음식점 고유 db id
+
 
 
                    ];

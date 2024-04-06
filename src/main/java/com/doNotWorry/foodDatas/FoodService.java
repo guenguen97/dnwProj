@@ -88,7 +88,7 @@ public class FoodService {
 
                         String b= datas.get(i).get(11 + j);
 //                        System.out.println(b);
-                        menuService.create2(datas.get(i).get(11 + j), foodDatas);
+                        menuService.create2(datas.get(i).get(11 + j),foodDatas);
 
                         if( datas.get(i).get(11 + j).charAt(datas.get(i).get(11 + j).length() - 1) == '\"'){
                             keep =false;
