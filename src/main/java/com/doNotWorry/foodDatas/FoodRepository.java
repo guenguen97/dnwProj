@@ -10,4 +10,6 @@ public interface  FoodRepository extends JpaRepository<FoodDatas , Integer > {
 
 
     List<FoodDatas> findByLatitudeBetweenAndLongitudeBetween(float minLat, float maxLat, float minLong, float maxLong);
+
+    List<FoodDatas> findByNameContaining(String searchString);
 }

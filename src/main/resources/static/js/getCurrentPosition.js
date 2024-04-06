@@ -172,8 +172,8 @@ var markers = [];
 
 function update(data) {
 // console.log(myLat+" and "+myHar);
-var HOME_PATH = window.HOME_PATH || '.';
-  var ulElement = document.getElementById('myList');
+    var HOME_PATH = window.HOME_PATH || '.';
+    var ulElement = document.getElementById('myList');
 
   console.log("데이타의 길이는"+data.length);
 
@@ -196,19 +196,19 @@ var HOME_PATH = window.HOME_PATH || '.';
 
 
 
-var MARKER_SPRITE_X_OFFSET = 29,
-MARKER_SPRITE_Y_OFFSET = 50,
-MARKER_SPRITE_POSITION = {};
-    const dataArray = [];
+    var MARKER_SPRITE_X_OFFSET = 29,
+    MARKER_SPRITE_Y_OFFSET = 50,
+    MARKER_SPRITE_POSITION = {};
+        const dataArray = [];
 
 
 // 위도랑 경도 랑 음식점 이름 넣어줄 for 문
-                for(var i=1 ; i<data.length;i++ ){
+                for(var i=0 ; i<data.length;i++ ){
 
                    console.log(data[i].latitude);
                    console.log(data[i].name);
 
-               MARKER_SPRITE_POSITION[i] =[
+                     MARKER_SPRITE_POSITION[i] =[
 //                        parseFloat(data[i][8]), // Assuming content holds x coordinate
 //                        parseFloat(data[i][9]),
 //                        data[i][1]// Assuming content holds y coordinate
@@ -223,9 +223,9 @@ MARKER_SPRITE_POSITION = {};
                 }
 
 
-infoWindows = [];
+    infoWindows = [];
 
-for (var key in MARKER_SPRITE_POSITION) {
+        for (var key in MARKER_SPRITE_POSITION) {
                 var position = new naver.maps.LatLng(
 
 //                위도 경도 눌 부분
@@ -254,10 +254,10 @@ for (var key in MARKER_SPRITE_POSITION) {
                 });
 
 
-//보이는 영역 만 표시할떄 쓰는건데 당장 필요없음
-                markers.push(marker);
-                infoWindows.push(infoWindow);
-    };
+            //보이는 영역 만 표시할떄 쓰는건데 당장 필요없음
+                            markers.push(marker);
+                            infoWindows.push(infoWindow);
+       };
 
     naver.maps.Event.addListener(map, 'idle', function() {
     updateMarkers(map, markers);
@@ -345,7 +345,15 @@ for (var key in MARKER_SPRITE_POSITION) {
     naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
     }
 
-}
+
+
+
+
+
+
+}  //마커 업데이트  update 함수 끝
+
+
 //음식점 db id 기억하기 위해
 let storeID ;
 

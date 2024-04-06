@@ -53,7 +53,7 @@ public class Main {
         cookie.setDomain("localhost");
         cookie.setPath("/");
         // 10초간 팝업 정지
-        cookie.setMaxAge(10);
+        cookie.setMaxAge(60*60);
         cookie.setSecure(true);
         res.addCookie(cookie);
         return "소식 팝업 정지";

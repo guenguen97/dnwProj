@@ -121,4 +121,7 @@ public class FoodService {
         return foodRepository.findById(id).get();
     }
 
+    public List<FoodDatas> getDataBySearch(String searchString) {
+        return foodRepository.findByNameContaining(searchString);
+    }
 }
