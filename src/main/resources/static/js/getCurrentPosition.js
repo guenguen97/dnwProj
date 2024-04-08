@@ -192,7 +192,7 @@ function update(data) {
 
 
     // Get the last li tag among the child tags of ul
-    var lastLiTag = ulElement.lastElementChild;
+//    var lastLiTag = ulElement.lastElementChild;
 
 
 

@@ -57,10 +57,12 @@ $(document).ready(function(){
 function layerPop(popName){
 	var $layer = $("#"+ popName);
 	$layer.fadeIn(500).css('display', 'inline-block').wrap( '<div class="overlay_t"></div>');
-	$('body').css('overflow','hidden');
+//	$('body').css('overflow','hidden');
 }
 function layerPopClose(){
 	$(".popLayer").hide().unwrap( '');
+    	$(".popLayer").hide();
+
 	$('body').css('overflow','auto');
 	$(".popLayer video").each(function() { this.pause(); this.load(); });
 }
