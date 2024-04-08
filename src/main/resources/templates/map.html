@@ -24,16 +24,49 @@
 
 <!--</head>-->
 
+    <style>
+        body{
+         overflow-y:hidden;
+         //지도에 마진 탑을 줘서 아래로 쫌 스크롤바가 생김
+         //그거 없앨려고 이거 추가
+         // 혹시나 나중에 문제가 된다면 지도의 height 를 95 % 정도로 조정해야할듯
+        }
+
+        #map{
+             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 92%;
+        }
+        #menuContainer{
+                     display:none;
+                     position: absolute;
+                     z-index: 4;
+                     left: 0px; top: 0px;
+                     height:100%;
+                       background-color:white;
+                      padding:20px;
+                     border : 1px solid gray;
+                     overflow: auto;
+
+        }
+
+        #menuContainer::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+    </style>
 
 
 
 
-
-    <div id="map" style="width:100%;height:700px;margin-top:70px;">
+    <div id="map" style="margin-top:70px;  position: absolute;">
         <div onclick="searchTapOpen()" style="position: absolute; z-index:100;top:0px; right:0px;">검색
             <div>
                 <form  onsubmit="submitSearch(); return false;">
-                    <input id="searchString" name="searchString" type="text">
+                    <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
         </div>
@@ -54,7 +87,7 @@
         </div>
 <!--        //메뉴 리스트 뜨는곳-->
 
-            <div id="menuContainer"  style="display:none; position: absolute; z-index: 4;left: 0px; top: 0px;">
+            <div id="menuContainer"  style="">
 
             </div>
 
@@ -80,13 +113,14 @@
 
     </div>
 
+        <div>
+            <div  id="newsPopup" class="popLayer" style="display:none;">
+                    <div>업데이트 소식 : 카카오 로그인 기능 추가</div>
+                    <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
+                    <label for="newsPopupCheckBox">10초간 보지않기</label>
+                    <button type="button" class="btn_close" onclick="closeNewsPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
-        <div  id="newsPopup" class="popLayer">
-                <div>업데이트 소식 : 카카오 로그인 기능 추가</div>
-                <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
-                <label for="newsPopupCheckBox">10초간 보지않기</label>
-                <button type="button" class="btn_close" onclick="closeNesPopup();"><span><i class="far fa-times-circle"></i></span></button>
-
+            </div>
         </div>
 
 
@@ -105,8 +139,8 @@
            //이게 참이면 쿠키가 있으니 팝업창 안뛰움
        }
        else {
-                  layerPop('newsPopup');
-
+<!--                  layerPop('newsPopup');-->
+                    $("#newsPopup").show();
        }
 
    };
@@ -222,13 +256,13 @@ function closeSignupPopup(){
 }
 
 
-    function closeNesPopup(){
+    function closeNewsPopup(){
                 let checkBox=$("#newsPopupCheckBox");
 
                if(checkBox.prop('checked')){
                     callApi("/stop/newsPopup","post","");
                }
-             layerPopClose();
+              $("#newsPopup").hide();
 
 
     }
@@ -248,11 +282,7 @@ function closeSignupPopup(){
 
 
 <!--<script src="/js/map_option.js"></script>-->
-    <style>
-        #map {
-            }
 
-    </style>
 
 
 </div>
