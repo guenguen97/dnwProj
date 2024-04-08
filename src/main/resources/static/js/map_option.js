@@ -7,13 +7,13 @@ center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심
 zoom: 13, //지도의 초기 줌 레벨
 minZoom: 7, //지도의 최소 줌 레벨
 zoomControl: false, //줌 컨트롤의 표시 여부
-zoomControlOptions: { //줌 컨트롤의 옵션
-position: naver.maps.Position.TOP_RIGHT
-}
+//zoomControlOptions: { //줌 컨트롤의 옵션
+//position: naver.maps.Position.TOP_RIGHT
+//}
 });
 
 //setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-map.setOptions("mapTypeControl", true); //지도 유형 컨트롤의 표시 여부
+map.setOptions("mapTypeControl", false); //지도 유형 컨트롤의 표시 여부
 
 naver.maps.Event.addListener(map, 'zoom_changed', function (zoom) {
 console.log('zoom:' + zoom);

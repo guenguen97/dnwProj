@@ -46,7 +46,6 @@
                      left: 0px; top: 0px;
                      height:100%;
                        background-color:white;
-                      padding:20px;
                      border : 1px solid gray;
                      overflow: auto;
 
@@ -55,6 +54,26 @@
         #menuContainer::-webkit-scrollbar {
             width: 0;
             height: 0;
+        }
+
+        .top-container{
+            background-color:#258fff;
+             color:white;
+            padding:20px
+        }
+
+        .storeName {
+            font-weight:bold;
+
+        }
+        .likeButton {
+            margin-left:auto;
+        }
+
+        .comment{
+            margin-left:10px;
+            margin-right:10px;
+
         }
 
     </style>
@@ -96,7 +115,8 @@
             <div id="likePopup" class="popLayer">
                 <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
-                <div>이미 저장된 그룹을 선택하면 즐겨찾기에서 제거됩니다</div>
+                <div>이미 저장된 그룹을 선택하면 </div>
+                   <div> 즐겨찾기에서 제거됩니다</div>
 
                 <input type="checkbox" id="option1" class="option-checkbox">
                 <label for="option1">맛집</label><br>
