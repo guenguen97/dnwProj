@@ -3,6 +3,10 @@ server:
 
 
 spring:
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
   output:
     ansi:
       enabled: always
@@ -60,7 +64,6 @@ spring:
           auth: true
           starttls:
             enable: true
-  custom:
-    genFile:
-
-      dirPath: c:/uploads/
+custom:
+  genFile:
+    dirPath: C:/uploads/

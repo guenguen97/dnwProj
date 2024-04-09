@@ -21,13 +21,16 @@
     </style>
 
     <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto; width:50%;">
-        <div class="userProfile">유저 프로필
+        <div class="userProfile">
             <div class="avatar">
                 <div class="w-24 rounded-full">
-                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    <img id="userProfileImg" />
                 </div>
             </div>
+            <form  action="/user/profileImg" method="post" enctype="multipart/form-data">
+             <input type="file" accept="image/*"   name="file" id="fileInput" class="file-input file-input-bordered file-input-info w-full max-w-xs" />
 
+            </form>
             <div th:text="${user.nickName}"></div>
             <div th:text="${user.email}"></div>
         </div>
@@ -43,7 +46,56 @@
     </div>
 
 
+    <script>
+        function uploadFile(uri, file) {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var formData = new FormData();
+        formData.append('file', file);
 
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('PATCH', uri, true);
+            xhr.setRequestHeader(header, token);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    resolve(xhr.response);
+                } else {
+                    reject(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                reject(xhr.statusText);
+            };
+            xhr.send(formData);
+        });
+    }
+
+    // 파일 선택이 변경되었을 때 호출되는 함수
+    function handleFileSelect(event) {
+        var file = event.target.files[0];
+        var uri = '/user/profileImg'; // 업로드할 서버의 URI
+
+        uploadFile(uri, file)
+            .then(function(response) {
+                console.log('File uploaded successfully:', response);
+                let profileUrl=callApi("/user/profileImg","get","").imgUrl;
+                $("#userProfileImg").attr("src", profileUrl);
+
+            })
+            .catch(function(error) {
+                console.error('File upload failed:', error);
+            });
+    }
+
+    // 파일 선택 input 요소에 change 이벤트 리스너 추가
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+
+     let profileUrl=callApi("/user/profileImg","get","").imgUrl;
+        $("#userProfileImg").attr("src", profileUrl);
+
+    </script>
 
 
 

@@ -81,3 +81,35 @@ function isValid(target, fieldName, focusTarget) {
         console.log(json);
         return json;
     }
+
+    function callApiForFile(uri, method, file) {
+            var token = $("meta[name='_csrf']").attr("content");
+    		var header = $("meta[name='_csrf_header']").attr("content");
+    		  var formData = new FormData();
+                formData.append('file', file);
+            let json = {};
+             JSON.stringify(params);
+             $.ajax({
+                url : uri,
+                type : method,
+                   xhrFields: {
+                        withCredentials: true
+                    },
+                contentType : 'application/json; charset=utf-8',
+                dataType : 'json',
+                data : (params) ? JSON.stringify(params) : {},
+                beforeSend : function(xhr)
+                            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                				xhr.setRequestHeader(header, token);
+                            },
+                async : false,
+                success : function (response) {
+                    json = response;
+                },
+                error : function (request, status, error) {
+                    console.log(error)
+                }
+            })
+            console.log(json);
+            return json;
+        }
