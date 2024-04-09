@@ -3,6 +3,7 @@ package com.doNotWorry.foodDatas;
 
 import com.doNotWorry.menu.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -122,6 +123,12 @@ public class FoodService {
     }
 
     public List<FoodDatas> getDataBySearch(String searchString) {
+//        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 이름을 오름차순으로 정렬
+//        return foodRepository.findByNameContaining(searchString, sort);
+
         return foodRepository.findByNameContaining(searchString);
+
+
+
     }
 }

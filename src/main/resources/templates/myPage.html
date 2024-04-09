@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
+    <style>
+        html, body {
+      height: 100%;
+
+  }
+      #userInformation {
+          border:1px solid #258fff;
+          height:50%;
+      }
+      .userProfile{
+          height:300px;
+          border:1px solid red;
+      }
+        .changeContainer{
+            height:100px
+        }
+
+    </style>
+
     <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto; width:50%;">
-        <div>유저 프로필</div>
+        <div class="userProfile">유저 프로필
+            <div class="avatar">
+                <div class="w-24 rounded-full">
+                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+            </div>
 
-        <div th:text="${user.nickName}"></div>
-        <div th:text="${user.email}"></div>
+            <div th:text="${user.nickName}"></div>
+            <div th:text="${user.email}"></div>
+        </div>
 
 
-        <div style="display:flex;">
+
+
+        <div class="changeContainer" style="display:flex;">
             <a href="/user/changeInformation" style="margin-right:40px"><div>개인정보 수정</div></a>
             <a href="/user/changePassword"><div>비밀번호 변경</div></a>
         </div>

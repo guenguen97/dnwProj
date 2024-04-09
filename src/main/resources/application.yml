@@ -60,3 +60,7 @@ spring:
           auth: true
           starttls:
             enable: true
+  custom:
+    genFile:
+
+      dirPath: c:/uploads/
