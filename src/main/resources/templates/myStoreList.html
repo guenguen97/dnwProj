@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
+    <style>
+        #groupContainer >div > a>button {
+                font-size: inherit;
+                  width: 300px;
+        }
+
+
+    </style>
+
     <div id="groupContainer" style="margin-top:100px;">
-        <div><a href="/likeStore/detail/groupName=맛집">맛집</a></div>
-        <div><a href="/likeStore/detail/groupName=가보고 싶은 곳">가보고 싶은 곳</a></div>
-        <div><a href="/likeStore/detail/groupName=기타">기타</a></div>
+        <div><a href="/likeStore/detail/groupName=맛집"><button class="btn btn-outline">맛집</button></a></div>
+        <div><a href="/likeStore/detail/groupName=가보고 싶은 곳"><button class="btn btn-outline">가보고 싶은 곳</button></a></div>
+        <div><a href="/likeStore/detail/groupName=기타"><button class="btn btn-outline">기타</button></a></div>
     </div>
 
     <div>
