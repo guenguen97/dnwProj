@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,10 @@ public class AccountService {
         if (memberByUsername.isPresent()) {
             SiteUser user = memberByUsername.get();
 
-            user.updateWhenSocialLogin(nickname, profileImgUrl);
-
+            if(user.getProfileImgUrl().equals("") && user.getNickName().equals("")) {
+                user.updateWhenSocialLogin(nickname, profileImgUrl);
+            }
+            user.setCreateDate(LocalDateTime.now());
             return user;
         }
 

@@ -5,6 +5,7 @@ import com.doNotWorry.user.SiteUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class LikeStoreService {
          likeStore.setName(name);
          likeStore.setSiteUser(user);
          likeStore.setGroupName(groupName);
+         likeStore.setCreateDate(LocalDateTime.now());
          likeStoreRepository.save(likeStore);
 
 

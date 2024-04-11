@@ -317,7 +317,7 @@ function update(data) {
                                                 <div class="storeName" style="margin-right:40px;">
                                                     ${marker.storeName}
                                                 </div>
-                                                <div class="likeButton" onclick="likeOrNot(${marker.id});">
+                                                <div class="likeButton btn btn-outline btn-info" onclick="likeOrNot(${marker.id});">
                                                     즐겨찾기
                                                 </div>
                                             </div>

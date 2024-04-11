@@ -43,9 +43,16 @@
                     <img id="userProfileImg" />
                 </div>
             </div>
-            <div style=" margin-left: auto;
+            <div style="display:flex; margin-left: auto;
                             margin-right: auto;
-                            width: 200px; text-align: center" th:text="${user.nickName}"></div>
+                            width: 300px; text-align: center">
+                <div style="margin-left:auto;margin-right:auto; display:flex;">
+                    <div style=" " th:text="${user.nickName}"></div>
+                    <span style="margin-left:10px; margin-right:10px;">/</span>
+                    <div th:text="${user.email}"></div>
+                </div>
+            </div>
+
             <div style="    margin-left: auto;
                             margin-right: auto;
                             width: 200px;">
@@ -53,15 +60,15 @@
 
             </div>
 
-            <div th:text="${user.email}"></div>
+
         </div>
 
 
 
 
-        <div class="changeContainer" style="display:flex;">
-            <a href="/user/changeInformation" style="margin-left:40px; "><div>개인정보 수정</div></a>
-            <a href="/user/changePassword" style="margin-left:auto; margin-right:40px;"><div>비밀번호 변경</div></a>
+        <div class="changeContainer" style="display:flex; margin-top:50px">
+            <a  class="btn  btn-success" href="/user/changeInformation" style="margin-left:40px; "><div>개인정보 수정</div></a>
+            <a  class="btn  btn-success" href="/user/changePassword" style="margin-left:auto; margin-right:40px;"><div>비밀번호 변경</div></a>
         </div>
 
     </div>

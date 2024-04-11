@@ -54,6 +54,7 @@ public class UserService {
         user.setNickName(nickname);
 
 
+
         userRepository.save(user);
 
         return user;
@@ -96,6 +97,7 @@ public class UserService {
 
     public void updatePassword(SiteUser user, String newPassword) {
         user.setPassword(passwordEncoder.encode(newPassword));
+        user.setUpdateDate(LocalDateTime.now());
         userRepository.save(user);
     }
 
@@ -112,6 +114,7 @@ public class UserService {
         file.transferTo(saveFile);
 
         user.setProfileImgUrl("/gen/" + fileName);
+        user.setUpdateDate(LocalDateTime.now());
         userRepository.save(user);
     }
 }
