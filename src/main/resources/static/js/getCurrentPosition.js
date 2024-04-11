@@ -22,7 +22,7 @@ var infowindow = new naver.maps.InfoWindow();
                    // Process the data received from the server and add it to the page
     //               update(data);
 
-                    console.log(data);
+
                     for(var i=1 ; i<data.length;i++ ){
                         console.log("db 에 나온거"+data[i].name);
                     }
@@ -42,7 +42,7 @@ function onSuccessGeolocation(position) {
 
 
     getNewNotifications(lat1, har1);
-     console.log(lat1+"현재 위도"+har1);
+
 
 
 
@@ -57,7 +57,6 @@ function onSuccessGeolocation(position) {
     infowindow.setContent('<div style="padding:20px;">' + '현재 위치' + '</div>');
 
     infowindow.open(map, location);
-    console.log('Coordinates: ' + location.toString());
 }
 
 function onErrorGeolocation() {
@@ -121,7 +120,6 @@ function goCurrentPosition(){
 function getFoodNearMap(){
     var centerLat=map.getCenter().y;
     var centerHar=map.getCenter().x;
-    console.log(centerHar+"!!!!!!!!!!!!");
     getNewNotifications(centerLat, centerHar);
 
 
@@ -178,7 +176,6 @@ function update(data) {
   console.log("데이타의 길이는"+data.length);
 
   for (var i = 0; i < markers.length; i++) {
-     console.log("기존 마커 삭제");
         var marker ;
         marker = markers[i]
         position = marker.getPosition();
@@ -205,8 +202,8 @@ function update(data) {
 // 위도랑 경도 랑 음식점 이름 넣어줄 for 문
                 for(var i=0 ; i<data.length;i++ ){
 
-                   console.log(data[i].latitude);
-                   console.log(data[i].name);
+//                   console.log(data[i].latitude);
+//                   console.log(data[i].name);
 
                      MARKER_SPRITE_POSITION[i] =[
 //                        parseFloat(data[i][8]), // Assuming content holds x coordinate
@@ -406,3 +403,43 @@ function countEachGroupStoreFunction(countEachGroupStore){
                       $iTag.removeClass("fa-regular").addClass("fa-solid");
                 }
 }
+
+var isFunctionExecuting = false;
+
+
+  //현재 위치 다시 업데이트
+        function goCurrentPositionUpdate(){
+
+            if (isFunctionExecuting) {
+                    return;
+                }
+
+                // 함수 실행 중 플래그 설정
+                isFunctionExecuting = true;
+                   setTimeout(function() {
+                        isFunctionExecuting = false;
+                    }, 3000);
+            //현재 위치 버튼 을 여러번 누르면 시간 초과 오류가 떠서
+            // 이 로직을 추가함
+             var button = document.querySelector('.currentPositionUpdateBtn');
+                button.disabled = true;
+//
+                // 3초 후에 버튼 다시 활성화
+                setTimeout(function() {
+                    button.disabled = false;
+                }, 4000);
+
+                console.log("위치 찾기 업데이트 함수 실행됨");
+
+             if (navigator.geolocation) {
+
+                    navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+                } else {
+                    var center = map.getCenter();
+                    infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
+                    infowindow.open(map, center);
+                }
+              setTimeout(function() {
+                    button.disabled = false;
+                }, 5000);
+        }
