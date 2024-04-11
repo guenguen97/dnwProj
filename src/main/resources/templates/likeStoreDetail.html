@@ -2,11 +2,22 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
 
+    <style>
 
-    <div id="groupName" style="display:none; margin-top:50px;" th:text="${groupName}"></div>
-    <div id="nameContainer"  style=" margin-top:100px;" ></div>
 
-    <div onclick="getRandomStore();">랜덤 음식점 추천</div>
+    </style>
+
+    <div id="likeStoreDetailContainer" style="margin-top:100px; margin-left:auto;margin-right:auto; width:30%;">
+        <div id="groupName" style="font-size:xxx-large; text-align:center; margin-top:50px;" th:text="${groupName}"></div>
+        <div id="nameContainer"  style=" margin-top:50px;" ></div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button style="" onclick="getRandomStore();" class="btn btn-info">
+                <div >랜덤 음식점 추천</div>
+            </button>
+        </div>
+    </div>
+
 
 
     <script>

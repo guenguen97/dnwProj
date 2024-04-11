@@ -358,6 +358,8 @@ function update(data) {
 //음식점 db id 기억하기 위해
 let storeID ;
 
+
+//음식점 마커를 누를고 즐겨찾기버튼을 누를떄 실행됨
 function likeOrNot(id){
 
     let test=callApi("/test",'get',null);
@@ -372,6 +374,9 @@ function likeOrNot(id){
         }
 
     else{
+             $("#likePopup").find("#option1").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+               $("#likePopup").find("#option2").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+               $("#likePopup").find("#option3").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
          let countEachGroupStore =getJson("/likeStore/count/groupName/"+id,"")
          console.log(countEachGroupStore.맛집);
          countEachGroupStoreFunction(countEachGroupStore);
@@ -389,12 +394,15 @@ function countEachGroupStoreFunction(countEachGroupStore){
 
                 if(countEachGroupStore.맛집==1){
                       console.log("맛집에 이미 있음")
-                      $layer.find("#option1").next("label").css('border',"1px solid red");
+                    var $iTag= $layer.find("#option1").next("label").next("i");
+                    $iTag.removeClass("fa-regular").addClass("fa-solid");
                 }
                 if(countEachGroupStore["가보고 싶은 곳"]==1){
-                          $layer.find("#option2").next("label").css('border',"1px solid red");
+                     var $iTag=$layer.find("#option2").next("label").next("i");
+                     $iTag.removeClass("fa-regular").addClass("fa-solid");
                     }
                 if(countEachGroupStore.기타==1){
-                              $layer.find("#option3").next("label").css('border',"1px solid red");
+                      var $iTag=   $layer.find("#option3").next("label").next("i");
+                      $iTag.removeClass("fa-regular").addClass("fa-solid");
                 }
 }

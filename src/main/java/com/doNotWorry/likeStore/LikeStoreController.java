@@ -121,13 +121,20 @@ public class LikeStoreController {
                                        Principal principal){
         SiteUser user =userService.getUserByLoginID(principal.getName());
         HashMap<String, Integer> countEachGroupStore = new HashMap<>();
+
+        
         List<LikeStore> storeList=likeStoreService.findBySiteUserAndFoodDataId(user,id);
         for (int i = 0; i < storeList.size(); i++) {
             if(storeList.get(i).getGroupName().equals("맛집")){
+                System.out.println("맛집에 저장되어있음");
                 countEachGroupStore.put("맛집" ,1);
             }else if(storeList.get(i).getGroupName().equals("가보고 싶은 곳")){
+                System.out.println("가보고 싶은곳에 저장되어있음");
+
                 countEachGroupStore.put("가보고 싶은 곳",1);
             }else if(storeList.get(i).getGroupName().equals("기타")){
+                System.out.println("기타에 저장되어있음");
+
                 countEachGroupStore.put("기타" , 1);
             }
         }

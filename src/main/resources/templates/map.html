@@ -119,11 +119,18 @@
                    <div> 즐겨찾기에서 제거됩니다</div>
 
                 <input type="checkbox" id="option1" class="option-checkbox">
-                <label for="option1">맛집</label><br>
+                <label for="option1">맛집</label>
+                <i class="option1 fa-regular fa-star" style="color: #FFD43B;"></i>
+                <br>
+
                 <input type="checkbox" id="option2" class="option-checkbox">
-                <label for="option2">가보고 싶은 곳</label><br>
+                <label for="option2">가보고 싶은 곳</label>
+                <i class="option2 fa-regular fa-star" style="color: #FFD43B;"></i>
+                <br>
                 <input type="checkbox" id="option3" class="option-checkbox">
-                <label for="option3">기타</label><br>
+                <label for="option3">기타</label>
+                <i class="option3 fa-regular fa-star" style="color: #FFD43B;"></i>
+                <br>
 
                 <div id="info"></div>
                 <div onclick="submitLikeStore();">완료</div>
@@ -255,12 +262,16 @@ function submitLikeStore(){
             alert("그룹에 추가 되었습니다. ")
          }
 
-           $("#option1").next("label").css('border', '');
-        $("#option2").next("label").css('border', '');
-        $("#option3").next("label").css('border', '');
+        //일단 다 즐겨찾기 별 표시 빈 칸으로 해놓기
+
+       $("#likePopup").find("#option1").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+       $("#likePopup").find("#option2").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+       $("#likePopup").find("#option3").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+
           //getCurrentPoision.js 에 있는 함수 임
           let countEachGroupStore =getJson("/likeStore/count/groupName/"+storeID,"")
 
+        //즐겨찾기 되어있으면 그에 맞는 스타일 추가해주기
          countEachGroupStoreFunction(countEachGroupStore);
 
     }
@@ -268,9 +279,9 @@ function submitLikeStore(){
 
 function closeSignupPopup(){
  $('.option-checkbox').not(this).prop('checked', false);
-        $("#option1").next("label").css('border', '');
-        $("#option2").next("label").css('border', '');
-        $("#option3").next("label").css('border', '');
+       $("#likePopup").find("#option1").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+       $("#likePopup").find("#option2").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
+       $("#likePopup").find("#option3").next("label").next("i").removeClass("fa-solid").addClass("fa-regular");
 
      layerPopClose();
 }
