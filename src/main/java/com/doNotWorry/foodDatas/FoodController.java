@@ -31,8 +31,6 @@ public class FoodController {
         List<List<String>> csvData2=  csvService.csvData("templates/data/dajeon_food.csv");
         foodService.saveDateToDB(csvData2);
 
-
-
         return "map";
 
     }

@@ -39,6 +39,8 @@ public class CsvService {
         List<List<String>> ret = new ArrayList<>();
         // 입력 스트림 오브젝트 생성
         BufferedReader br = null;
+
+        //dir 은 csv 파일이 있는 경로
         ClassPathResource resource = new ClassPathResource(dir);
 
 

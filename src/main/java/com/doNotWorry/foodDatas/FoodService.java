@@ -39,7 +39,6 @@ public class FoodService {
 
             float lat = 0;
             float lon = 0;
-
             //빈값이거나 숫자형태 아닌거는 취소
             if (datas.get(i).get(8) != "" && datas.get(i).get(9) != "" &&
                     isFloat(datas.get(i).get(8)) && isFloat(datas.get(i).get(9))) {
@@ -47,8 +46,6 @@ public class FoodService {
                 lon = Float.parseFloat(datas.get(i).get(9));
 
             }
-
-
             //위도 저장
             foodDatas.setLatitude(lat);
             //경도 저장

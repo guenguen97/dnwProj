@@ -19,6 +19,7 @@ public class MenuService {
     //배열 형태의 String 을 받는 곳
     public void create(String menu , FoodDatas foodDatas){
 
+        // 작은 따옴표 ' 를 기준으로 나눠서 리스트 형태로 만들기
         List<String> menuList= divideString(menu);
 
         for (int i = 0; i < menuList.size(); i++) {
