@@ -248,7 +248,7 @@ function update(data) {
                 });
 
                 var infoWindow = new naver.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:10px;"><b>"'+  MARKER_SPRITE_POSITION[key][2] +'"</b>.</div>'
+                content: '<div style="width:300px;text-align:center;padding:10px;"><b>"'+  MARKER_SPRITE_POSITION[key][2] +'"</b>.</div>'
                 });
 
 

@@ -27,7 +27,7 @@ public class FoodService {
 
     public void saveDateToDB(List<List<String>> datas) {
         //지금은 너무 많아서 저장하는데 오래걸림 일단 양을 줄이자
-        for (int i = 1; i < datas.size()/20; i++) {
+        for (int i = 1; i < datas.size(); i++) {
             FoodDatas foodDatas = new FoodDatas();
 
             //가게 이름 저장
@@ -37,13 +37,13 @@ public class FoodService {
 
             foodDatas.setStorePhNum(datas.get(i).get(4));
 
-            float lat = 0;
-            float lon = 0;
+            double lat = 0;
+            double lon = 0;
             //빈값이거나 숫자형태 아닌거는 취소
             if (datas.get(i).get(8) != "" && datas.get(i).get(9) != "" &&
                     isFloat(datas.get(i).get(8)) && isFloat(datas.get(i).get(9))) {
-                lat = Float.parseFloat(datas.get(i).get(8));
-                lon = Float.parseFloat(datas.get(i).get(9));
+                lat = Double.parseDouble(datas.get(i).get(8));
+                lon = Double.parseDouble(datas.get(i).get(9));
 
             }
             //위도 저장

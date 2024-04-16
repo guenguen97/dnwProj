@@ -36,9 +36,9 @@ public class FoodDatas {
     //엄청 큰 규모가 아니라 상관이없을수도있는데
     // 그래도 2만개의 데이터를 쓰기 때문에
     // 안전하게 구동하기위해 float 를씀 그리고 소수점 자리도 충분함
-    private float latitude;
+    private double latitude;
 
-    private float longitude;
+    private double longitude;
 
 
     @OneToMany(mappedBy = "foodDatas" , cascade = CascadeType.REMOVE)
