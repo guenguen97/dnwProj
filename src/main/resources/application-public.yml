@@ -1,5 +1,5 @@
 server:
-  port: 8070
+  port: 8060
 
 spring:
   servlet:
@@ -32,7 +32,7 @@ spring:
 
   thymeleaf:
     cache: false
-    prefix: file:src/main/resources/templates/
+    prefix: classpath:/templates/
 
   security:
     oauth2:
@@ -65,6 +65,6 @@ spring:
             enable: true
 custom:
   genFile:
-    dirPath: C:/uploads/
+    dirPath: /tmp/uploads/
 
 
