@@ -9,12 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,16 +49,27 @@ public class Main {
 
     @PostMapping("/stop/newsPopup")
     @ResponseBody
-    public String stopPopup(HttpServletResponse res){
+    public String stopPopup(HttpServletResponse res,HttpServletRequest request){
         System.out.println("쿠키 생성");
         Cookie cookie = new Cookie("newsPopup","stop");
 
         cookie.setDomain("localhost");
         cookie.setPath("/");
-        // 10초간 팝업 정지
-        cookie.setMaxAge(60*60);
+        // 하루간 팝업 정지
+        cookie.setMaxAge(60*60*24);
         cookie.setSecure(true);
+        cookie.setHttpOnly(true); // JavaScript로 쿠키에 접근 방지
         res.addCookie(cookie);
+
+        ResponseCookie.from("newsPopupByResponseCookie", "stop")
+                .domain(".donotworry.site")
+                .maxAge(60*60*24)
+                .sameSite("None")
+                .path("/")
+                .build().toString();
+
+
+
         return "소식 팝업 정지";
     }
 
