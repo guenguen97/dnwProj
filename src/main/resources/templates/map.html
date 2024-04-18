@@ -94,13 +94,13 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:2;top:0px; right:0px;">
+        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:0px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
-            <div id="searchResult" >
+            <div id="searchResult" style=" border:1px solid gray; background-color:white;" >
 
             </div>
         </div>
@@ -194,13 +194,13 @@
         function submitSearch(){
             let searchString=$("#searchString");
             let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
-                            displaySearchResult(storeList);
 
             if(storeList.length==0){
                 return;
             }else {
                  let infoWindows=[];
                 update(storeList);
+                               displaySearchResult(storeList);
 
                  var location = new naver.maps.LatLng(storeList[0].latitude,
                                                  storeList[0].longitude);
@@ -216,15 +216,7 @@
                                          const commentsContainer = document.getElementById('searchResult');
                                          commentsContainer.style.display = "inline-block";
                                          commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
-                                        commentsContainer.innerHTML += `
-<!--                                            <div class="searchResult-top-container" style="display:flex;">-->
-<!--                                                <div class="searchResult-storeName" style="margin-right:40px;">-->
-<!--                                                    ${marker.storeName}-->
-<!--                                                </div>-->
-<!--                                                -->
-<!--                                            </div>-->
 
-                                        `
                                              list.forEach(item => {
                                                    commentsContainer.innerHTML += `
                                                        <div class="searchResult-storeName">

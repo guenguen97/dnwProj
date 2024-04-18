@@ -10,7 +10,6 @@
             script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + data.apiKey;
             script.async = true;
             document.head.appendChild(script);
-            console.log(data.apiKey);
 
                  (function() {
                                                                             var script = document.createElement('script');
