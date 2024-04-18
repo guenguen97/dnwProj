@@ -90,6 +90,9 @@
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
+            <div id="searchResult" >
+
+            </div>
         </div>
 
         <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 90px;">
@@ -182,6 +185,8 @@
         function submitSearch(){
             let searchString=$("#searchString");
             let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
+                            displaySearchResult(storeList);
+
             if(storeList.length==0){
                 return;
             }else {
@@ -194,8 +199,32 @@
 
                 map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
                 map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+
             }
         }
+
+        function displaySearchResult(list) {
+                                         const commentsContainer = document.getElementById('searchResult');
+                                         commentsContainer.style.display = "inline-block";
+                                         commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
+                                        commentsContainer.innerHTML += `
+<!--                                            <div class="searchResult-top-container" style="display:flex;">-->
+<!--                                                <div class="searchResult-storeName" style="margin-right:40px;">-->
+<!--                                                    ${marker.storeName}-->
+<!--                                                </div>-->
+<!--                                                -->
+<!--                                            </div>-->
+
+                                        `
+                                             list.forEach(item => {
+                                                   commentsContainer.innerHTML += `
+                                                       <div class="searchResult-storeName">
+                                                           <div> ${item.name}</div>
+                                                       </div>
+                                                   `;
+                                               });
+
+                  }
     </script>
 
 
