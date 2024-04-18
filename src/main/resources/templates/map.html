@@ -39,16 +39,26 @@
             width: 100%;
             height: 92%;
         }
+
+
         #menuContainer{
                      display:none;
                      position: absolute;
                      z-index: 4;
-                     left: 0px; top: 0px;
+
                      height:100%;
                        background-color:white;
                      border : 1px solid gray;
                      overflow: auto;
 
+        }
+
+        @media screen and (max-width: 600px) {
+              #menuContainer {
+              left: 0px; top: 60%;
+              width:100%;
+              height:38%;
+              }
         }
 
         #menuContainer::-webkit-scrollbar {
@@ -84,7 +94,7 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:100;top:0px; right:0px;">
+        <div onclick="searchTapOpen()" style="position: absolute; z-index:2;top:0px; right:0px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
@@ -95,7 +105,7 @@
             </div>
         </div>
 
-        <div style="position: absolute; z-index: 100; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 90px;">
+        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 90px;">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
                     현재 위치
@@ -120,8 +130,7 @@
             <div id="likePopup" class="popLayer">
                 <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
-                <div>이미 저장된 그룹을 선택하면 </div>
-                   <div> 즐겨찾기에서 제거됩니다</div>
+
 
                 <input type="checkbox" id="option1" class="option-checkbox">
                 <label for="option1">맛집</label>
@@ -149,7 +158,7 @@
             <div  id="newsPopup" class="popLayer" style="display:none;">
                     <div>업데이트 소식 : 카카오 로그인 기능 추가</div>
                     <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
-                    <label for="newsPopupCheckBox">10초간 보지않기</label>
+                    <label for="newsPopupCheckBox">24시간 동안 열지 않기</label>
                     <button type="button" class="btn_close" onclick="closeNewsPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
             </div>
