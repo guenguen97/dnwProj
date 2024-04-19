@@ -329,6 +329,10 @@ function update(data) {
                                                });
 
                   }
+                //메뉴 토글 박스 안펼쳐있으면 마커 눌렀을시 펼쳐지게
+             document.getElementById('menuToggleCheckBox').checked = true;
+
+                  // 해당 div 요소를 클릭합니다.
 
                 displayComments(callApi("/menu/"+marker.id,'get',""));
 

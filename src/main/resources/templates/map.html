@@ -43,13 +43,14 @@
 
         #menuContainer{
                      display:none;
-                     position: absolute;
+
                      z-index: 4;
 
                      height:100%;
                        background-color:white;
                      border : 1px solid gray;
                      overflow: auto;
+                     margin:0 auto;
 
         }
 
@@ -94,33 +95,58 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:2;top:0px; right:0px;">
+        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:0px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
+            <div class="collapse bg-base-200">
+                <input id="searchToggleCheckBox" type="checkbox" />
+                <div class="collapse-title text-xl font-medium">
+                        검색 결과
+                </div>
+                <div class="collapse-content">
+                    <div id="searchResult" style=" border:1px solid gray; background-color:white; width:100%;" >
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 90px;">
+        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 120px;">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
-                    현재 위치
+
+                    <button style="    width: 300px;
+                    font-size: x-large;" class="btn btn-outline">현재 위치</button>
+
                 </a>
 
 
             </div>
             <br>
             <div>
-            <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
-                지도상 음식점 업데이트
-            </a></div>
+                <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
+                    <button  style="    width: 300px;
+                    font-size: large;" class="btn btn-outline">주변 음식점 찾기</button>
+                </a>
+            </div>
         </div>
 <!--        //메뉴 리스트 뜨는곳-->
-
-            <div id="menuContainer"  style="">
-
+        <div class="collapse bg-base-200 " style="z-index:2; width:30%; ">
+            <input id="menuToggleCheckBox" type="checkbox" />
+            <div  class="collapse-title text-xl font-medium">
+                음식점 정보
             </div>
+            <div class="collapse-content" style="display:flex; max-height:600px;">
+                <div id="menuContainer"  style="">
+
+                </div>
+            </div>
+        </div>
+
 
 
 
@@ -153,7 +179,13 @@
 
         <div>
             <div  id="newsPopup" class="popLayer" style="display:none;">
-                    <div>업데이트 소식 : 카카오 로그인 기능 추가</div>
+                    <div>업데이트 소식</div>
+                    <div>
+                        <span>  음식점 , 검색 탭 클릭시 열고 닫을 수 있음</span>
+                        <br>
+                        <span> 검색시 결과 목록 뜨게 수정</span>
+                    </div>
+
                     <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
                     <label for="newsPopupCheckBox">24시간 동안 열지 않기</label>
                     <button type="button" class="btn_close" onclick="closeNewsPopup();"><span><i class="far fa-times-circle"></i></span></button>
@@ -183,19 +215,25 @@
 
    };
 
-        function searchTapOpen(){
 
 
-        }
+        let searchResultList=[];
 
         function submitSearch(){
+            //검색탭 펼쳐지게
+            document.getElementById('searchToggleCheckBox').checked = true;
+
+
+            searchResultList=[];
             let searchString=$("#searchString");
             let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
+            searchResultList=storeList;
             if(storeList.length==0){
                 return;
             }else {
                  let infoWindows=[];
                 update(storeList);
+                 displaySearchResult(storeList);
 
                  var location = new naver.maps.LatLng(storeList[0].latitude,
                                                  storeList[0].longitude);
@@ -203,7 +241,50 @@
 
                 map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
                 map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+
             }
+        }
+
+        function displaySearchResult(list) {
+                     const commentsContainer = document.getElementById('searchResult');
+                     commentsContainer.style.display = "inline-block";
+                     commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
+
+                         list.forEach(item => {
+                               commentsContainer.innerHTML += `
+
+                                       <div onclick=switchLocation(${item.id}); class=id${item.id} info=${item}> ${item.name}</div>
+
+                               `;
+                           });
+
+                  }
+
+        function switchLocation(id){
+                //모든 영역 보더 초기화 하기
+                const allSubElements = document.querySelectorAll('#searchResult *');
+                allSubElements.forEach(element => {
+                    element.style.border = "none";
+                });
+                 //클릭한 검색 영역 쪽 보더 처리하기
+                 const classSelector = '.id' + id;
+
+                // 해당 클래스를 가진 요소를 찾음
+                const clickedDiv = document.querySelector('#searchResult ' + classSelector);
+
+                 console.log(clickedDiv);
+                 clickedDiv.style.border="1px solid blue";
+
+                //클릭한 검색 결과 음식점 위도 경도 데이터 업데이트 해서 그곳으로 이동
+               const clickedList = searchResultList.filter(item => item.id === id);
+               console.log(clickedList);
+                console.log(clickedList[0].name);
+                 var location2 = new naver.maps.LatLng(clickedList[0].latitude,
+                                                 clickedList[0].longitude);
+
+
+                map.setCenter(location2); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
         }
     </script>
 
@@ -225,13 +306,8 @@
   lat1=crd.latitude;
   har1=crd.longitude;
 
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
+
   console.log(`More or less ${crd.accuracy} meters.`);
-//  update(crd.latitude,crd.longitude);
-
-
 
 
 }
