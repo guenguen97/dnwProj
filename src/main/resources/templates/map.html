@@ -222,15 +222,30 @@
 
                          list.forEach(item => {
                                commentsContainer.innerHTML += `
-                                   <div class="searchResult-storeName-container">
-                                       <div onclick=switchLocation(${item.id}); class=${item.id} info=${item}> ${item.name}</div>
-                                   </div>
+
+                                       <div onclick=switchLocation(${item.id}); class=id${item.id} info=${item}> ${item.name}</div>
+
                                `;
                            });
 
                   }
 
         function switchLocation(id){
+                //모든 영역 보더 초기화 하기
+                const allSubElements = document.querySelectorAll('#searchResult *');
+                allSubElements.forEach(element => {
+                    element.style.border = "none";
+                });
+                 //클릭한 검색 영역 쪽 보더 처리하기
+                 const classSelector = '.id' + id;
+
+                // 해당 클래스를 가진 요소를 찾음
+                const clickedDiv = document.querySelector('#searchResult ' + classSelector);
+
+                 console.log(clickedDiv);
+                 clickedDiv.style.border="1px solid blue";
+
+                //클릭한 검색 결과 음식점 위도 경도 데이터 업데이트 해서 그곳으로 이동
                const clickedList = searchResultList.filter(item => item.id === id);
                console.log(clickedList);
                 console.log(clickedList[0].name);
@@ -261,13 +276,8 @@
   lat1=crd.latitude;
   har1=crd.longitude;
 
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
+
   console.log(`More or less ${crd.accuracy} meters.`);
-//  update(crd.latitude,crd.longitude);
-
-
 
 
 }
