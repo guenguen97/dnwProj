@@ -101,7 +101,7 @@ public class Main {
 
 
         //JPA 를 이용해서 편리하게 쿼리문없이 바로 위도 경도범위내 음식점 찾기
-        List<FoodDatas> foodDatasListByJPA =foodService.getDatasInRange(lat-0.0009045F, lat+0.0009045F, har-0.0025045F, har+0.0025045F);
+        List<FoodDatas> foodDatasListByJPA =foodService.getDatasInRange(lat-0.0010045F, lat+0.0010045F, har-0.0026045F, har+0.0026045F);
 
 //        List<List<String>> csvData2=  csvService.csvData("C:\\work\\dajeon_food.csv");
         List<List<String>> csvData2=  csvService.csvData("templates/data/dajeon_food.csv");

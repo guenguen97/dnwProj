@@ -95,15 +95,15 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:0px;">
+        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:5px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
-            <div class="collapse bg-base-200">
+            <div class="collapse bg-base-200" style="background-color:#e6e6fa;">
                 <input id="searchToggleCheckBox" type="checkbox" />
-                <div class="collapse-title text-xl font-medium">
+                <div class="collapse-title text-xl font-medium" style="font-size:xx-large; color:darkblue">
                         검색 결과
                 </div>
                 <div class="collapse-content">
@@ -115,12 +115,12 @@
 
         </div>
 
-        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 120px;">
+        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 5px; top: 120px;">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
 
                     <button style="    width: 300px;
-                    font-size: x-large;" class="btn btn-outline">현재 위치</button>
+                    font-size: x-large;" class="btn  btn-neutral">현재 위치</button>
 
                 </a>
 
@@ -130,14 +130,21 @@
             <div>
                 <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
                     <button  style="    width: 300px;
-                    font-size: large;" class="btn btn-outline">주변 음식점 찾기</button>
+                    font-size: large;" class="btn  btn-neutral">주변 음식점 찾기</button>
                 </a>
+            </div>
+            <div>
+                <a href="#" style="pointer-events: auto;" onclick="goDaejeon();">
+                    <button  style="    width: 300px;
+                    font-size: large;" class="btn  btn-neutral">대전으로 이동</button>
+                </a>
+
             </div>
         </div>
 <!--        //메뉴 리스트 뜨는곳-->
-        <div class="collapse bg-base-200 " style="z-index:2; width:30%; ">
+        <div class="collapse bg-base-200 " style="background-color:#e6e6fa; z-index:2; width:30%; ">
             <input id="menuToggleCheckBox" type="checkbox" />
-            <div  class="collapse-title text-xl font-medium">
+            <div  class="collapse-title text-xl font-medium" style="font-size:xx-large; color:darkblue">
                 음식점 정보
             </div>
             <div class="collapse-content" style="display:flex; max-height:600px;">
@@ -198,6 +205,19 @@
 <!--<ul id="myList">-->
 
 <!--</ul>-->
+    <script>
+        function goDaejeon(){
+                var location = new naver.maps.LatLng(36.360043590621,
+                                                 127.38489655389);
+
+
+                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
+
+
+        }
+    </script>
+
 
     <script>
 
