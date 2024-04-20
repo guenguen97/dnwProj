@@ -83,11 +83,11 @@
 
 
             <div   style="padding-right:0px; font-size:20px;" class="navbar-end" >
-                <div th:if="${@rq.login}">
+                <div th:if="${@rq.login}" style="margin-right:10px">
                     <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
                     <span>님 환영합니다!</span>
                 </div>
-                <div onclick="guideAlert();">물음표</div>
+                <div onclick="guideAlert();"><i class="fa-solid fa-circle-info fa-2xl"></i></div>
 
             </div>
 
