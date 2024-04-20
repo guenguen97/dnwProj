@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
@@ -52,6 +53,18 @@ public class FoodController {
 
     }
 
+
+
+    @GetMapping("/myRandomPick")
+    @ResponseBody
+    public FoodDatasDTO myRandomPick(){
+        Random random = new Random();
+        Integer id = random.nextInt(19999);
+        FoodDatas foodDatas=foodService.getDataById(id);
+        FoodDatasDTO datasDTOS= new FoodDatasDTO(foodDatas);
+        return datasDTOS;
+
+    }
 
 
 

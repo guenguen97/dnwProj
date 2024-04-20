@@ -3,27 +3,6 @@
 <div layout:fragment="content" class="container my-3">
 
 
-<!--<head>-->
-
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">-->
-
-
-<!--    <title>간단한 지도 표시하기</title>-->
-<!--    <link rel="stylesheet" href="/css/map.css">-->
-<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-
-<!--    <script th:inline="javascript">-->
-<!--        var openaiApiKey = /*[[${openaiApiKey}]]*/ 'defaultApiKey';-->
-<!--        // Now you can use 'openaiApiKey' in your JavaScript code-->
-<!--    </script>-->
-
-
-<!--</head>-->
-
     <style>
         body{
          overflow-y:hidden;
@@ -95,15 +74,15 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:0px;">
+        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:5px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
                 </form>
             </div>
-            <div class="collapse bg-base-200">
+            <div class="collapse bg-base-200" style="background-color:#e6e6fa;">
                 <input id="searchToggleCheckBox" type="checkbox" />
-                <div class="collapse-title text-xl font-medium">
+                <div class="collapse-title text-xl font-medium" style="font-size:xx-large; color:darkblue">
                         검색 결과
                 </div>
                 <div class="collapse-content">
@@ -115,12 +94,12 @@
 
         </div>
 
-        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 0px; top: 120px;">
+        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 5px; top: 120px;">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
 
                     <button style="    width: 300px;
-                    font-size: x-large;" class="btn btn-outline">현재 위치</button>
+                    font-size: x-large;" class="btn  btn-neutral">현재 위치</button>
 
                 </a>
 
@@ -130,14 +109,28 @@
             <div>
                 <a href="#" style="pointer-events: auto;" onclick="getFoodNearMap();">
                     <button  style="    width: 300px;
-                    font-size: large;" class="btn btn-outline">주변 음식점 찾기</button>
+                    font-size: large;" class="btn  btn-neutral">주변 음식점 찾기</button>
                 </a>
+            </div>
+            <div>
+                <a href="#" style="pointer-events: auto;" onclick="goDaejeon();">
+                    <button  style="    width: 300px;
+                    font-size: large;" class="btn  btn-neutral">대전으로 이동</button>
+                </a>
+
+            </div>
+            <div>
+                <a href="#" style="pointer-events: auto;" onclick="myRandomPick();">
+                    <button  style="    width: 300px;
+                    font-size: large;" class="btn  btn-neutral">주인장의 음식점 추천</button>
+                </a>
+
             </div>
         </div>
 <!--        //메뉴 리스트 뜨는곳-->
-        <div class="collapse bg-base-200 " style="z-index:2; width:30%; ">
+        <div class="collapse bg-base-200 " style="background-color:#e6e6fa; z-index:2; width:30%; ">
             <input id="menuToggleCheckBox" type="checkbox" />
-            <div  class="collapse-title text-xl font-medium">
+            <div  class="collapse-title text-xl font-medium" style="font-size:xx-large; color:darkblue">
                 음식점 정보
             </div>
             <div class="collapse-content" style="display:flex; max-height:600px;">
@@ -179,11 +172,13 @@
 
         <div>
             <div  id="newsPopup" class="popLayer" style="display:none;">
-                    <div>업데이트 소식</div>
+                    <div style="text-align:center;"><span>******업데이트 소식******</span></div>
                     <div>
                         <span>  음식점 , 검색 탭 클릭시 열고 닫을 수 있음</span>
                         <br>
                         <span> 검색시 결과 목록 뜨게 수정</span>
+                        <br>
+                        <span>대전 이동 버튼, 주인장 추천 버튼 추가 </span>
                     </div>
 
                     <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
@@ -198,8 +193,35 @@
 <!--<ul id="myList">-->
 
 <!--</ul>-->
-
     <script>
+        //주인장의 음식점 랜덤추천
+        function myRandomPick(){
+            let storeData=callApi("/myRandomPick","GET","");
+            alert(storeData.name+"!!!! 여기 가보자!!!");
+            let storeDataList = [];
+            storeDataList.push(storeData);
+            update(storeDataList);
+             var location = new naver.maps.LatLng(storeData.latitude,
+                                                 storeData.longitude);
+
+
+                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+        }
+
+
+        //대전 으로 가는 함수
+        function goDaejeon(){
+                var location = new naver.maps.LatLng(36.360043590621,
+                                                 127.38489655389);
+
+
+                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
+
+
+        }
+
 
    window.onload = function() {
 

@@ -41,6 +41,7 @@
     <header>
         <div class="navbar bg-base-100">
             <div style="padding-left:0px;" class="navbar-start">
+
                 <div class="dropdown">
                     <label tabindex="0" class="btn btn-ghost btn-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
@@ -74,6 +75,7 @@
 
                     </ul>
                 </div>
+                <div style="margin-left : 30px;">현재 대전의 음식점만 구현되어있습니다.</div>
             </div>
             <div class="navbar-center">
                 <a th:href="@{/}" style="font-size:30px; color:#258fff" class="btn btn-ghost normal-case text-xl ">DNW</a>
@@ -81,16 +83,19 @@
 
 
             <div   style="padding-right:0px; font-size:20px;" class="navbar-end" >
-                <div th:if="${@rq.login}">
+                <div th:if="${@rq.login}"  style="margin-right:10px" >
                     <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
                     <span>님 환영합니다!</span>
                 </div>
+                <div onclick="guideAlert();"><i class="fa-solid fa-circle-info fa-2xl"></i></div>
 
             </div>
 
         </div>
 
         <th:block layout:fragment="content"></th:block>
+
+
 
 
 </header>
@@ -131,12 +136,23 @@
 
 
 
+
+
+
 </style>
-</html>
 
 <script>
 
+    function guideAlert(){
+    alert("*******돈워리 사이트 사용법*******\n\n좌측 상단 드롭 탭을 통해 로그인을 할 수 있습니다.\n로그인 이후 원하는 음식점을 찾고 즐겨찾기도 가능합니다.!!\n오늘 뭐를 먹을지 고민되나요?\n그럼 좌측 상단 탭에 즐겨 찾기 음식점 페이지에 가보세요!\n랜덤으로 음식을 추천 받을 수 있습니다. ")
 
+    }
 
 
 </script>
+
+
+
+</html>
+
+
