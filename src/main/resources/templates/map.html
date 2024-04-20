@@ -140,6 +140,13 @@
                 </a>
 
             </div>
+            <div>
+                <a href="#" style="pointer-events: auto;" onclick="myRandomPick();">
+                    <button  style="    width: 300px;
+                    font-size: large;" class="btn  btn-neutral">주인장의 음식점 추천</button>
+                </a>
+
+            </div>
         </div>
 <!--        //메뉴 리스트 뜨는곳-->
         <div class="collapse bg-base-200 " style="background-color:#e6e6fa; z-index:2; width:30%; ">
@@ -186,11 +193,13 @@
 
         <div>
             <div  id="newsPopup" class="popLayer" style="display:none;">
-                    <div>업데이트 소식</div>
+                    <div style="text-align:center;"><span>******업데이트 소식******</span></div>
                     <div>
                         <span>  음식점 , 검색 탭 클릭시 열고 닫을 수 있음</span>
                         <br>
                         <span> 검색시 결과 목록 뜨게 수정</span>
+                        <br>
+                        <span>대전 이동 버튼, 주인장 추천 버튼 추가 </span>
                     </div>
 
                     <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
@@ -206,6 +215,23 @@
 
 <!--</ul>-->
     <script>
+        //주인장의 음식점 랜덤추천
+        function myRandomPick(){
+            let storeData=callApi("/myRandomPick","GET","");
+            alert(storeData.name+"!!!! 여기 가보자!!!");
+            let storeDataList = [];
+            storeDataList.push(storeData);
+            update(storeDataList);
+             var location = new naver.maps.LatLng(storeData.latitude,
+                                                 storeData.longitude);
+
+
+                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+        }
+
+
+        //대전 으로 가는 함수
         function goDaejeon(){
                 var location = new naver.maps.LatLng(36.360043590621,
                                                  127.38489655389);

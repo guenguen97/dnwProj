@@ -2,6 +2,7 @@ package com.doNotWorry.foodDatas;
 
 
 import com.doNotWorry.menu.MenuService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -128,4 +129,6 @@ public class FoodService {
 
 
     }
+
+
 }
