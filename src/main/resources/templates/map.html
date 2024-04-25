@@ -20,6 +20,7 @@
         }
 
 
+
         #menuContainer{
                      display:none;
 
@@ -33,11 +34,29 @@
 
         }
 
+        .buttonContainer {
+        position: absolute; z-index: 2;
+        margin: 0px; padding: 0px;
+        pointer-events: none;
+        right: 5px; top: 120px;
+
+        }
+
+
         @media screen and (max-width: 600px) {
+
               #menuContainer {
               left: 0px; top: 60%;
               width:100%;
               height:38%;
+              }
+
+              .buttonContainer {
+                 bottom:20px;
+                 transform: translateX(-50%);
+                 left:50%;
+                 right: auto; /* right 속성 제거 */
+        top: auto;
               }
         }
 
@@ -74,6 +93,7 @@
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
+<!--        검색 탭 시작 -->
         <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:5px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
@@ -93,8 +113,11 @@
             </div>
 
         </div>
+<!--        검색 탭 끝-->
 
-        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 5px; top: 120px;">
+
+<!--       현재위치, 음식점 찾기 버튼 탭  시작 -->
+        <div class="buttonContainer" style="">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
 
@@ -127,6 +150,9 @@
 
             </div>
         </div>
+<!--        버튼 탭 끝  -->
+
+
 <!--        //메뉴 리스트 뜨는곳-->
         <div class="collapse bg-base-200 " style="background-color:#e6e6fa; z-index:2; width:30%; ">
             <input id="menuToggleCheckBox" type="checkbox" />
@@ -168,8 +194,14 @@
             </div>
 
 
-    </div>
+        <div style="z-index:1;position:absolute; bottom :10px; left :5px; margin-left : 30px;">현재 대전의 음식점만 구현되어있습니다.</div>
 
+
+    </div>
+<!--   map 끝 -->
+
+
+<!--    팝업창 시작-->
         <div>
             <div  id="newsPopup" class="popLayer" style="display:none;">
                     <div style="text-align:center;"><span>******업데이트 소식******</span></div>
@@ -189,7 +221,10 @@
         </div>
 
 
-<!--메뉴 리스트-->
+
+
+
+    <!--메뉴 리스트-->
 <!--<ul id="myList">-->
 
 <!--</ul>-->
