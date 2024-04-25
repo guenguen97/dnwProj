@@ -7,7 +7,8 @@
 
   }
       #userInformation {
-          border:10px solid #258fff;
+          width:50%;
+
           height:50%;
       }
       .userProfile{
@@ -31,19 +32,50 @@
       }
 
         .changeContainer{
-            height:100px
+            height:100px;
+
+
+        }
+        .changeContainer > a {
+              font-size:xx-large;
+
+
+        }
+
+        @media screen and (max-width:600px) {
+            #userInformation {
+                width:auto;
+
+            }
+
+
+            .userinfoContainer {
+
+                width :auto;
+            }
+
+            .changeContainer {
+                justify-content : center;
+              }
+
+            .changeContainer > a {
+              font-size:x-large;
+               margin:5px;
+
+            }
+
         }
 
     </style>
 
-    <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto; width:50%;">
+    <div id="userInformation" style="margin-top:100px; margin-left:auto;margin-right:auto;">
         <div class="userProfile">
             <div class="avatar">
                 <div style="border:1px solid black; margin-top:20px;" class="w-30 rounded-full">
                     <img id="userProfileImg" />
                 </div>
             </div>
-            <div style="display:flex; margin-left: auto;
+            <div class="userinfoContainer" style="display:flex; margin-left: auto;
                             margin-right: auto;
                             width: 300px; text-align: center">
                 <div style="margin-left:auto;margin-right:auto; ">
@@ -67,8 +99,8 @@
 
 
         <div class="changeContainer" style="  display:flex; margin-top:50px">
-            <a  class="btn  btn-success" href="/user/changeInformation" style=" font-size:xx-large; margin-left:40px; "><div>개인정보 수정</div></a>
-            <a  class="btn  btn-success" href="/user/changePassword" style=" font-size:xx-large; margin-left:auto; margin-right:40px;"><div>비밀번호 변경</div></a>
+            <a  class="btn  btn-success" href="/user/changeInformation" style=" margin-left:40px; "><div>개인정보 수정</div></a>
+            <a  class="btn  btn-success" href="/user/changePassword" style="margin-left:auto; margin-right:40px;"><div>비밀번호 변경</div></a>
         </div>
 
     </div>
