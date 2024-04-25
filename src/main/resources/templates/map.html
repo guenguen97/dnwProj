@@ -19,6 +19,12 @@
             height: 92%;
         }
 
+        .menuTapContainer {
+
+            width:30%;
+
+        }
+
 
         #menuContainer{
                      display:none;
@@ -33,11 +39,46 @@
 
         }
 
+        .buttonContainer {
+        position: absolute; z-index: 2;
+        margin: 0px; padding: 0px;
+        pointer-events: none;
+        right: 5px; top: 120px;
+
+        }
+
+
         @media screen and (max-width: 600px) {
+
+              .searchContainer {
+                top:20px;
+
+              }
+
               #menuContainer {
               left: 0px; top: 60%;
               width:100%;
-              height:38%;
+              max-height:270px;
+              }
+
+              .buttonContainer {
+                 bottom:20px;
+                 transform: translateX(-50%);
+                 left:50%;
+                 right: auto; /* right 속성 제거 */
+                 top: auto;
+              }
+
+              .menuTapContainer{
+                width:100%;
+                top:55%;
+
+              }
+
+              #searchResult {
+                max-height:100px;
+                overflow-y:auto;
+
               }
         }
 
@@ -68,13 +109,20 @@
 
         }
 
+
+        .save-btn {
+            top:0px;
+            right:10px;
+            position:absolute;
+        }
     </style>
 
 
 
 
     <div id="map" style="margin-top:70px;  position: absolute;">
-        <div onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:5px;">
+<!--        검색 탭 시작 -->
+        <div class="searchContainer" onclick="searchTapOpen()" style="position: absolute; z-index:3;top:0px; right:5px;">
             <div>
                 <form  onsubmit="submitSearch(); return false;">
                     <input id="searchString" name="searchString" placeholder="음식점을 검색해보세요." type="text">
@@ -93,8 +141,11 @@
             </div>
 
         </div>
+<!--        검색 탭 끝-->
 
-        <div style="position: absolute; z-index: 2; margin: 0px; padding: 0px; pointer-events: none; right: 5px; top: 120px;">
+
+<!--       현재위치, 음식점 찾기 버튼 탭  시작 -->
+        <div class="buttonContainer" style="">
             <div style="border: 0px none; margin: 0px; padding: 0px; pointer-events: none; float: left;">
                 <a href="#" class="currentPositionUpdateBtn btn_mylct spr_trff spr_ico_mylct" onclick="goCurrentPositionUpdate();" style="pointer-events: auto;">
 
@@ -127,8 +178,11 @@
 
             </div>
         </div>
+<!--        버튼 탭 끝  -->
+
+
 <!--        //메뉴 리스트 뜨는곳-->
-        <div class="collapse bg-base-200 " style="background-color:#e6e6fa; z-index:2; width:30%; ">
+        <div class="collapse bg-base-200 menuTapContainer" style="background-color:#e6e6fa; z-index:2;  ">
             <input id="menuToggleCheckBox" type="checkbox" />
             <div  class="collapse-title text-xl font-medium" style="font-size:xx-large; color:darkblue">
                 음식점 정보
@@ -142,34 +196,41 @@
 
 
 
+<!--        즐겨 찾기 창  시작 -->
 
             <div id="likePopup" class="popLayer">
-                <button type="button" class="btn_close" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
+                <div style="text-align:start; width:300px;margin:0 auto;">
+                    <button type="button" class="save-btn" onclick="closeSignupPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
+                    <input type="checkbox" id="option1" class="option-checkbox">
+                    <label for="option1">맛집</label>
+                    <i class="option1 fa-regular fa-star" style="color: #FFD43B;"></i>
+                    <br>
 
-
-                <input type="checkbox" id="option1" class="option-checkbox">
-                <label for="option1">맛집</label>
-                <i class="option1 fa-regular fa-star" style="color: #FFD43B;"></i>
-                <br>
-
-                <input type="checkbox" id="option2" class="option-checkbox">
-                <label for="option2">가보고 싶은 곳</label>
-                <i class="option2 fa-regular fa-star" style="color: #FFD43B;"></i>
-                <br>
-                <input type="checkbox" id="option3" class="option-checkbox">
-                <label for="option3">기타</label>
-                <i class="option3 fa-regular fa-star" style="color: #FFD43B;"></i>
-                <br>
-
+                    <input type="checkbox" id="option2" class="option-checkbox">
+                    <label for="option2">가보고 싶은 곳</label>
+                    <i class="option2 fa-regular fa-star" style="color: #FFD43B;"></i>
+                    <br>
+                    <input type="checkbox" id="option3" class="option-checkbox">
+                    <label for="option3">기타</label>
+                    <i class="option3 fa-regular fa-star" style="color: #FFD43B;"></i>
+                    <br>
+                </div>
                 <div id="info"></div>
                 <div class="btn btn-lg" onclick="submitLikeStore();">완료</div>
 
             </div>
+<!--        즐겨찾기 창 끝 -->
+
+
+        <div style="z-index:1;position:absolute; bottom :10px; left :5px; margin-left : 30px;">현재 대전의 음식점만 구현되어있습니다.</div>
 
 
     </div>
+<!--   map 끝 -->
 
+
+<!--    팝업창 시작-->
         <div>
             <div  id="newsPopup" class="popLayer" style="display:none;">
                     <div style="text-align:center;"><span>******업데이트 소식******</span></div>
@@ -189,7 +250,10 @@
         </div>
 
 
-<!--메뉴 리스트-->
+
+
+
+    <!--메뉴 리스트-->
 <!--<ul id="myList">-->
 
 <!--</ul>-->
@@ -406,6 +470,15 @@ function closeSignupPopup(){
 
 
     }
+
+
+    var navbar = document.querySelector(".navbar");
+var searchContainer = document.querySelector(".searchContainer");
+
+// navbar의 높이가 90px 이상인 경우에만 searchContainer의 위치를 변경
+if (navbar.offsetHeight >= 90) {
+    searchContainer.style.top = "30px";
+}
 
 </script>
 

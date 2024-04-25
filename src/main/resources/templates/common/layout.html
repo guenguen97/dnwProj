@@ -75,7 +75,7 @@
 
                     </ul>
                 </div>
-                <div style="margin-left : 30px;">현재 대전의 음식점만 구현되어있습니다.</div>
+
             </div>
             <div class="navbar-center">
                 <a th:href="@{/}" style="font-size:30px; color:#258fff" class="btn btn-ghost normal-case text-xl ">DNW</a>
@@ -83,7 +83,7 @@
 
 
             <div   style="padding-right:0px; font-size:20px;" class="navbar-end" >
-                <div th:if="${@rq.login}"  style="margin-right:10px" >
+                <div th:if="${@rq.login}" style="margin-right:10px">
                     <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
                     <span>님 환영합니다!</span>
                 </div>
@@ -131,7 +131,16 @@
 
     }
 
+    @media screen and ( max-width:600px) {
+        .navbar-end {
+            font-size:17px;
 
+
+        }
+
+
+
+    }
 
 
 
