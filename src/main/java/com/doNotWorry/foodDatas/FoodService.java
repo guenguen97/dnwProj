@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.doNotWorry.Main.isFloat;
 
@@ -120,11 +122,39 @@ public class FoodService {
         return foodRepository.findById(id).get();
     }
 
+    public FoodDatasDTO getRanDomData(){
+        boolean pass=true;
+        FoodDatas data=new FoodDatas();
+        while(pass){
+        Random random = new Random();
+        Integer id = random.nextInt(19999);
+
+         data= foodRepository.findByLatitudeNotAndId(0.0, id);
+            if(data!=null){
+                pass=false;
+            }
+
+        }
+
+        FoodDatasDTO resultData=new FoodDatasDTO(data);
+
+        return resultData;
+    }
+
     public List<FoodDatas> getDataBySearch(String searchString) {
 //        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 이름을 오름차순으로 정렬
 //        return foodRepository.findByNameContaining(searchString, sort);
+        List<FoodDatas> foodDatas=foodRepository.findByNameContaining(searchString);
 
-        return foodRepository.findByNameContaining(searchString);
+        List<FoodDatas> resultData=new ArrayList<>();
+        for(FoodDatas store : foodDatas){
+            if(store.getLatitude() != 0.0) {
+                    resultData.add(store);
+            }
+        }
+
+
+        return resultData;
 
 
 
