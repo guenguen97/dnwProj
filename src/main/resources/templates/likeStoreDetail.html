@@ -51,6 +51,12 @@
 
     <script>
         function getRandomStore(){
+             const elements = document.getElementsByClassName('comment');
+             if(elements.length===0){
+                alert("먼저 음식점을 즐겨찾기로 저장해주세요!!")
+                return;
+             }
+
              let randomStore = getJson("/likeStore/random/"+groupName , null)
 
              alert("오늘은 " + randomStore +"에 가봐야겠다!!");

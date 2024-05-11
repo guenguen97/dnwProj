@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +50,7 @@ public class Main {
 
     @PostMapping("/stop/newsPopup")
     @ResponseBody
-    public String stopPopup(HttpServletResponse res,HttpServletRequest request){
+    public String stopPopup(HttpServletResponse res, HttpServletRequest request){
         System.out.println("쿠키 생성");
         Cookie cookie = new Cookie("newsPopup","stop");
 
@@ -61,16 +62,23 @@ public class Main {
         cookie.setHttpOnly(true); // JavaScript로 쿠키에 접근 방지
         res.addCookie(cookie);
 
-        ResponseCookie.from("newsPopupByResponseCookie", "stop")
+
+
+        //배포용 쿠키 생성
+        ResponseCookie cookie3 = ResponseCookie.from("newsPopupByResponseCookie", "stop")
                 .domain(".donotworry.site")
-                .maxAge(60*60*24)
-                .sameSite("None")
                 .path("/")
-                .build().toString();
+                .httpOnly(true)
+                .maxAge(60*60*24)
+                .secure(true)
+                .sameSite("None")
+                .build();
+
+        res.addHeader("Set-Cookie", cookie3.toString());
 
 
 
-        return "소식 팝업 정지";
+        return "ㅁㄴㅇ";
     }
 
     @GetMapping("/newsCookies")
@@ -80,7 +88,7 @@ public class Main {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("newsPopup")){
+                if(cookie.getName().equals("newsPopup") || cookie.getName().equals("newsPopupByResponseCookie")){
                     System.out.println("쿠키 있음");
                     //팝업 정지를 원하는 쿠키가 존재하면 참 반환
                     return "{\"message\": \"true\"}";
