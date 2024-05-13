@@ -58,11 +58,10 @@ public class FoodController {
     @GetMapping("/myRandomPick")
     @ResponseBody
     public FoodDatasDTO myRandomPick(){
-        Random random = new Random();
-        Integer id = random.nextInt(19999);
-        FoodDatas foodDatas=foodService.getDataById(id);
-        FoodDatasDTO datasDTOS= new FoodDatasDTO(foodDatas);
-        return datasDTOS;
+       
+		FoodDatasDTO datasDTOS=foodService.getRanDomData();
+
+	  return datasDTOS;
 
     }
 
