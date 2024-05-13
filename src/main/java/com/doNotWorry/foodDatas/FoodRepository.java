@@ -13,5 +13,6 @@ public interface  FoodRepository extends JpaRepository<FoodDatas , Integer > {
 
     List<FoodDatas> findByNameContaining(String searchString);
 
+
     FoodDatas findByLatitudeNotAndId(double lat, Integer id);
 }

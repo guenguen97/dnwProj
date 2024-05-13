@@ -8,9 +8,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 import static com.doNotWorry.Main.isFloat;
 
@@ -123,6 +125,7 @@ public class FoodService {
         return foodRepository.findById(id).get();
     }
 
+
     public FoodDatasDTO getRanDomData(){
         boolean pass=true;
         FoodDatas data=new FoodDatas();
@@ -146,6 +149,7 @@ public class FoodService {
 //        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 이름을 오름차순으로 정렬
 //        return foodRepository.findByNameContaining(searchString, sort);
         List<FoodDatas> foodDatas=foodRepository.findByNameContaining(searchString);
+
 
         List<FoodDatas> resultData=new ArrayList<>();
         for(FoodDatas store : foodDatas){

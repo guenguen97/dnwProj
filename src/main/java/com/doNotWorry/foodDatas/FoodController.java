@@ -59,8 +59,11 @@ public class FoodController {
     @ResponseBody
     public FoodDatasDTO myRandomPick(){
 
-        FoodDatasDTO datasDTOS=foodService.getRanDomData();
-        return datasDTOS;
+       
+		FoodDatasDTO datasDTOS=foodService.getRanDomData();
+
+	  return datasDTOS;
+
 
     }
 
