@@ -75,6 +75,9 @@
 
                     </ul>
                 </div>
+                <div style="margin-left:20px;" class="communicationTool" onclick="communicationTool();">
+                    <i class="fa-solid fa-bullhorn" style="color: #cc2014;"></i>
+                </div>
 
             </div>
             <div class="navbar-center">
@@ -83,7 +86,7 @@
 
 
             <div   style="padding-right:0px; font-size:20px;" class="navbar-end" >
-                <div th:if="${@rq.login}" style="margin-right:10px">
+                <div class="currentUser"th:if="${@rq.login}" style="margin-right:10px">
                     <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
                     <span>님 환영합니다!</span>
                 </div>
@@ -142,6 +145,9 @@
 
 
         }
+        .currentUser{
+            display:none;
+        }
 
 
 
@@ -162,6 +168,12 @@
 
     }
 
+    function communicationTool(){
+     const windowName = "singleWindow";
+        window.open(window.location.origin+'/communication/write', windowName, 'width=260,height=500,left=500,top=300', false);
+
+
+    }
 
 </script>
 
