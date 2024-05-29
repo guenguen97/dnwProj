@@ -86,13 +86,16 @@
 
 
             <div   style="padding-right:0px; font-size:20px;" class="navbar-end" >
-                <div class="currentUser"th:if="${@rq.login}" style="margin-right:10px">
-                    <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
-                    <span>님 환영합니다!</span>
+                <div class="currentUser">
+                    <div  th:if="${@rq.login}" style="margin-right:10px">
+                        <span class="userIdDiv"  th:text="${@rq.loginUser.nickName}"></span>
+                        <span>님 환영합니다!</span>
+                    </div>
+                    <div th:if="${!@rq.login}" style="margin-right:30px; font-size:xx-large;">
+                        <a th:href="@{/user/login}">로그인</a>
+                    </div>
                 </div>
-                <div th:if="${!@rq.login}" style="margin-right:30px; font-size:xx-large;">
-                    <a th:href="@{/user/login}">로그인</a>
-                </div>
+
 
 
                 <div onclick="guideAlert();"><i class="fa-solid fa-circle-info fa-2xl"></i></div>
