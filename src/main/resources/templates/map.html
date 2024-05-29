@@ -258,120 +258,139 @@
 
 <!--</ul>-->
     <script>
-        //주인장의 음식점 랜덤추천
-        function myRandomPick(){
-            let storeData=callApi("/myRandomPick","GET","");
-            alert(storeData.name+"!!!! 여기 가보자!!!");
-            let storeDataList = [];
-            storeDataList.push(storeData);
-            update(storeDataList);
-             var location = new naver.maps.LatLng(storeData.latitude,
-                                                 storeData.longitude);
+        //팝업창 여는 함수
+        function openPopup() {
+
+                 var url = "http://localhost:8060/popup";
 
 
-                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
-        }
+                 var windowName = "popupWindow";
 
 
-        //대전 으로 가는 함수
-        function goDaejeon(){
-                var location = new naver.maps.LatLng(36.360043590621,
-                                                 127.38489655389);
+                 var specs = "width=400,height=400,left=100,top=100";
 
 
-                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-                map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
+                 window.open(url, windowName, specs);
+             }
 
 
-        }
+     //주인장의 음식점 랜덤추천
+     function myRandomPick(){
+         let storeData=callApi("/myRandomPick","GET","");
+         alert(storeData.name+"!!!! 여기 가보자!!!");
+         let storeDataList = [];
+         storeDataList.push(storeData);
+         update(storeDataList);
+          var location = new naver.maps.LatLng(storeData.latitude,
+                                              storeData.longitude);
 
 
-   window.onload = function() {
+             map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+             map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+     }
 
 
-       if(getJson("/newsCookies","").message=="true") {
+     //대전 으로 가는 함수
+     function goDaejeon(){
+             var location = new naver.maps.LatLng(36.360043590621,
+                                              127.38489655389);
 
-           //이게 참이면 쿠키가 있으니 팝업창 안뛰움
-       }
-       else {
+
+             map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+             map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
+
+
+     }
+
+
+window.onload = function() {
+
+
+    if(getJson("/newsCookies","").message=="true") {
+
+        //이게 참이면 쿠키가 있으니 팝업창 안뛰움
+    }
+    else {
 <!--                  layerPop('newsPopup');-->
-                    $("#newsPopup").show();
-       }
-
-   };
+                 $("#newsPopup").show();
+             openPopup();
 
 
+    }
 
-        let searchResultList=[];
-
-        function submitSearch(){
-            //검색탭 펼쳐지게
-            document.getElementById('searchToggleCheckBox').checked = true;
+};
 
 
-            searchResultList=[];
-            let searchString=$("#searchString");
-            let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
-            searchResultList=storeList;
-            if(storeList.length==0){
-                return;
-            }else {
-                 let infoWindows=[];
-                update(storeList);
-                 displaySearchResult(storeList);
 
-                 var location = new naver.maps.LatLng(storeList[0].latitude,
-                                                 storeList[0].longitude);
+     let searchResultList=[];
+
+     function submitSearch(){
+         //검색탭 펼쳐지게
+         document.getElementById('searchToggleCheckBox').checked = true;
 
 
-                map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+         searchResultList=[];
+         let searchString=$("#searchString");
+         let storeList=callApi("/search/foodData/"+searchString.val(),"post","");
+         searchResultList=storeList;
+         if(storeList.length==0){
+             return;
+         }else {
+              let infoWindows=[];
+             update(storeList);
+              displaySearchResult(storeList);
 
-            }
-        }
-
-        function displaySearchResult(list) {
-                     const commentsContainer = document.getElementById('searchResult');
-                     commentsContainer.style.display = "inline-block";
-                     commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
-
-                         list.forEach(item => {
-                               commentsContainer.innerHTML += `
-
-                                       <div onclick=switchLocation(${item.id}); class=id${item.id} info=${item}> ${item.name}</div>
-
-                               `;
-                           });
-
-                  }
-
-        function switchLocation(id){
-                //모든 영역 보더 초기화 하기
-                const allSubElements = document.querySelectorAll('#searchResult *');
-                allSubElements.forEach(element => {
-                    element.style.border = "none";
-                });
-                 //클릭한 검색 영역 쪽 보더 처리하기
-                 const classSelector = '.id' + id;
-
-                // 해당 클래스를 가진 요소를 찾음
-                const clickedDiv = document.querySelector('#searchResult ' + classSelector);
-
-                 console.log(clickedDiv);
-                 clickedDiv.style.border="1px solid blue";
-
-                //클릭한 검색 결과 음식점 위도 경도 데이터 업데이트 해서 그곳으로 이동
-               const clickedList = searchResultList.filter(item => item.id === id);
-               console.log(clickedList);
-                console.log(clickedList[0].name);
-                 var location2 = new naver.maps.LatLng(clickedList[0].latitude,
-                                                 clickedList[0].longitude);
+              var location = new naver.maps.LatLng(storeList[0].latitude,
+                                              storeList[0].longitude);
 
 
-                map.setCenter(location2); // 얻은 좌표를 지도의 중심으로 설정합니다.
-                map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
-        }
+             map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+             map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+
+         }
+     }
+
+     function displaySearchResult(list) {
+                  const commentsContainer = document.getElementById('searchResult');
+                  commentsContainer.style.display = "inline-block";
+                  commentsContainer.innerHTML = ''; //클릭될떄마다 메뉴는 초기화
+
+                      list.forEach(item => {
+                            commentsContainer.innerHTML += `
+
+                                    <div onclick=switchLocation(${item.id}); class=id${item.id} info=${item}> ${item.name}</div>
+
+                            `;
+                        });
+
+               }
+
+     function switchLocation(id){
+             //모든 영역 보더 초기화 하기
+             const allSubElements = document.querySelectorAll('#searchResult *');
+             allSubElements.forEach(element => {
+                 element.style.border = "none";
+             });
+              //클릭한 검색 영역 쪽 보더 처리하기
+              const classSelector = '.id' + id;
+
+             // 해당 클래스를 가진 요소를 찾음
+             const clickedDiv = document.querySelector('#searchResult ' + classSelector);
+
+              console.log(clickedDiv);
+              clickedDiv.style.border="1px solid blue";
+
+             //클릭한 검색 결과 음식점 위도 경도 데이터 업데이트 해서 그곳으로 이동
+            const clickedList = searchResultList.filter(item => item.id === id);
+            console.log(clickedList);
+             console.log(clickedList[0].name);
+              var location2 = new naver.maps.LatLng(clickedList[0].latitude,
+                                              clickedList[0].longitude);
+
+
+             map.setCenter(location2); // 얻은 좌표를 지도의 중심으로 설정합니다.
+             map.setZoom(19); // 지도의 줌 레벨을 변경합니다.
+     }
     </script>
 
 

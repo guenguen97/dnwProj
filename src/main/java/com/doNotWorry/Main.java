@@ -48,6 +48,12 @@ public class Main {
         return "{\"message\": \"success\"}";
     }
 
+    @GetMapping("/popup")
+    public String popup(){
+
+        return "popup";
+    }
+
     @PostMapping("/stop/newsPopup")
     @ResponseBody
     public String stopPopup(HttpServletResponse res, HttpServletRequest request){
