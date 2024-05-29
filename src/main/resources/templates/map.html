@@ -5,6 +5,7 @@
 
     <style>
         body{
+        color:black;
          overflow-y:hidden;
          //지도에 마진 탑을 줘서 아래로 쫌 스크롤바가 생김
          //그거 없앨려고 이거 추가
@@ -18,6 +19,12 @@
             width: 100%;
             height: 92%;
         }
+
+        .mainPop {
+
+            border :1px solid black;
+        }
+
 
         .menuTapContainer {
 
@@ -232,8 +239,8 @@
 
 <!--    팝업창 시작-->
         <div>
-            <div  id="newsPopup" class="popLayer" style="display:none;">
-                    <div style="text-align:center;"><span>******업데이트 소식******</span></div>
+            <div  id="newsPopup" class="popLayer mainPop" style="display:none; color:black;">
+                    <div style="text-align:center;"><span>업데이트 소식</span></div>
                     <div>
                         <span>  음식점 , 검색 탭 클릭시 열고 닫을 수 있음</span>
                         <br>
@@ -241,9 +248,11 @@
                         <br>
                         <span>대전 이동 버튼, 랜덤 음식점 추천 버튼 추가 </span>
                     </div>
-
-                    <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
-                    <label for="newsPopupCheckBox">24시간 동안 열지 않기.</label>
+                    <br>
+                    <div style="text-align:center">
+                        <input id="newsPopupCheckBox" type="checkbox" name="cancel" >
+                        <label for="newsPopupCheckBox">24시간 동안 열지 않기.</label>
+                    </div>
                     <button type="button" class="btn_close" onclick="closeNewsPopup();"><span><i class="far fa-times-circle"></i></span></button>
 
             </div>
@@ -258,20 +267,7 @@
 
 <!--</ul>-->
     <script>
-        //팝업창 여는 함수
-        function openPopup() {
 
-                 var url = "http://localhost:8060/popup";
-
-
-                 var windowName = "popupWindow";
-
-
-                 var specs = "width=400,height=400,left=100,top=100";
-
-
-                 window.open(url, windowName, specs);
-             }
 
 
      //주인장의 음식점 랜덤추천

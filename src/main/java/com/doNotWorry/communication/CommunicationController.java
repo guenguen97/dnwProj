@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/communication")
 public class CommunicationController {
@@ -21,12 +23,16 @@ public class CommunicationController {
         return "communicationTool";
     }
 
-    @PostMapping("/write")
+    @PostMapping("/write2")
     @ResponseBody
-    public String writePost( @RequestParam(value="title") String title, @RequestParam(value="content") String content){
+    public String writePost( @RequestBody Map<String, String> requestBody){
         SiteUser user=rq.getLoginUser();
+        String title = requestBody.get("title");
+        String content = requestBody.get("content");
+        System.out.println(title+"!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         communicationService.create(user,title,content);
 
-        return "성공";
+        return "{\"message\": \"success\"}";
     }
 }

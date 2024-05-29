@@ -168,12 +168,41 @@
 
     }
 
+
+    //건의하기 팝업창 뜨게
     function communicationTool(){
      const windowName = "singleWindow";
-        window.open(window.location.origin+'/communication/write', windowName, 'width=260,height=500,left=500,top=300', false);
+        window.open(window.location.origin+'/communication/write', windowName, 'width=260,height=400,left=500,top=300', false);
 
 
     }
+
+    window.addEventListener('message', function(event) {
+            if (event.origin !== window.location.origin) return; // 보안을 위해 오리진을 확인합니다.
+
+            // 받은 메시지 처리
+            if (event.data === 'executeFunction') {
+                // 현재 창에서 특정 함수 실행
+                myFunction();
+            }
+
+            if (event.data === 'needTitle') {
+                // 현재 창에서 특정 함수 실행
+                needTitle();
+            }
+
+            if (event.data === 'needContent') {
+                // 현재 창에서 특정 함수 실행
+                needContent();
+            }
+
+        });
+
+    function myFunction(){
+        alert("의견이 성공적으로 보내졌습니다!!");
+    }
+
+
 
 </script>
 

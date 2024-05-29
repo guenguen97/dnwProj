@@ -2,30 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script th:src="@{/js/function.js}"></script>
+
     <title>Title</title>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<form th:action="@{/communication/write}" method="post">
-    <label for="title">제목</label>
-    <input name="title" id="title" type="text">
-    <br>
-    <div>내용</div>
-    <textarea name="content" id="content" cols="30" rows="10">
-    </textarea>
-    <input type="submit" >
     <div>
-        <span>음식점 위치가 이상하다 </span>
-        <br>
-        <span>음식점 업데이트가 필요하다</span>
-        <br>
-        <span>오류 수정이 필요하다</span>
-        <br>
-        <span> 등등 자유롭게 관리자에게 메시지를 보낼수 있습니다.</span>
+        <span style="font-size:xx-large;">건의하기</span>
     </div>
-</form>
-</body>
-<script>
+    <br>
 
+    <div>
+    <form id="communicationForm" onsubmit="return false;">
+        <label for="title">제목</label>
+        <input name="title" id="title" type="text" required>
+        <br>
+        <div>내용</div>
+        <label for="content"></label>
+        <textarea name="content" id="content" cols="30" rows="10" maxlength=250 required></textarea>
+
+        <div>
+            <span>음식점 위치가 이상하다 </span>
+            <br>
+            <span>음식점 업데이트가 필요하다</span>
+            <br>
+            <span>오류 수정이 필요하다</span>
+            <br>
+            <span> 등등 자유롭게 관리자에게 메시지를 보낼수 있습니다.</span>
+        </div>
+        <br>
+        <button onclick="write2();" >제출</button>
+
+    </form>
+
+
+    </div>
+</body>
+
+<script>
+    function ddd(){
+        console.log("ASd")
+    }
+
+
+    function write2(){
+
+    console.log("asdasdSD");
+               let title = $("#title").val();
+               let content = $("#content").val();
+
+                //항목 검사
+               if(title==""){
+                     title.focus();
+                    return false;
+               }
+                 if (!content.trim()) {
+
+                   return false;
+                 }
+                if(content==""){
+                    content.focus();
+
+                       return false;
+
+               }
+
+               let params = {
+                   title: title,
+                   content: content
+               };
+
+
+              let result=callApi("/communication/write2","post",params);
+              if(result.message=="success"){
+
+                 window.close();
+                //원래 윈도우 창에 성공 했다는 메시지 보내기
+                 window.opener.postMessage('executeFunction', window.opener.location.origin);
+
+              }
+
+    }
 
 </script>
 </html>
