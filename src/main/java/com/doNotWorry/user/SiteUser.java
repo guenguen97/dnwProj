@@ -1,6 +1,7 @@
 package com.doNotWorry.user;
 
 
+import com.doNotWorry.communication.Communication;
 import com.doNotWorry.likeStore.LikeStore;
 import com.doNotWorry.menu.Menu;
 import jakarta.persistence.*;
@@ -46,6 +47,9 @@ public class SiteUser {
         this.nickName = nickName;
         this.profileImgUrl = profileImgUrl;
     }
+
+    @OneToMany(mappedBy = "siteUser" , cascade = CascadeType.REMOVE)
+    private List<Communication> communications;
 
 
 }
