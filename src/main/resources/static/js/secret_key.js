@@ -7,7 +7,7 @@
             // Load the Naver Map API dynamically with the fetched key
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + data.apiKey;
+            script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + data.apiKey;
             script.async = true;
             document.head.appendChild(script);
 

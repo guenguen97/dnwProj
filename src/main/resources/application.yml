@@ -12,7 +12,7 @@ spring:
       enabled: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/dnw
+    url: jdbc:mysql://localhost:3306/dnw?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password:
   config:
@@ -20,6 +20,7 @@ spring:
 
   jpa:
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect # 3. 방언(Dialect)을 강제로 지정
     hibernate:
       ddl-auto: update
       naming:
@@ -40,7 +41,7 @@ spring:
       client:
         registration:
           kakao:
-            clientId:
+            clientId: 3413741814
             scope: profile_nickname, profile_image
             client-name: Kakao
             authorization-grant-type: authorization_code
